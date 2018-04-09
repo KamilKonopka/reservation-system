@@ -8,9 +8,10 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselComponent } from './carousel/carousel.component';
-import { RegulaminComponent } from './regulamin/regulamin.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 
 
@@ -22,13 +23,14 @@ import { RegulationsComponent } from './regulations/regulations.component';
     FooterComponent,
     LoginComponent,
     CarouselComponent,
-    RegulaminComponent,
     AboutUsComponent,
     RegisterComponent,
-    RegulationsComponent
+    RegulationsComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
