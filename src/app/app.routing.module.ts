@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterFormComponent } from './register/register.component';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterFormComponent
   },
   {
     path: 'login',
