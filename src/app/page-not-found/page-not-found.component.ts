@@ -21,7 +21,7 @@ export class PageNotFoundComponent implements OnInit {
 
       });
       h1.animate({
-        fontSize: '3em'
+        fontSize: '4em'
         }, {
           duration: 1000
         });
