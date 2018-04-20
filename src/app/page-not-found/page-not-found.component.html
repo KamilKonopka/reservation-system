@@ -1,3 +1,10 @@
-<p>
-  page-not-found works!
-</p>
+<div class="container-fluid">
+  <div class="col-lg-12 col-sm-12">
+    <div class="center">
+    <h1 (click)="jumpAround()" >Error: 404</h1>
+    <div>Page does not exist!</div>
+    <button routerLink="/home">Take me home!</button>
+    <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
