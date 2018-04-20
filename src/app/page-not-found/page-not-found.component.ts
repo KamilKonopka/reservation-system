@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-not-found',
@@ -8,18 +9,24 @@ import * as $ from 'jquery';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   jumpAround () {
-    $('h1').animate({
-        width: 'toggle',
-        height: 'toggle'
+    setInterval(function () {
+      const h1 = $('h1');
+    h1.animate({
+      fontSize: '6em'
+
       }, {
-        duration: 1000,
-        complete: function() {
-        $( this ).after( '<div>Page does not exist!</div>' );
-        }
+        duration: 1000
+
       });
-    }
+      h1.animate({
+        fontSize: '3em'
+        }, {
+          duration: 1000
+        });
+    }, 1000);
+  }
   ngOnInit() {
   }
 
