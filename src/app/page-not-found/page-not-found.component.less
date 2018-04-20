@@ -1,2 +1,53 @@
 @import '../../less/variables.less';
 @import '../../less/mixins.less';
+
+
+h1 {
+
+  text-align: center;
+  font-size: 72px;
+  color: @pink;
+}
+
+.container-fluid {
+  padding: 25% 0%;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin: 20px 0px;
+  color: @pink;
+  background-color: @white;
+  border: solid 1px @pink;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+button:active {
+  border: solid 1px @red;
+  background-color: @pink;
+  color: @white;
+}
+button:visited {
+  border: solid 1px @red;
+  background-color: @pink;
+  color: @white;
+}
+
+button:hover {
+  border: solid 1px @red;
+  background-color: @pink;
+  color: @white;
+}
