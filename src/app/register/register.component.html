@@ -140,11 +140,15 @@ myform.controls.nrdomu.touched)">
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="!myform.valid" >Wyślij</button>
+  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
+  <!--
   <pre>{{myform.value | json}}</pre>
   <pre> login {{myform.controls.login.valid}}</pre>
   <pre> password {{myform.controls.password.valid}}</pre>
   <pre> name {{myform.controls.name.valid}}</pre>
   <pre>email {{myform.controls.email.valid}}</pre>
+  -->
+
 </form>
 </div>
 

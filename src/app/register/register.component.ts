@@ -17,6 +17,7 @@ import {
 })
 export class RegisterFormComponent  implements OnInit {
   myform: FormGroup;
+  modalElement: any;
   ulice: string[] = [
     'Kościuszki',
     'Pomorska',
@@ -51,15 +52,14 @@ lastName: new FormControl('', Validators.required),
       agree: new FormControl()
   });
     // this.myform.controls.email.setValue('aaa@wp.pl');
-  }
+      this.modalElement = document.getElementById('myModal');
+    }
 
   onSubmit() {
     if (this.myform.valid) {
-      console.log("Form is valid  :) !!!");
-    }
-    else
-    {
-      console.log("Form is invalid :( !!!");
+      console.log('Form is valid  :) !!!');
+    } else {
+      console.log('Form is invalid :( !!!');
       this.getFormValidationErrors();
     }
   }
