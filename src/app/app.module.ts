@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -9,11 +11,10 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterFormComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
-import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -25,14 +26,15 @@ import { ContactComponent } from './contact/contact.component';
     LoginComponent,
     CarouselComponent,
     AboutUsComponent,
-    RegisterComponent,
+    RegisterFormComponent,
     RegulationsComponent,
-    PageNotFoundComponent,
-    ContactComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
