@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { AuthService } from './services/auth.service';
+import { LoggedComponent } from './logged/logged.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AuthService } from './services/auth.service';
     AboutUsComponent,
     RegisterFormComponent,
     RegulationsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoggedComponent
   ],
   imports: [
     BrowserModule,

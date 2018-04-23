@@ -6,6 +6,7 @@ import { RegisterFormComponent } from './register/register.component';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { LoggedComponent } from './logged/logged.component';
 
 const appRoutes: Routes = [
   {
@@ -32,6 +33,10 @@ const appRoutes: Routes = [
   {
     path: 'regulations',
     component: RegulationsComponent
+  },
+  {
+    path: 'logged',
+    component: LoggedComponent
   },
   {
     path: '**',
