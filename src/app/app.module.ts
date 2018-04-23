@@ -15,6 +15,7 @@ import { RegisterFormComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { RegulationsComponent } from './regulations/regulations.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
