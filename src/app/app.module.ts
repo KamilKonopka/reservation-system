@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { AuthService } from './services/auth.service';
 import { LoggedComponent } from './logged/logged.component';
+import { CallbackComponent } from './callback/callback.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LoggedComponent } from './logged/logged.component';
     RegisterFormComponent,
     RegulationsComponent,
     PageNotFoundComponent,
-    LoggedComponent
+    LoggedComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
