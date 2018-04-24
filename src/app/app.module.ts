@@ -15,6 +15,7 @@ import { RegisterFormComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { RegulationsComponent } from './regulations/regulations.component';
     AboutUsComponent,
     RegisterFormComponent,
     RegulationsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
