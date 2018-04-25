@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class PageNotFoundComponent implements OnInit {
 
   constructor(private router: Router) { }
-  jumpAround () {
+  jumpAround() {
     setInterval(function () {
       const h1 = $('h1');
     h1.animate({
@@ -21,7 +21,7 @@ export class PageNotFoundComponent implements OnInit {
 
       });
       h1.animate({
-        fontSize: '3em'
+        fontSize: '4em'
         }, {
           duration: 1000
         });
