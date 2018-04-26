@@ -15,7 +15,8 @@ import { RegisterFormComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import {RegistrationService} from './services/registration.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +35,10 @@ import { RegulationsComponent } from './regulations/regulations.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
