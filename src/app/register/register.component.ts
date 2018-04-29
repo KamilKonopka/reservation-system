@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
 import {RegistrationService} from '../services/registration.service';
 import {User} from '../model/user';
 
@@ -20,6 +21,9 @@ import {
 })
 export class RegisterFormComponent  implements OnInit {
   user: User = new User();
+  messageSubmit  = '';
+  showErrorMessage = false ;
+  showSuccessMessage = false;
   myform: FormGroup;
   myname: FormGroup;
   modalElement: any;
@@ -28,7 +32,7 @@ export class RegisterFormComponent  implements OnInit {
     'Pomorska',
     'Nowatorów',
   ];
-  constructor (private registrationService: RegistrationService) { }
+  constructor (private registrationService: RegistrationService, private  router: Router) { }
   private  setupUser() {
     console.log(this.myform.value.ulica);
     this.user.ulica = this.myform.value.ulica;
@@ -74,10 +78,35 @@ lastName: new FormControl('', Validators.required),
     }
 
   onSubmit() {
+    this.showErrorMessage = false;
+    this.showSuccessMessage = false;
     if (this.myform.valid) {
       console.log('Form is valid  :) !!!');
       this.setupUser();
-      this.registrationService.addUser(this.user);
+      this.registrationService.addUser(this.user).subscribe(
+        res => {
+          console.log(res);
+          this.showSuccessMessage = true;
+          this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
+          setTimeout(() => {    //<<<---    using ()=> syntax
+            this.showSuccessMessage = false;
+            this.router.navigate(['home']);
+          }, 3000) ;
+       },
+        err => {
+          console.log(JSON.stringify(err));
+          this.showErrorMessage = true;
+          this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  ' ; //+ JSON.stringify(err);
+         // setTimeout(() => {    //<<<---    using ()=> syntax
+         //   this.showMessage = false;
+         // }, 3000);
+        },
+        () => {
+          console.log('Operation completed'); // this router navigate
+          // () => this._router.navigate(['Home'])
+        }
+
+      );
     } else {
       console.log('Form is invalid :( !!!');
       this.getFormValidationErrors();

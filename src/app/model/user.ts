@@ -1,7 +1,9 @@
 import { IUser } from '../interfaces/iuser';
 
 export class User implements IUser {
-  constructor(public imie: string = '',
+  constructor(
+              public nazwa: string = '',
+              public imie: string = '',
               public nazwisko: string = '',
               public email: string = '',
               public haslo: string = '',

@@ -17,6 +17,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { HttpClientModule } from '@angular/common/http';
 import {RegistrationService} from './services/registration.service';
+import { RegisterGridComponent } from './register-grid/register-grid.component';
+import { RegisterGridRowComponent } from './register-grid-row/register-grid-row.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {RegistrationService} from './services/registration.service';
     AboutUsComponent,
     RegisterFormComponent,
     RegulationsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RegisterGridComponent,
+    RegisterGridRowComponent
   ],
   imports: [
     BrowserModule,
