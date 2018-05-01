@@ -2,6 +2,7 @@ import { IUser } from '../interfaces/iuser';
 
 export class User implements IUser {
   constructor(
+              public  _id: string = null,
               public nazwa: string = '',
               public imie: string = '',
               public nazwisko: string = '',

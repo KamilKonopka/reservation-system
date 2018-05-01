@@ -18,7 +18,7 @@ import { RegulationsComponent } from './regulations/regulations.component';
 import { HttpClientModule } from '@angular/common/http';
 import {RegistrationService} from './services/registration.service';
 import { RegisterGridComponent } from './register-grid/register-grid.component';
-import { RegisterGridRowComponent } from './register-grid-row/register-grid-row.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { RegisterGridRowComponent } from './register-grid-row/register-grid-row.
     RegulationsComponent,
     PageNotFoundComponent,
     RegisterGridComponent,
-    RegisterGridRowComponent
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
