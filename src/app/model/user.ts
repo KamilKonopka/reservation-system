@@ -13,7 +13,8 @@ export class User implements IUser {
               public  ulica: string= '',
               public nrdomu: string= '',
               public wspolnota: boolean= false,
-              public data: Date = new Date(),
+              public datawniosku: Date = null,
+              public dataakceptacji: Date = null,
               public akceptacja: boolean = false,
               public uwagi: string = '',
               public archiwum: boolean = false

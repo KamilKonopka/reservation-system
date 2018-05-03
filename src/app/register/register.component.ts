@@ -25,7 +25,7 @@ export class RegisterFormComponent  implements OnInit {
   showErrorMessage = false ;
   showSuccessMessage = false;
   myform: FormGroup;
-  myname: FormGroup;
+  formSent = false;
   modalElement: any;
   ulice: string[] = [
     'Kościuszki',
@@ -43,6 +43,10 @@ export class RegisterFormComponent  implements OnInit {
   this.user.nrdomu = this.myform.value.nrdomu;
   this.user.telefon = this.myform.value.phoneNo;
   this.user.haslo = this.myform.value.password;
+  this.user.nazwa = this.myform.value.login;
+  this.user.datawniosku = new Date();
+  this.user.archiwum = false;
+  this.user.akceptacja = false;
   }
 
     ngOnInit() {
@@ -76,8 +80,11 @@ lastName: new FormControl('', Validators.required),
     // this.myform.controls.email.setValue('aaa@wp.pl');
       this.modalElement = document.getElementById('myModal');
     }
-
+onCancel() {
+ this.router.navigate(['home']);
+}
   onSubmit() {
+    this.formSent = true;
     this.showErrorMessage = false;
     this.showSuccessMessage = false;
     if (this.myform.valid) {
@@ -88,15 +95,16 @@ lastName: new FormControl('', Validators.required),
           console.log(res);
           this.showSuccessMessage = true;
           this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
-          setTimeout(() => {    //<<<---    using ()=> syntax
+          setTimeout(() => {
             this.showSuccessMessage = false;
             this.router.navigate(['home']);
           }, 3000) ;
        },
         err => {
+          this.formSent = false;
           console.log(JSON.stringify(err));
           this.showErrorMessage = true;
-          this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  ' ; //+ JSON.stringify(err);
+          this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  ' ;
          // setTimeout(() => {    //<<<---    using ()=> syntax
          //   this.showMessage = false;
          // }, 3000);
