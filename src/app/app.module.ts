@@ -18,6 +18,8 @@ import { RegulationsComponent } from './regulations/regulations.component';
 import { AuthService } from './services/auth.service';
 import { LoggedComponent } from './logged/logged.component';
 import { CallbackComponent } from './callback/callback.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardsService } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { CallbackComponent } from './callback/callback.component';
     RegulationsComponent,
     PageNotFoundComponent,
     LoggedComponent,
-    CallbackComponent
+    CallbackComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { CallbackComponent } from './callback/callback.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

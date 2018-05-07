@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AuthGuardsService } from '../services/auth-guard.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-logged',
@@ -7,10 +9,17 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./logged.component.less']
 })
 export class LoggedComponent implements OnInit {
-
-  constructor(public authService: AuthService) { }
+info: string;
+  constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['email']) {
+        this.info = 'Zaloguj się do ' + params['email'];
+      } else {
+        this.info = null;
+      }
+    });
   }
 
   logout() {

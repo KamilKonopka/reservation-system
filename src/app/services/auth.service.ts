@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
+  userProfile: any;
   AuthService = new auth0.WebAuth ({
     clientID: 'A6UO6a31f5i1caz7J6wHdoY6LQqTKXcO',
     domain: 'trutnie.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://trutnie.eu.auth0.com/userinfo',
     redirectUri: 'http://localhost:4200/logged',
-    scope: 'openid'
+    scope: 'openid profile'
   });
   constructor(public router: Router) { }
 
@@ -54,5 +55,19 @@ export class AuthService {
     // Access Token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public getProfile(cb): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+    const self = this;
+    this.AuthService.client.userinfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 }
