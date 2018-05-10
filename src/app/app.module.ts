@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterFormComponent } from './register/register.component';
@@ -27,7 +26,6 @@ import { AuthGuardsService } from './services/auth-guard.service';
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    LoginComponent,
     CarouselComponent,
     AboutUsComponent,
     RegisterFormComponent,
