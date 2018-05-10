@@ -1,25 +1,4 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Zaloguj do serwisu</a>
 
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="!authService.isAuthenticated()"
-        (click)="authService.login()">
-          Zaloguj się
-      </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="authService.isAuthenticated()"
-        (click)="authService.logout()">
-          Wyloguj się
-      </button>
-
-    </div>
-  </div>
-</nav>
 
 <main class="container">
   <router-outlet></router-outlet>
