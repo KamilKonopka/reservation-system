@@ -7,7 +7,6 @@ import { RegulationsComponent } from './regulations/regulations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { LoggedComponent } from './logged/logged.component';
-import { CallbackComponent } from './callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardsService } from './services/auth-guard.service';
 
@@ -36,10 +35,6 @@ const appRoutes: Routes = [
   {
     path: 'regulations',
     component: RegulationsComponent
-  },
-  {
-    path: 'callback',
-    component: CallbackComponent
   },
   {
     path: 'logged',

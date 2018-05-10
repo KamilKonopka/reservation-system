@@ -17,7 +17,6 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { AuthService } from './services/auth.service';
 import { LoggedComponent } from './logged/logged.component';
-import { CallbackComponent } from './callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardsService } from './services/auth-guard.service';
 
@@ -35,7 +34,6 @@ import { AuthGuardsService } from './services/auth-guard.service';
     RegulationsComponent,
     PageNotFoundComponent,
     LoggedComponent,
-    CallbackComponent,
     ProfileComponent
   ],
   imports: [
