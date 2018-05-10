@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { LoggedComponent } from './logged/logged.component';
 import { CallbackComponent } from './callback/callback.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardsService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -42,11 +43,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'logged',
-    component: LoggedComponent
+    component: LoggedComponent,
+    canActivate: [AuthGuardsService]
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuardsService]
   },
   {
     path: '**',
