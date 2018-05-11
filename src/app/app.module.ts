@@ -21,6 +21,8 @@ import { AuthService } from './services/auth.service';
 import { LoggedComponent } from './logged/logged.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardsService } from './services/auth-guard.service';
+import { ResourcesComponent } from './resources/resources.component';
+import {ResourcesService} from './services/resources.service';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { AuthGuardsService } from './services/auth-guard.service';
     RegisterGridComponent,
     UserDetailsComponent,
     LoggedComponent,
-    ProfileComponent
+    ProfileComponent,
+    ResourcesComponent
 
   ],
   imports: [
@@ -47,7 +50,7 @@ import { AuthGuardsService } from './services/auth-guard.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, AuthGuardsService, RegistrationService],
+  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
