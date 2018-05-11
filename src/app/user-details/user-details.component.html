@@ -1,0 +1,72 @@
+<div class="col-md-10 offset-md-1">
+  <span class="anchor" id="formComplex"></span>
+  <hr class="my-5">
+  <h2>Edycja danych użytkownika</h2>
+
+  <!-- form complex example -->
+  <div class="form-row mt-4">
+    <div class="col-sm-5 pb-3">
+      <label for="userName">Nazwa użytkownika</label>
+      <input [(ngModel)]="user.nazwa" type="text" class="form-control" id="userName" >
+    </div>
+     <div class="col-sm-4 pb-3">
+      <label for="email">Adres email</label>
+        <input [(ngModel)]="user.email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="wprowadź adres email">
+    </div>
+    <div class="col-sm-3 pb-3">
+      <label for="phoneNo">Numer telefonu</label>
+      <input [(ngModel)]="user.telefon" type="phone" class="form-control" id="phoneNo" >
+    </div>
+    <div class="col-sm-6 pb-3">
+      <label for="firstName">Imię</label>
+      <input [(ngModel)]="user.imie" type="text" class="form-control" id="firstName">
+    </div>
+    <div class="col-sm-6 pb-3">
+      <label for="exampleLast">Nazwisko</label>
+      <input [(ngModel)]="user.nazwisko" type="text" class="form-control" id="exampleLast">
+    </div>
+    <div class="col-sm-6 pb-3">
+      <label for="ulica">Ulica</label>
+      <input [(ngModel)]="user.ulica" type="text" class="form-control" id="ulica">
+    </div>
+    <div class="col-sm-6 pb-3">
+      <label for="nrdomu">Nr domu</label>
+       <input [(ngModel)]="user.nrdomu" type="text" class="form-control" id="nrdomu">
+    </div>
+    <div class="col-sm-12 pb-3">
+      <label for="exampleMessage">Uwagi</label>
+      <textarea  [(ngModel)]="user.uwagi" class="form-control" id="exampleMessage"></textarea>
+
+    </div>
+     <div class="form-check col-sm-3 pb-3">
+        <input [(ngModel)]="user.archiwum" type="checkbox" class="form-check-input" id="archiwum">
+        <label class="form-check-label" for="archiwum">Archiwalny</label>
+    </div>
+    <div class="form-check col-sm-9 pb-3">
+      <input [(ngModel)]="user.akceptacja" type="checkbox" class="form-check-input" id="aktywny">
+      <label class="form-check-label" for="aktywny">Konto aktywne</label>
+    </div>
+    <div class="col-12">
+      <div class="form-row">
+    <div class="col-sm-3 pb-3">
+      <label for="id">Id</label>
+      <input  disabled="disabled" type="text" class="form-control" id="id" value="{{user._id}}" >
+    </div>
+    <div class="col-sm-3 pb-3">
+      <label for="datawniosku">Data wniosku o rejestrację</label>
+      <input disabled="disabled" type="text" class="form-control" id="datawniosku" value="{{user.datawniosku}}" >
+    </div>
+    <div class="col-sm-3 pb-3">
+      <label for="dataakceptacji">Data aktywacji konta</label>
+      <input disabled="disabled" type="text" class="form-control" id="dataakceptacji" value="{{user.dataakceptacji}}">
+    </div>
+    </div>
+    </div>
+    <div class="col-12">
+      <div class="form-row">
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Zapisz</button>
+        <button type="button" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
+      </div>
+    </div>
+  </div>
+</div>
