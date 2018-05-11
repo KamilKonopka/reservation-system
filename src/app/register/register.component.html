@@ -138,9 +138,16 @@ myform.controls.nrdomu.touched)">
       <p>By wysłać formularz musisz poprawnie go wypełnić i zaakceptować regulamin</p>
     </div>
   </div>
+  <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Błąd !</strong>{{messageSubmit}}
+  </div>
+  <div class="alert alert-success"  *ngIf="showSuccessMessage">>
+    <strong>Brawo !</strong>Dziękujemy za wysłanie formularza. Oczekuj wiadomości na podany adres email w ciągu 24 godzin.
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!myform.valid || formSent" >Wyślij</button>
+  <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!myform.valid" >Wyślij</button>
-  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
   <!--
   <pre>{{myform.value | json}}</pre>
   <pre> login {{myform.controls.login.valid}}</pre>
@@ -151,5 +158,8 @@ myform.controls.nrdomu.touched)">
 
 </form>
 </div>
+
+
+
 
 

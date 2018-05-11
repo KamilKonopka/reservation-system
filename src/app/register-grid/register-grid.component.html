@@ -1,0 +1,23 @@
+<div class="container">
+<table class="table table-striped">
+  <tr>
+    <th>Nazawa użytkownika</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>email</th>
+    <th>Numer telefonu</th>
+  </tr>
+  <tr *ngFor="let us of users"  >
+    <td>
+      <a [routerLink]="['/user-details', us._id]" routerLinkActive="active">
+        {{us.nickname}}
+      </a>
+    </td>
+    <td>{{us.imie}}</td>
+    <td>{{us.name}}</td>
+    <td>{{us.email}}</td>
+    <td>{{us.telefon}}</td>
+  </tr>
+</table>
+</div>
+

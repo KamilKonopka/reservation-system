@@ -16,17 +16,24 @@
               <li class="nav-item">
                 <a class="nav-link" routerLink="/about-us" href="#">O NAS</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link"routerLink="/register-forms" href="#">WNIOSKI/UŻYTKOWNICY</a>
+              </li>
+              <li class="nav-item" *ngIf="!authService.isAuthenticated()">
                   <a class="nav-link" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</a>
-                </li>
+              </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/regulations" href="#">REGULAMIN</a>
                   </li>
-              <li class="nav-item">
-                <a class="nav-link"routerLink="/login" href="#">ZALOGUJ SIĘ</a>
+              <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+                <a class="nav-link" href="#" (click)="login()" routerLink="/home">ZALOGUJ SIĘ</a>
               </li>
+              <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                <a class="nav-link"routerLink="/home" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
+              </li>
+
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" *ngIf="!authService.isAuthenticated()">
 
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</button>
             </form>

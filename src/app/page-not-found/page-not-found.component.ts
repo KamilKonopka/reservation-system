@@ -28,6 +28,7 @@ export class PageNotFoundComponent implements OnInit {
     }, 1000);
   }
   ngOnInit() {
+    this.jumpAround();
   }
 
 }
