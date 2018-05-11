@@ -5,7 +5,6 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterFormComponent } from './register/register.component';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
 import {RegisterGridComponent} from './register-grid/register-grid.component';
 import {UserDetailsComponent} from './user-details/user-details.component';
 import { LoggedComponent } from './logged/logged.component';

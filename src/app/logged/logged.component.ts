@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { AuthGuardsService } from '../services/auth-guard.service';
 import { ActivatedRoute } from '@angular/router';
 
-@Component({
+@Component ({
   selector: 'app-logged',
   templateUrl: './logged.component.html',
   styleUrls: ['./logged.component.less']
