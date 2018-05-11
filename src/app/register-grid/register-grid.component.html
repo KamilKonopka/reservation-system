@@ -10,11 +10,11 @@
   <tr *ngFor="let us of users"  >
     <td>
       <a [routerLink]="['/user-details', us._id]" routerLinkActive="active">
-        {{us.nazwa}}
+        {{us.nickname}}
       </a>
     </td>
     <td>{{us.imie}}</td>
-    <td>{{us.nazwisko}}</td>
+    <td>{{us.name}}</td>
     <td>{{us.email}}</td>
     <td>{{us.telefon}}</td>
   </tr>

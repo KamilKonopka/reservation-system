@@ -37,8 +37,8 @@ message: string;
       return '';
     }
     for (let i = 0; i < userArr.length; i++) {
-      if (userArr[i].nazwa.toLocaleLowerCase() === usrToAdd.nazwa.toLocaleLowerCase()) {
-        console.log(userArr[i].nazwa);
+      if (userArr[i].nickname.toLocaleLowerCase() === usrToAdd.nickname.toLocaleLowerCase()) {
+        console.log(userArr[i].nickname);
         return 'Nazwa użytkownika jest już w użyciu';
       }
       if (userArr[i].email.toLocaleLowerCase() === usrToAdd.email.toLocaleLowerCase()) {
