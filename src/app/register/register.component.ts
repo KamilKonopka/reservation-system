@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import {RegistrationService} from '../services/registration.service';
 import {User} from '../model/user';
+import {IUser} from '../interfaces/iuser';
 
 import {
   FormsModule,
@@ -48,6 +49,24 @@ export class RegisterFormComponent  implements OnInit {
   this.user.archiwum = false;
   this.user.akceptacja = false;
   }
+  private userNameTelLoginExists( userArr, usrToAdd: IUser): string {
+    if (userArr == null) {
+      return '';
+    }
+   for (let i = 0; i < userArr.length; i++) {
+      if (userArr[i].nazwa.toLocaleLowerCase() === usrToAdd.nazwa.toLocaleLowerCase()) {
+        console.log(userArr[i].nazwa);
+        return 'Nazwa użytkownika jest już w użyciu';
+      }
+      if (userArr[i].email.toLocaleLowerCase() === usrToAdd.email.toLocaleLowerCase()) {
+        return 'Adres email jest już użyty';
+      }
+      if (userArr[i].telefon.toLocaleLowerCase() === usrToAdd.telefon.toLocaleLowerCase()) {
+        return 'Podany telefon został już użyty';
+      }
+    }
+    return '';
+}
 
     ngOnInit() {
     this.myform = new FormGroup({
@@ -90,31 +109,51 @@ onCancel() {
     if (this.myform.valid) {
       console.log('Form is valid  :) !!!');
       this.setupUser();
-      this.registrationService.addUser(this.user).subscribe(
-        res => {
-          console.log(res);
-          this.showSuccessMessage = true;
-          this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
-          setTimeout(() => {
-            this.showSuccessMessage = false;
-            this.router.navigate(['home']);
-          }, 3000) ;
-       },
-        err => {
-          this.formSent = false;
-          console.log(JSON.stringify(err));
-          this.showErrorMessage = true;
-          this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  ' ;
-         // setTimeout(() => {    //<<<---    using ()=> syntax
-         //   this.showMessage = false;
-         // }, 3000);
-        },
-        () => {
-          console.log('Operation completed'); // this router navigate
-          // () => this._router.navigate(['Home'])
-        }
+      // sprawdź czy nie ma takiego usera
+this.registrationService.getActiveUsers().subscribe(
+  userLst => {
+  this.messageSubmit = this.userNameTelLoginExists(userLst, this.user);
+  if (this.messageSubmit != null && this.messageSubmit.length > 0 ) {
+    this.formSent = false;
+    this.showErrorMessage = true;
+    return;
+  }
+    this.registrationService.addUser(this.user).subscribe(
+      res => {
+        console.log(res);
+        this.showSuccessMessage = true;
+        this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+          this.router.navigate(['home']);
+        }, 3000) ;
+      },
+      err => {
+        this.formSent = false;
+        console.log(JSON.stringify(err));
+        this.showErrorMessage = true;
+        this.messageSubmit = 'Nastąpił nieoczekiwany błąd podczas zapisu wniosku.  ' ;
+        // setTimeout(() => {    //<<<---    using ()=> syntax
+        //   this.showMessage = false;
+        // }, 3000);
+      },
+      () => {
+        console.log('Operation completed'); // this router navigate
+        // () => this._router.navigate(['Home'])
+      }
 
-      );
+    );
+  },
+  err => {
+    this.formSent = false;
+    console.log(JSON.stringify(err));
+    this.showErrorMessage = true;
+    this.messageSubmit = 'Nastąpił nieoczekiwany błąd podczas walidacji wniosku.  ' ;
+    // setTimeout(() => {    //<<<---    using ()=> syntax
+    //   this.showMessage = false;
+    // }, 3000);
+  }
+);
     } else {
       console.log('Form is invalid :( !!!');
       this.getFormValidationErrors();
@@ -122,7 +161,8 @@ onCancel() {
   }
 
 // display all form errors
-  getFormValidationErrors() {
+  getFormValidationErrors()
+  {
     Object.keys(this.myform.controls).forEach(key => {
 
       const controlErrors: ValidationErrors = this.myform.get(key).errors;
