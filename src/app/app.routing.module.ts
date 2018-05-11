@@ -5,7 +5,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterFormComponent } from './register/register.component';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
+import { LoggedComponent } from './logged/logged.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuardsService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -26,12 +28,18 @@ const appRoutes: Routes = [
     component: RegisterFormComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: 'regulations',
     component: RegulationsComponent
+  },
+  {
+    path: 'logged',
+    component: LoggedComponent,
+    canActivate: [AuthGuardsService]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuardsService]
   },
   {
     path: '**',
