@@ -1,8 +1,8 @@
 export interface IUser {
   '_id': string;
-  'nazwa': string;
+  'nickname': string;
   'imie': string;
-  'nazwisko': string;
+  'name': string;
   'ulica': string;
   'nrdomu': string;
   'telefon': string;
@@ -14,4 +14,5 @@ export interface IUser {
    'akceptacja': boolean;
    'uwagi': string;
    'archiwum': boolean;
+   'user_id': number;
 }

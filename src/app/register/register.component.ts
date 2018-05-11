@@ -40,11 +40,11 @@ export class RegisterFormComponent  implements OnInit {
   this.user.email  = this.myform.value.email;
   // this.myname = this.myform.controls.name.value;
   this.user.imie = this.myform.value.name.firstName;
-  this.user.nazwisko = this.myform.value.name.lastName;
+  this.user.name = this.myform.value.name.lastName;
   this.user.nrdomu = this.myform.value.nrdomu;
   this.user.telefon = this.myform.value.phoneNo;
   this.user.haslo = this.myform.value.password;
-  this.user.nazwa = this.myform.value.login;
+  this.user.nickname = this.myform.value.login;
   this.user.datawniosku = new Date();
   this.user.archiwum = false;
   this.user.akceptacja = false;
@@ -54,8 +54,8 @@ export class RegisterFormComponent  implements OnInit {
       return '';
     }
    for (let i = 0; i < userArr.length; i++) {
-      if (userArr[i].nazwa.toLocaleLowerCase() === usrToAdd.nazwa.toLocaleLowerCase()) {
-        console.log(userArr[i].nazwa);
+      if (userArr[i].nickname.toLocaleLowerCase() === usrToAdd.nickname.toLocaleLowerCase()) {
+        console.log(userArr[i].nickname);
         return 'Nazwa użytkownika jest już w użyciu';
       }
       if (userArr[i].email.toLocaleLowerCase() === usrToAdd.email.toLocaleLowerCase()) {
