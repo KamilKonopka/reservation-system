@@ -11,14 +11,17 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link"routerLink="/home" href="#">HOME</a>
+                <a class="nav-link" routerLink="/home" href="#">HOME</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" routerLink="/about-us" href="#">O NAS</a>
               </li>
               <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link"routerLink="/register-forms" href="#">WNIOSKI/UŻYTKOWNICY</a>
+                <a class="nav-link" routerLink="/register-forms" href="#">WNIOSKI/UŻYTKOWNICY</a>
               </li>
+                <li class="nav-item" *ngIf="authService.isAuthenticated()">
+                    <a class="nav-link" routerLink="/resources" href="#">LISTA ZASOBÓW</a>
+                </li>
               <li class="nav-item" *ngIf="!authService.isAuthenticated()">
                   <a class="nav-link" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</a>
               </li>
@@ -29,7 +32,7 @@
                 <a class="nav-link" href="#" (click)="login()" routerLink="/home">ZALOGUJ SIĘ</a>
               </li>
               <li class="nav-item" *ngIf="authService.isAuthenticated()">
-                <a class="nav-link"routerLink="/home" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
+                <a class="nav-link" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
               </li>
 
             </ul>
