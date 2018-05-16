@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './main/main.component';
-import {CarouselComponent} from './carousel/carousel.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 import {RegisterFormComponent} from './register/register.component';
 import {RegulationsComponent} from './regulations/regulations.component';
@@ -12,7 +11,6 @@ import {LoggedComponent} from './logged/logged.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
-import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
     {
@@ -36,12 +34,6 @@ const appRoutes: Routes = [
         path: 'regulations',
         component: RegulationsComponent
     },
-    {  
-        path: 'contact',
-    component: ContactComponent
-
-    },
-  
     {
         path: 'register-forms',
         component: RegisterGridComponent
