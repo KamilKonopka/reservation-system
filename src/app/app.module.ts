@@ -4,6 +4,7 @@ import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -25,10 +26,12 @@ import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HeaderAdminComponent,
     MainComponent,
     FooterComponent,
     CarouselComponent,
