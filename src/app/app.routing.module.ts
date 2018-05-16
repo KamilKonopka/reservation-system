@@ -11,6 +11,7 @@ import {LoggedComponent} from './logged/logged.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
+import { ContactComponent } from './contact/contact.component';
 
 const appRoutes: Routes = [
     {
@@ -34,6 +35,10 @@ const appRoutes: Routes = [
         path: 'regulations',
         component: RegulationsComponent
     },
+    {
+      path: 'contact',
+      component: ContactComponent
+  },
     {
         path: 'register-forms',
         component: RegisterGridComponent
