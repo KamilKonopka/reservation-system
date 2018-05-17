@@ -1,4 +1,6 @@
 /* colors */
 /* page widths */
-/* */
+router-outlet {
+  margin-top: 9rem;
+}
 /*# sourceMappingURL=app.component.css.map */

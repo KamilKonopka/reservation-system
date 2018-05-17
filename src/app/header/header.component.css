@@ -1,6 +1,15 @@
 /* colors */
 /* page widths */
-/* */
+header {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 20;
+  width: 100%;
+}
+.navbar {
+  padding: 2rem 1rem;
+}
 .navbar-expand-lg .navbar-nav .nav-link {
   float: right;
   padding-right: 1rem;
@@ -18,11 +27,14 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
   width: 100%;
   border-bottom: solid;
   border-bottom-color: grey;
+  border-width: 2px;
 }
 .nav-link {
   float: right;
   text-align: center;
   color: #030303;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
 }
 .btn-outline-success {
   color: #e54f4f;

@@ -16,14 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {RegistrationService} from './services/registration.service';
 import { RegisterGridComponent } from './register-grid/register-grid.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-
+import { ContactComponent } from './contact/contact.component';
 import { AuthService } from './services/auth.service';
 import { LoggedComponent } from './logged/logged.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardsService } from './services/auth-guard.service';
 import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
-import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({

@@ -1,8 +1,23 @@
 /* colors */
 /* page widths */
-/* */
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  overflow: auto;
+  margin: 0;
+}
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
 .container-fluid {
   padding: 0px;
   margin: 0px;
+}
+app-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 /*# sourceMappingURL=styles.css.map */

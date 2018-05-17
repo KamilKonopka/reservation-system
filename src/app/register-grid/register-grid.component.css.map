@@ -1,0 +1,1 @@
+{"version":3,"sources":["register-grid.component.less"],"names":[],"mappings":"AAAA,MAAO,QAAQ,KAAK;EAClB,sBAAA;;AAGF;EACE,mBAAA;;AAGF;EACE,SAAA;;AAGF;EACE,iBAAA;;AAGF,SAAS;EACP,wBAAA;EACA,SAAS,OAAT;;AAGF,SAAS,YAAY;EACnB,SAAS,OAAT;EACA,sBAAA;;AAGF,SAAS,aAAa;EACpB,SAAS,OAAT;EACA,mBAAA;;AAEF;EACE,kBAAA;;AAEF,MAAO,GAAG;EACR,kBAAA","file":"register-grid.component.css"}
