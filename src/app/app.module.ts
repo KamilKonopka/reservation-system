@@ -23,6 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuardsService } from './services/auth-guard.service';
 import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
+import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {ResourcesService} from './services/resources.service';
     LoggedComponent,
     ProfileComponent,
     ResourcesComponent,
-    ContactComponent
+    ContactComponent,
+    HeaderAdminComponent
 
   ],
   imports: [

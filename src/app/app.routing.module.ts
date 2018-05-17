@@ -36,19 +36,19 @@ const appRoutes: Routes = [
         path: 'regulations',
         component: RegulationsComponent
     },
-    {  
+    {
         path: 'contact',
     component: ContactComponent
-
     },
-  
     {
         path: 'register-forms',
-        component: RegisterGridComponent
+        component: RegisterGridComponent,
+        canActivate: [AuthGuardsService]
     },
     {
         path: 'user-details/:id',
-        component: UserDetailsComponent
+        component: UserDetailsComponent,
+        canActivate: [AuthGuardsService]
     },
     {
         path: 'logged',
@@ -62,7 +62,8 @@ const appRoutes: Routes = [
     },
     {
         path: 'resources',
-        component: ResourcesComponent
+        component: ResourcesComponent,
+        canActivate: [AuthGuardsService]
     },
     {
         path: '**',
