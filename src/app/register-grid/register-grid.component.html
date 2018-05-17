@@ -7,6 +7,8 @@
     <th>Nazwisko</th>
     <th>email</th>
     <th>Numer telefonu</th>
+    <th>Aktywny</th>
+    <th>Archiwalny</th>
   </tr>
   <tr *ngFor="let us of users"  >
     <td>
@@ -18,6 +20,10 @@
     <td>{{us.name}}</td>
     <td>{{us.email}}</td>
     <td>{{us.telefon}}</td>
+    <td > <div class="check-cell"><input type="checkbox"  [disabled]="true" [(ngModel)]="us.akceptacja"></div>
+    </td>
+    <td > <div class="check-cell"><input type="checkbox"  [disabled]="true" [(ngModel)]="us.archiwum"></div>
+    </td>
   </tr>
 </table>
 </div>
