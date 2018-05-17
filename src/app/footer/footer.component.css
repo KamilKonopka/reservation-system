@@ -1,0 +1,14 @@
+/* colors */
+/* page widths */
+/* */
+.justify-content-center {
+  background-color: #ffffff !important;
+  width: 100%;
+  border-top: solid;
+  border-top-color: #fb8181;
+}
+.nav-link {
+  color: grey;
+  font-size: small;
+}
+/*# sourceMappingURL=footer.component.css.map */

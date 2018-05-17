@@ -1,0 +1,9 @@
+/* colors */
+/* page widths */
+/* */
+app-login {
+  position: absolute;
+  z-index: 10;
+  left: calc(50% - 150px);
+}
+/*# sourceMappingURL=main.component.css.map */
