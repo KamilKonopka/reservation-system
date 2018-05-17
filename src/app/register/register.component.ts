@@ -39,8 +39,8 @@ export class RegisterFormComponent  implements OnInit {
     this.user.ulica = this.myform.value.ulica;
   this.user.email  = this.myform.value.email;
   // this.myname = this.myform.controls.name.value;
-  this.user.imie = this.myform.value.firstName;
-  this.user.name = this.myform.value.lastName;
+  this.user.imie = this.myform.value.name.firstName;
+  this.user.name = this.myform.value.name.lastName;
   this.user.nrdomu = this.myform.value.nrdomu;
   this.user.telefon = this.myform.value.phoneNo;
   this.user.haslo = this.myform.value.password;
@@ -70,10 +70,12 @@ export class RegisterFormComponent  implements OnInit {
 
     ngOnInit() {
     this.myform = new FormGroup({
-    firstName: new FormControl('', [
-    Validators.required
-    ]),
-    lastName: new FormControl('', Validators.required),
+      name: new FormGroup({
+firstName: new FormControl('', [
+  Validators.required
+]),
+lastName: new FormControl('', Validators.required),
+  }),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('[^ @]*@[^ @]*')
@@ -87,10 +89,6 @@ export class RegisterFormComponent  implements OnInit {
         Validators.minLength(3)
       ]),
       password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      repassword: new FormControl('', [
         Validators.required,
         Validators.minLength(6)
       ]),
