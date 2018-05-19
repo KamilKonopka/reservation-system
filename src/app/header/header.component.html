@@ -11,9 +11,12 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/home" href="#">HOME</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!authService.isAuthenticated()">
             <a class="nav-link" routerLink="/about-us" href="#">O NAS</a>
           </li>
+          <li class="nav-item" *ngIf="authService.isAuthenticated()">
+              <a class="nav-link" routerLink="/profile" href="#">TWÓJ PROFIL</a>
+            </li>
           <li class="nav-item" *ngIf="authService.isAuthenticated()">
             <a class="nav-link" routerLink="/register-forms" href="#">WNIOSKI/UŻYTKOWNICY</a>
           </li>

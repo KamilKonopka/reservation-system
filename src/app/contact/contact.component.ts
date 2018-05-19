@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'contact-com',
+  selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.less']
 })
