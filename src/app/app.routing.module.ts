@@ -13,6 +13,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
+import {RentalComponent} from './rental/rental.component';
 
 const appRoutes: Routes = [
     {

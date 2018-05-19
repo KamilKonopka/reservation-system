@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
@@ -24,6 +25,7 @@ import { AuthGuardsService } from './services/auth-guard.service';
 import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
+import { RentalComponent } from './rental/rental.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
     ProfileComponent,
     ResourcesComponent,
     ContactComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    RentalComponent
 
   ],
   imports: [
@@ -51,7 +54,8 @@ import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule
   ],
   providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService],
   bootstrap: [AppComponent]
