@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AuthGuardsService } from '../services/auth-guard.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,9 +11,11 @@ import { AuthUser } from '../interfaces/authUser';
   styleUrls: ['./logged.component.less']
 })
 export class LoggedComponent implements OnInit {
+
   profile: AuthUser;
   profileData: User;
-info: string;
+  info: string;
+
   constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ info: string;
          this.profile = profile;
          this.authService.getUserByEmail(this.profile.name).subscribe(userData => {
          this.profileData = userData;
+         localStorage.setItem('profile', this.profileData[0]);
          console.log(this.profileData);
          });
        });
