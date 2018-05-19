@@ -1,13 +1,22 @@
-<div class="panel panel-default profile-area">
-  <div class="panel-heading">
-    <h3>Profile</h3>
-  </div>
-  <div class="panel-body">
-    <img src="{{profile?.picture}}" class="avatar" alt="avatar">
-    <div>
-      <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
-      <h3 class="nickname">{{ profile?.nickname }}</h3>
+<div class="container-fluid">
+  <div class="panel panel-default profile-area" *ngFor="let profileUser of profileData">
+    <div class="row">
+      <div class="col-lg-12 panel-heading">
+          <h3>Witaj, {{ profileUser.name }}!</h3>
+      </div>
     </div>
-    <pre class="full-profile">{{ profile | json }}</pre>
+    <div class="row">
+      <div class="col-lg-2 panel-body">
+        <img src="{{profile.picture}}" class="img-fluid rounded" alt="avatar">
+      </div>
+      <div class="col-lg-10">
+        <label><i class="glyphicon glyphicon-user"></i>Adres:</label>
+        <h3 class="nickname">{{ profileUser.ulica }} {{ profileUser.nrdomu }}</h3>
+      </div>
+      <div *ngIf="profileUser.dataakceptacji === null">
+        Twoje czlonkowstwo nie zostalo jeszcze potwierdzone. Zakeczaj aż Moderator zaakceptuje twoj wniosek o czlonkowstwo.
+      </div>
+    </div>
   </div>
 </div>
+
