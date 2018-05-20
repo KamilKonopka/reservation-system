@@ -21,10 +21,6 @@ const options = {
 };
 
 
-
-
-
-
 @Injectable()
 export class RegistrationService {
 message: string;
