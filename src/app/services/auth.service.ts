@@ -73,6 +73,7 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('profile');
+    localStorage.removeItem('authProfile');
 
     // Go back to the home route
     this.router.navigate(['/home']);
@@ -94,10 +95,12 @@ export class AuthService {
     this.AuthService.client.userInfo(accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
+        localStorage.setItem('authProfile', JSON.stringify(this.userProfile));
       }
       cb(err, profile);
     });
   }
+
   public getUserByEmail( email: string): Observable<User> {
     return this.http.get<User>(url + '?q={%22email%22:%22' + email + '%22}', getoptions);
   }

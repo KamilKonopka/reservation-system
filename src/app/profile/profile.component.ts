@@ -11,13 +11,15 @@ import { AuthUser } from '../interfaces/authUser';
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() profileData: User;
-  @Input() profile: AuthUser;
+  profileData: User = JSON.parse(localStorage.getItem('profile'));
+  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
+
+
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-
+  console.log(this.profileData);
   }
 
 }
