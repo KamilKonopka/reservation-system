@@ -33,8 +33,8 @@ export class LoggedComponent implements OnInit {
          this.profile = profile;
          this.authService.getUserByEmail(this.profile.name).subscribe(userData => {
          this.profileData = userData;
-         localStorage.setItem('profile', this.profileData[0]);
-         console.log(this.profileData);
+         localStorage.setItem('profile', JSON.stringify(this.profileData));
+         console.log(this.profileData[0]);
          });
        });
      }
