@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/contact" href="#">KONTAKT</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/rent" href="#">REZERWUJ</a>
+          </li>
           <li class="nav-item" *ngIf="!authService.isAuthenticated()">
             <a class="nav-link" href="#" (click)="login()" routerLink="/home">ZALOGUJ SIĘ</a>
           </li>

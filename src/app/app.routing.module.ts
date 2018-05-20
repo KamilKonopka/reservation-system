@@ -66,6 +66,10 @@ const appRoutes: Routes = [
         component: ResourcesComponent,
         canActivate: [AuthGuardsService]
     },
+  {
+    path: 'rent',
+    component: RentalComponent
+  },
     {
         path: '**',
         component: PageNotFoundComponent
