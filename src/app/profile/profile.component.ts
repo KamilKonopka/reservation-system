@@ -14,10 +14,12 @@ export class ProfileComponent implements OnInit {
   @Input() profileData: User;
   @Input() profile: AuthUser;
 
+  localStorageData = localStorage.getItem('profile');
+
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-
+  console.log(this.localStorageData);
   }
 
 }
