@@ -1,14 +1,23 @@
-<mat-toolbar color="primary">
-  Angular Material 2 datepicker example
-</mat-toolbar>
-<div class="basic-container">
+
+<div class="rental-form">
+  <mat-toolbar color="secondary">
+    Nowa rezerwacja
+  </mat-toolbar>
+  <mat-form-field class="rental-form-full-width">
+    <mat-select [(value)]="selected_resource_id">
+      <mat-option *ngFor="let resource of allResources| async" [value]="resource._id">
+        {{ resource.nazwa }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <strong><p>Początek rezerwacji</p></strong>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Wybierz datę od">
+   <input matInput [matDatepicker]="picker" placeholder="Wybierz datę od">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select [(value)]="godz_od" placeholder="Wybierz godzinę od">
+    <mat-select [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
       <mat-option value="option0000">00:00</mat-option>
       <mat-option value="option0015">00:15</mat-option>
       <mat-option value="option0030">00:30</mat-option>
@@ -103,14 +112,14 @@
       <mat-option value="option2345">23:45</mat-option>
     </mat-select>
   </mat-form-field>
-<strong>   -   </strong>
+  <strong><p>Zakończenie rezerwacji</p></strong>
   <mat-form-field>
   <input matInput [matDatepicker]="picker1" placeholder="Wybierz datę do">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select [(value)]="godz_do" placeholder="Wybierz godzinę do">
+    <mat-select [(ngModel)]="godz_do" placeholder="Wybierz godzinę do">
       <mat-option value="option0000">00:00</mat-option>
       <mat-option value="option0015">00:15</mat-option>
       <mat-option value="option0030">00:30</mat-option>
@@ -204,6 +213,9 @@
       <mat-option value="option2330">23:30</mat-option>
       <mat-option value="option2345">23:45</mat-option>
     </mat-select>
+  </mat-form-field>
+  <mat-form-field class="rental-form-full-width">
+    <textarea matInput [(ngModel)]="rental.uwagi" placeholder="Uwagi"></textarea>
   </mat-form-field>
 <p></p>
   <div class="form-row">
