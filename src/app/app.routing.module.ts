@@ -13,6 +13,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
+import {AddResourcesComponent} from './add-resources/add-resources.component';
 
 const appRoutes: Routes = [
     {
@@ -61,10 +62,15 @@ const appRoutes: Routes = [
         canActivate: [AuthGuardsService]
     },
     {
-        path: 'resources',
-        component: ResourcesComponent,
-        canActivate: [AuthGuardsService]
-    },
+    path: 'resources',
+    component: ResourcesComponent,
+    canActivate: [AuthGuardsService]
+  },
+  {
+    path: 'add-resources',
+    component: AddResourcesComponent,
+    canActivate: [AuthGuardsService]
+  },
     {
         path: '**',
         component: PageNotFoundComponent
