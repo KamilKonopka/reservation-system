@@ -24,6 +24,7 @@ import { AuthGuardsService } from './services/auth-guard.service';
 import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
+import { AddResourcesComponent } from './add-resources/add-resources.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
     ProfileComponent,
     ResourcesComponent,
     ContactComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    AddResourcesComponent
 
   ],
   imports: [
