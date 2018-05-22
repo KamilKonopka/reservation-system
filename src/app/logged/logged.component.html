@@ -1,4 +1,6 @@
 <div class="container-fluid">
-  <div class="alert alert-success">Zalogowales sie do systemu!</div>
+  <div class="alert alert-success" *ngIf="displayLoggedMessage; else noMessage">{{ loggedMessage }}</div>
+  <ng-template #noMessage></ng-template>
+
   <router-outlet></router-outlet>
 </div>

@@ -163,8 +163,7 @@ this.registrationService.getActiveUsers().subscribe(
   }
 
 // display all form errors
-  getFormValidationErrors()
-  {
+  getFormValidationErrors() {
     Object.keys(this.myform.controls).forEach(key => {
 
       const controlErrors: ValidationErrors = this.myform.get(key).errors;
