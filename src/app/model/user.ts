@@ -8,9 +8,9 @@ export class User implements IUser {
               public name: string = '',
               public email: string = '',
               public haslo: string = '',
-              public  login: string = '',
-              public  telefon: string= '',
-              public  ulica: string= '',
+              public login: string = '',
+              public telefon: string= '',
+              public ulica: string= '',
               public nrdomu: string= '',
               public wspolnota: boolean= false,
               public datawniosku: Date = null,
@@ -18,7 +18,8 @@ export class User implements IUser {
               public akceptacja: boolean = false,
               public uwagi: string = '',
               public archiwum: boolean = false,
-              public user_id: number = 0
+              public user_id: number = 0,
+              public moderator: boolean
 
   ) {
   }

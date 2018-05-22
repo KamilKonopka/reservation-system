@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-  console.log(this.profileData);
+
   }
 
 }

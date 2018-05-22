@@ -12,6 +12,7 @@ import { AuthUser } from '../interfaces/authUser';
 })
 export class LoggedComponent implements OnInit {
 
+  admin: boolean;
   profile: AuthUser;
   profileData: User;
   info: string;
@@ -34,7 +35,6 @@ export class LoggedComponent implements OnInit {
          this.authService.getUserByEmail(this.profile.name).subscribe(userData => {
          this.profileData = userData;
          localStorage.setItem('profile', JSON.stringify(this.profileData));
-         console.log(this.profileData[0]);
          });
        });
      }
