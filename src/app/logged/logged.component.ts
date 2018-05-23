@@ -12,13 +12,11 @@ import { AuthUser } from '../interfaces/authUser';
 })
 export class LoggedComponent implements OnInit {
 
-  admin: boolean;
   profile: AuthUser;
   profileData: User;
   info: string;
   loggedMessage = 'Zalogowales sie do systemu!';
   displayLoggedMessage = false;
-
 
   constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private route: ActivatedRoute) { }
 
@@ -33,15 +31,15 @@ export class LoggedComponent implements OnInit {
     if (this.authService.userProfile) {
       this.profile = this.authService.userProfile;
      } else {
-       this.authService.getProfile((err, profile) => {
+         this.authService.getProfile((err, profile) => {
          this.profile = profile;
          this.authService.getUserByEmail(this.profile.name).subscribe(userData => {
          this.profileData = userData;
          localStorage.setItem('profile', JSON.stringify(this.profileData));
-         this.displayLoggedMessage = true;
          });
        });
      }
+     this.displayLoggedMessage = true;
 
   }
 
