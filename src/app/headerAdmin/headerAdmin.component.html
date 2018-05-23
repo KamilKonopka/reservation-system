@@ -1,3 +1,4 @@
+<ng-container *ngFor="let profile of profileData">
 <ng-container *ngIf="admin === true; else user">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
@@ -16,6 +17,7 @@
       <a class="nav-link" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
     </li>
   </ul>
+</ng-container>
 </ng-container>
 <ng-template #user>
   <ul class="navbar-nav mr-auto">

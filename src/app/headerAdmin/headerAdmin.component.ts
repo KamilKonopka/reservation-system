@@ -3,22 +3,27 @@ import { AuthService } from '../services/auth.service';
 import { AuthUser } from '../interfaces/authUser';
 import { User } from '../model/user';
 
-@Component ({
+@Component({
   selector: 'app-header-admin',
   templateUrl: './headerAdmin.component.html',
   styleUrls: ['./headerAdmin.component.less']
 })
 export class HeaderAdminComponent implements DoCheck {
-
-  admin: boolean;
+  admin = false;
   profile: AuthUser;
   profileData = User;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {}
 
   ngDoCheck() {
     this.profileData = JSON.parse(localStorage.getItem('profile'));
-    this.isAdmin();
+
+    if (localStorage.getItem('profile')) {
+      this.isAdmin();
+    } else {
+      return false;
+    }
+
   }
 
   logout() {
@@ -26,10 +31,10 @@ export class HeaderAdminComponent implements DoCheck {
   }
 
   isAdmin() {
-  if (this.profileData) {
-    this.admin = true;
-  } else {
-    this.admin = false;
-  }
+    if (this.profileData[0].moderator === true) {
+      this.admin = true;
+    } else {
+      this.admin = false;
+    }
   }
 }
