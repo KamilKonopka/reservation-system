@@ -12,8 +12,8 @@
       <td>{{p.nazwa}}</td>
       <td>{{p.opis}}</td>
       <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
-      <td>{{p.producent[0]?.nazwa}}</td>
-      <td>{{p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
+      <td>{{p.producent}}</td>
+      <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
       <td>{{p.uwagi}}</td>
     </tr>
   </table>

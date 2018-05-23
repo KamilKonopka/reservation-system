@@ -28,7 +28,6 @@ export class HeaderAdminComponent implements DoCheck {
   isAdmin() {
   if (this.profileData) {
     this.admin = true;
-    console.log(this.admin);
   } else {
     this.admin = false;
   }
