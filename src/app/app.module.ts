@@ -27,8 +27,8 @@ import { AuthGuardsService } from './services/auth-guard.service';
 import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
-import { RentalComponent } from './rental/rental.component';
-import {
+import { AddResourcesComponent } from './add-resources/add-resources.component';
+import { RentalComponent } from './rental/rental.component';import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
@@ -55,9 +55,8 @@ import {
     ProfileComponent,
     ResourcesComponent,
     ContactComponent,
-    HeaderAdminComponent,
-    RentalComponent
-
+	AddResourcesComponent
+	RentalComponent
   ],
   imports: [
     BrowserModule,

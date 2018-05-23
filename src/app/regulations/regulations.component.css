@@ -1,0 +1,21 @@
+/* colors */
+/* page widths */
+.container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+p,
+ol {
+  color: #030303;
+}
+h2 {
+  text-align: center;
+  color: #030303;
+}
+.paragraf {
+  font-weight: bold;
+  text-align: center;
+}
+/*# sourceMappingURL=regulations.component.css.map */
