@@ -28,14 +28,16 @@ import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
-import { RentalComponent } from './rental/rental.component';import {
+import { RentalComponent } from './rental/rental.component';
+import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
   MatToolbarModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatCardModule
 } from '@angular/material';
 
 @NgModule({
@@ -55,9 +57,10 @@ import { RentalComponent } from './rental/rental.component';import {
     ProfileComponent,
     ResourcesComponent,
     ContactComponent,
-	AddResourcesComponent
-	RentalComponent
-  ],
+    AddResourcesComponent,
+    RentalComponent,
+    HeaderAdminComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -71,7 +74,8 @@ import { RentalComponent } from './rental/rental.component';import {
     MatNativeDateModule,
     MatSelectModule,
     MatOptionModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService , {provide: LOCALE_ID, useValue: 'pl-PL'}],
   bootstrap: [AppComponent]

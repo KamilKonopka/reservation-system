@@ -57,6 +57,11 @@ const appRoutes: Routes = [
           component: ResourcesComponent,
           canActivate: [AuthGuardsService]
         },
+          {
+            path: 'rent',
+            component: RentalComponent,
+            canActivate: [AuthGuardsService]
+          },
         {
           path: 'user-details/:id',
           component: UserDetailsComponent,
@@ -69,10 +74,7 @@ const appRoutes: Routes = [
       }
         ]
     },
-
-    {
-
-  {
+{
     path: 'rent',
     component: RentalComponent
   },
