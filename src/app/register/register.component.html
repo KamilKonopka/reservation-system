@@ -1,186 +1,182 @@
 <div id="regform" class ="col-md-10 offset-md-1" >
-<form  class="container was-validated"  novalidate="" [formGroup] = "myform" (ngSubmit)="onSubmit()">
-  <div class="form-row mt-4">
-  <div class="form-group col-sm-12 ">
-    <label>Nazwa użytkownika</label>
-    <input type="text"
-           class="form-control"
-           formControlName="login"
-           required
-           minlength="3" >
+  <form  class="container was-validated"  novalidate="" [formGroup] = "myform" (ngSubmit)="onSubmit()">
+    <div class="form-row mt-4">
+      <div class="form-group col-sm-12 ">
+        <label>Nazwa użytkownika</label>
+        <input type="text"
+               class="form-control"
+               formControlName="login"
+               required
+               minlength="3" >
 
-  <div class="invalid-feedback" *ngIf="myform.controls.login.errors && (myform.controls.login.dirty ||
+        <div class="invalid-feedback" *ngIf="myform.controls.login.errors && (myform.controls.login.dirty ||
 myform.controls.login.touched)">
-    <p *ngIf="myform.controls.login.errors != null && myform.controls.login.errors.required">Nazwa użytkownika jest wymagana</p>
-    <p *ngIf="myform.controls.login.errors != null && myform.controls.login.errors.minlength">Nazwa użytkownika musi mieć min 3 znaki</p>
-  </div>
-  </div>
-  <!--
-   <div class="form-group" [ngClass]="{
-'is-invalid' : myform.controls.password.invalid && (myform.controls.password.dirty || myform.controls.password.touched),
-'is-valid': myform.controls.password.valid && (myform.controls.password.dirty || myform.controls.password.touched)
-}">
--->
-  <div class="form-group col-sm-6">
-    <label>Hasło</label>
-    <input type="password"
-           class="form-control"
-           formControlName="password"
-           required
-           minlength="6"
-    >
+          <p *ngIf="myform.controls.login.errors != null && myform.controls.login.errors.required">Nazwa użytkownika jest wymagana</p>
+          <p *ngIf="myform.controls.login.errors != null && myform.controls.login.errors.minlength">Nazwa użytkownika musi mieć min 3 znaki</p>
+        </div>
+      </div>
+      <!--
+       <div class="form-group" [ngClass]="{
+    'is-invalid' : myform.controls.password.invalid && (myform.controls.password.dirty || myform.controls.password.touched),
+    'is-valid': myform.controls.password.valid && (myform.controls.password.dirty || myform.controls.password.touched)
+    }">
+    -->
+      <div class="form-group col-sm-6">
+        <label>Hasło</label>
+        <input type="password"
+               class="form-control"
+               formControlName="password"
+               required
+               minlength="6"
+        >
 
-     <div class="invalid-feedback" *ngIf="(myform.controls.password.errors ) && (myform.controls.password.dirty ||
+        <div class="invalid-feedback" *ngIf="(myform.controls.password.errors ) && (myform.controls.password.dirty ||
 myform.controls.password.touched )">
-       <p *ngIf="myform.controls.password.errors.required">Hasło nie może być puste</p>
-       <p *ngIf="myform.controls.password.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
-         {{myform.controls.password.errors.minlength.requiredLength -
-         myform.controls.password.errors.minlength.actualLength}} znaków </p>
-     </div>
-    <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
-  </div>
-  <div class="form-group col-sm-6">
-  <label>Powtórz hasło</label>
-  <input type="password"
-         class="form-control"
-         formControlName="repassword"
-         required
-         minlength="6"
-  >
-  <div class="invalid-feedback" *ngIf="(myform.controls.repassword.errors ) && (myform.controls.repassword.dirty ||
+          <p *ngIf="myform.controls.password.errors.required">Hasło nie może być puste</p>
+          <p *ngIf="myform.controls.password.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
+            {{myform.controls.password.errors.minlength.requiredLength -
+            myform.controls.password.errors.minlength.actualLength}} znaków </p>
+        </div>
+        <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
+      </div>
+      <div class="form-group col-sm-6">
+        <label>Powtórz hasło</label>
+        <input type="password"
+               class="form-control"
+               formControlName="repassword"
+               required
+               minlength="6"
+        >
+        <div class="invalid-feedback" *ngIf="(myform.controls.repassword.errors ) && (myform.controls.repassword.dirty ||
 myform.controls.repassword.touched )">
-    <p *ngIf="myform.controls.repassword.errors.required">Hasło nie może być puste</p>
-    <p *ngIf="myform.controls.repassword.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
-      {{myform.controls.repassword.errors.minlength.requiredLength -
-      myform.controls.repassword.errors.minlength.actualLength}} znaków </p>
-   </div>
-    <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
-  </div>
-  <!--
-     <div class="form-control-feedback"
-          *ngIf="myform.controls.password.errors && (myform.controls.password.dirty || myform.controls.password.touched)">
-       <p *ngIf="myform.controls.password.errors.required">Hasło nie może być puste</p>
-       <p *ngIf="myform.controls.password.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
-         {{myform.controls.password.errors.minlength.requiredLength -
-         myform.controls.password.errors.minlength.actualLength}} znaków </p>
-     </div>
-     -->
-<!--
-</div>
--->
+          <p *ngIf="myform.controls.repassword.errors.required">Hasło nie może być puste</p>
+          <p *ngIf="myform.controls.repassword.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
+            {{myform.controls.repassword.errors.minlength.requiredLength -
+            myform.controls.repassword.errors.minlength.actualLength}} znaków </p>
+        </div>
+        <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
+      </div>
+      <!--
+         <div class="form-control-feedback"
+              *ngIf="myform.controls.password.errors && (myform.controls.password.dirty || myform.controls.password.touched)">
+           <p *ngIf="myform.controls.password.errors.required">Hasło nie może być puste</p>
+           <p *ngIf="myform.controls.password.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
+             {{myform.controls.password.errors.minlength.requiredLength -
+             myform.controls.password.errors.minlength.actualLength}} znaków </p>
+         </div>
+         -->
+      <!--
+      </div>
+      -->
 
 
-    <div class="form-group col-sm-12">
-      <label>Imię</label>
-      <input type="text"
-             class="form-control"
-             formControlName="firstName"
-             required
-      >
-      <div class="invalid-feedback" *ngIf="myform.controls.firstName.errors  && (myform.controls.firstName.dirty ||
+      <div class="form-group col-sm-12">
+        <label>Imię</label>
+        <input type="text"
+               class="form-control"
+               formControlName="firstName"
+               required
+        >
+        <div class="invalid-feedback" *ngIf="myform.controls.firstName.errors  && (myform.controls.firstName.dirty ||
       myform.controls.firstName.touched)">
 
-        <p *ngIf="myform.controls.firstName.errors.required">Musisz podać imię</p>
-    </div>
-    </div>
-    <div class="form-group col-sm-12">
-      <label>Nazwisko</label>
-      <input type="text"
-             class="form-control"
-             formControlName="lastName"
-             required>
-      <div class="invalid-feedback" *ngIf="myform.controls.lastName.errors  && (myform.controls.lastName.dirty ||
+          <p *ngIf="myform.controls.firstName.errors.required">Musisz podać imię</p>
+        </div>
+      </div>
+      <div class="form-group col-sm-12">
+        <label>Nazwisko</label>
+        <input type="text"
+               class="form-control"
+               formControlName="lastName"
+               required>
+        <div class="invalid-feedback" *ngIf="myform.controls.lastName.errors  && (myform.controls.lastName.dirty ||
       myform.controls.lastName.touched)">
 
-        <p *ngIf="myform.controls.lastName.errors.required">Nazwisko jest wymagane</p>
+          <p *ngIf="myform.controls.lastName.errors.required">Nazwisko jest wymagane</p>
+        </div>
       </div>
-    </div>
 
-  <div class="form-group col-sm-8">
-    <label>Email</label>
-    <input type="email"
-           class="form-control"
-           formControlName="email"
-           required
-           pattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-    >
-    <div class="invalid-feedback"  *ngIf="myform.controls.email.errors && (myform.controls.email.dirty ||
+      <div class="form-group col-sm-8">
+        <label>Email</label>
+        <input type="email"
+               class="form-control"
+               formControlName="email"
+               required
+               pattern='^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+        >
+        <div class="invalid-feedback"  *ngIf="myform.controls.email.errors && (myform.controls.email.dirty ||
 myform.controls.email.touched)">
-      <p *ngIf="myform.controls.email.invalid">Wymagany poprawny adres email</p>
+          <p *ngIf="myform.controls.email.invalid">Wymagany poprawny adres email</p>
 
-    </div>
-  </div>
-  <div class="form-group col-sm-4">
-    <label>Telefon kontaktowy</label>
-    <input type="tel"
-           class="form-control"
-           formControlName="phoneNo"
-           required
-           pattern="(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)"
-            >
-    <div class="invalid-feedback" *ngIf="myform.controls.phoneNo.errors && (myform.controls.phoneNo.dirty ||
-myform.controls.phoneNo.touched)">
-      <p *ngIf="myform.controls.phoneNo.invalid">Podaj poprawny numer telefonu</p>
-    </div>
-  </div>
-  <div class="form-group col-sm-8" >
-    <label>Ulica</label>
-    <select required class="form-control"
-            formControlName="ulica">
-      <option value=""></option>
-      <option *ngFor="let ulica of ulice"
-              [value]="ulica" >
-        {{ulica}}
-      </option>
-    </select>
-    <div class="invalid-feedback" *ngIf="myform.controls.ulica.errors && (myform.controls.ulica.dirty ||
-myform.controls.ulica.touched)">
-      <p *ngIf="myform.controls.ulica.invalid">Wybierz ulicę z listy</p>
-    </div>
-  </div>
-  <div class="form-group col-sm-4">
-    <label>Nr domu i lokalu</label>
-    <input type="text"
-           class="form-control"
-           formControlName="nrdomu"
-           required>
-    <div class="invalid-feedback" *ngIf="myform.controls.nrdomu.errors && (myform.controls.nrdomu.dirty ||
-myform.controls.nrdomu.touched)">
-      <p *ngIf="myform.controls.nrdomu.invalid">Wprowadź numer domu i lokalu</p>
-    </div>
-  </div>
-  <div class="form-group">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="agree"   formControlName="agree" required/> <I>Potwierdzam, że zapoznałem się z regulaminem serwisu</I>
-        </label>
+        </div>
       </div>
-    <div  >
-      <p>By wysłać formularz musisz poprawnie go wypełnić i zaakceptować regulamin</p>
+      <div class="form-group col-sm-4">
+        <label>Telefon kontaktowy</label>
+        <input type="tel"
+               class="form-control"
+               formControlName="phoneNo"
+               required
+               pattern="(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)"
+        >
+        <div class="invalid-feedback" *ngIf="myform.controls.phoneNo.errors && (myform.controls.phoneNo.dirty ||
+myform.controls.phoneNo.touched)">
+          <p *ngIf="myform.controls.phoneNo.invalid">Podaj poprawny numer telefonu</p>
+        </div>
+      </div>
+      <div class="form-group col-sm-8" >
+        <label>Ulica</label>
+        <select required class="form-control"
+                formControlName="ulica">
+          <option value=""></option>
+          <option *ngFor="let ulica of ulice"
+                  [value]="ulica" >
+            {{ulica}}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="myform.controls.ulica.errors && (myform.controls.ulica.dirty ||
+myform.controls.ulica.touched)">
+          <p *ngIf="myform.controls.ulica.invalid">Wybierz ulicę z listy</p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label>Nr domu i lokalu</label>
+        <input type="text"
+               class="form-control"
+               formControlName="nrdomu"
+               required>
+        <div class="invalid-feedback" *ngIf="myform.controls.nrdomu.errors && (myform.controls.nrdomu.dirty ||
+myform.controls.nrdomu.touched)">
+          <p *ngIf="myform.controls.nrdomu.invalid">Wprowadź numer domu i lokalu</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="agree"   formControlName="agree" required/> <I>Potwierdzam, że zapoznałem się z regulaminem serwisu</I>
+          </label>
+        </div>
+        <div  >
+          <p>By wysłać formularz musisz poprawnie go wypełnić i zaakceptować regulamin</p>
+        </div>
+      </div>
+      <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Błąd ! </strong>{{messageSubmit}}
+      </div>
+      <div class="alert alert-success"  *ngIf="showSuccessMessage">>
+        <strong>Brawo ! </strong>Dziękujemy za wysłanie formularza. Oczekuj wiadomości na podany adres email w ciągu 24 godzin.
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!myform.valid || formSent || myform.controls.repassword.value != myform.controls.password.value" >Wyślij</button>
+      <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
+
+      <!--
+      <pre>{{myform.value | json}}</pre>
+      <pre> login {{myform.controls.login.valid}}</pre>
+      <pre> password {{myform.controls.password.valid}}</pre>
+      <pre> name {{myform.controls.name.valid}}</pre>
+      <pre>email {{myform.controls.email.valid}}</pre>
+      -->
     </div>
-  </div>
-  <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>Błąd ! </strong>{{messageSubmit}}
-  </div>
-  <div class="alert alert-success"  *ngIf="showSuccessMessage">>
-    <strong>Brawo ! </strong>Dziękujemy za wysłanie formularza. Oczekuj wiadomości na podany adres email w ciągu 24 godzin.
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!myform.valid || formSent || myform.controls.repassword.value != myform.controls.password.value" >Wyślij</button>
-  <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
-
-  <!--
-  <pre>{{myform.value | json}}</pre>
-  <pre> login {{myform.controls.login.valid}}</pre>
-  <pre> password {{myform.controls.password.valid}}</pre>
-  <pre> name {{myform.controls.name.valid}}</pre>
-  <pre>email {{myform.controls.email.valid}}</pre>
-  -->
-  </div>
-</form>
+  </form>
 </div>
-
-
-
-
-
+<app-footer></app-footer>
