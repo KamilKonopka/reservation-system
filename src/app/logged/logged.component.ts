@@ -15,6 +15,8 @@ export class LoggedComponent implements OnInit {
   profile: AuthUser;
   profileData: User;
   info: string;
+  loggedMessage = 'Zalogowales sie do systemu!';
+  displayLoggedMessage = false;
 
   constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private route: ActivatedRoute) { }
 
@@ -29,15 +31,16 @@ export class LoggedComponent implements OnInit {
     if (this.authService.userProfile) {
       this.profile = this.authService.userProfile;
      } else {
-       this.authService.getProfile((err, profile) => {
+         this.authService.getProfile((err, profile) => {
          this.profile = profile;
          this.authService.getUserByEmail(this.profile.name).subscribe(userData => {
          this.profileData = userData;
          localStorage.setItem('profile', JSON.stringify(this.profileData));
-         console.log(this.profileData[0]);
          });
        });
      }
+     this.displayLoggedMessage = true;
+
   }
 
   logout() {

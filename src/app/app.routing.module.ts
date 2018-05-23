@@ -43,43 +43,42 @@ const appRoutes: Routes = [
     component: ContactComponent
     },
     {
-        path: 'register-forms',
-        component: RegisterGridComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'user-details/:id',
-        component: UserDetailsComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
         path: 'logged',
         component: LoggedComponent,
-        canActivate: [AuthGuardsService]
+        canActivate: [AuthGuardsService],
+        children: [
+          {
+          path: 'profile',
+          component: ProfileComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'resources',
+          component: ResourcesComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'user-details/:id',
+          component: UserDetailsComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'register-forms',
+          component: RegisterGridComponent,
+          canActivate: [AuthGuardsService]
+      }
+        ]
     },
+
     {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-    path: 'resources',
-    component: ResourcesComponent,
-    canActivate: [AuthGuardsService]
-  },
-  {
-    path: 'add-resources',
-    component: AddResourcesComponent,
-    canActivate: [AuthGuardsService]
-  },
+
   {
     path: 'rent',
     component: RentalComponent
   },
-    {
-        path: '**',
+  {        path: '**',
         component: PageNotFoundComponent
-    }
+  }
 ];
 
 @NgModule({
