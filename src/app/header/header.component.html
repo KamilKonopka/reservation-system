@@ -6,25 +6,10 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!authService.isAuthenticated(); else startMenu">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+          <li class="nav-item">
             <a class="nav-link" routerLink="/about-us" href="#">O NAS</a>
-          </li>
-          <li class="nav-item" *ngIf="authService.isAuthenticated()">
-              <a class="nav-link" routerLink="/profile" href="#">TWÓJ PROFIL</a>
-            </li>
-          <li class="nav-item" *ngIf="authService.isAuthenticated()">
-            <a class="nav-link" routerLink="/register-forms" href="#">WNIOSKI/UŻYTKOWNICY</a>
-          </li>
-          <li class="nav-item" *ngIf="authService.isAuthenticated()">
-            <a class="nav-link" routerLink="/resources" href="#">LISTA ZASOBÓW</a>
-          </li>
-          <li class="nav-item" *ngIf="authService.isAuthenticated()">
-            <a class="nav-link" routerLink="/add-resources" href="#">DODAJ ZASÓB</a>
-          </li>
-          <li class="nav-item" *ngIf="!authService.isAuthenticated()">
-            <a class="nav-link" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/regulations" href="#">REGULAMIN</a>
@@ -32,19 +17,17 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/contact" href="#">KONTAKT</a>
           </li>
-          <li class="nav-item" *ngIf="!authService.isAuthenticated()">
+          <li class="nav-item">
             <a class="nav-link" href="#" (click)="login()" routerLink="/home">ZALOGUJ SIĘ</a>
           </li>
-          <li class="nav-item" *ngIf="authService.isAuthenticated()">
-            <a class="nav-link" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
-          </li>
-
         </ul>
-        <form class="form-inline my-2 my-lg-0" *ngIf="!authService.isAuthenticated()">
-
+        <form class="form-inline my-2 my-lg-0">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</button>
         </form>
       </div>
+      <ng-template #startMenu>
+        <app-header-admin></app-header-admin>
+      </ng-template>
     </nav>
   </div>
 </header>

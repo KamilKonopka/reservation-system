@@ -104,4 +104,5 @@ export class AuthService {
   public getUserByEmail( email: string): Observable<User> {
     return this.http.get<User>(url + '?q={%22email%22:%22' + email + '%22}', getoptions);
   }
+
 }

@@ -1,21 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { AuthUser } from '../interfaces/authUser';
+import { User } from '../model/user';
 
-@Component ({
+@Component({
   selector: 'app-header-admin',
   templateUrl: './headerAdmin.component.html',
   styleUrls: ['./headerAdmin.component.less']
 })
-export class HeaderAdminComponent implements OnInit {
+export class HeaderAdminComponent implements DoCheck {
+  admin = false;
+  profile: AuthUser;
+  profileData = User;
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {}
 
-  ngOnInit() {
+  ngDoCheck() {
+    this.profileData = JSON.parse(localStorage.getItem('profile'));
+
+    if (localStorage.getItem('profile')) {
+      this.isAdmin();
+    } else {
+      return false;
+    }
+
   }
-  login() {
-    this.authService.login();
-  }
+
   logout() {
     this.authService.logout();
+  }
+
+  isAdmin() {
+    if (this.profileData[0].moderator === true) {
+      this.admin = true;
+    } else {
+      this.admin = false;
+    }
   }
 }

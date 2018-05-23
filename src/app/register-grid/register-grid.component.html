@@ -11,7 +11,7 @@
   </tr>
   <tr *ngFor="let us of users"  >
     <td>
-      <a [routerLink]="['/user-details', us._id]" routerLinkActive="active">
+      <a [routerLink]="['/logged/user-details', us._id]" routerLinkActive="active">
         {{us.nickname}}
       </a>
     </td>
