@@ -1,13 +1,27 @@
-<div class="panel panel-default profile-area">
-  <div class="panel-heading">
-    <h3>Profile</h3>
-  </div>
-  <div class="panel-body">
-    <img src="{{profile?.picture}}" class="avatar" alt="avatar">
-    <div>
-      <label><i class="glyphicon glyphicon-user"></i> Nickname</label>
-      <h3 class="nickname">{{ profile?.nickname }}</h3>
+<div class="container-fluid">
+  <div class="card mb-3" *ngFor="let profileUser of profileData">
+    <div *ngIf="profileUser.akceptacja === true; else unConfirmed"></div>
+    <ng-template #unConfirmed>
+      <div class="alert-danger">Twoje czlonkowstwo nie zostalo jeszcze potwierdzone. Zakeczaj aż Moderator zaakceptuje twoj wniosek o czlonkowstwo.</div>
+    </ng-template>
+    <div class="card-body">
+      <h3 class="card-title">{{ profileUser.imie }} {{ profileUser.name }}</h3>
+      <div class="card-text">
+        <div class="row">
+            <div class="col-lg-2"><img src="{{ profile.picture }}"></div>
+            <div class="col-lg-10">
+                <div>email: {{ profileUser.email }}</div>
+                <div>login: {{ profileUser.nickname }}</div>
+                <div>adres: {{ profileUser.ulica }} {{ profileUser.nrdomu }}</div>
+                <div>telefon: {{ profileUser.telefon }}</div>
+                <div *ngIf="profileUser.uwagi !== ''">uwagi: {{ profileUser.uwagi }}</div>
+                <div *ngIf="profileUser.akceptacja === ''">Czlonek od: {{ profileUser.dataakceptacji }} {{ profileUser.akceptcja }}</div>
+            </div>
+        </div>
+      </div>
+      <p class="card-text">
+        <small class="text-muted">Modyfikowany ostatnio {{ profileUser.datawniosku | date:'fullDate' }}</small>
+      </p>
     </div>
-    <pre class="full-profile">{{ profile | json }}</pre>
   </div>
 </div>

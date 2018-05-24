@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { IUser } from '../interfaces/iuser';
+import { User } from '../model/user';
+import { AuthUser } from '../interfaces/authUser';
 
 @Component({
   selector: 'app-profile',
@@ -7,17 +10,18 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
-  profile: any;
+
+  profileData: IUser = JSON.parse(localStorage.getItem('profile'));
+  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
+
+
+
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    if (this.authService.userProfile) {
-      this.profile = this.authService.userProfile;
-    } else {
-      this.authService.getProfile((err, profile) => {
-        this.profile = profile;
-      });
-    }
+
   }
 
 }
+
+

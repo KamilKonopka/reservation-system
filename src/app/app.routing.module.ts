@@ -14,6 +14,8 @@ import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
+import {AddResourcesComponent} from './add-resources/add-resources.component';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 
 const appRoutes: Routes = [
     {
@@ -42,35 +44,43 @@ const appRoutes: Routes = [
     component: ContactComponent
     },
     {
-        path: 'register-forms',
-        component: RegisterGridComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'user-details/:id',
-        component: UserDetailsComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
         path: 'logged',
         component: LoggedComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
-        path: 'resources',
-        component: ResourcesComponent,
-        canActivate: [AuthGuardsService]
-    },
-    {
+        canActivate: [AuthGuardsService],
+        children: [
+          {
+          path: 'profile',
+          component: ProfileComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'resources',
+          component: ResourcesComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'user-details/:id',
+          component: UserDetailsComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+          path: 'register-forms',
+          component: RegisterGridComponent,
+          canActivate: [AuthGuardsService]
+        },
+        {
+            path: 'dashboard',
+            component: DashboardAdminComponent,
+            canActivate: [AuthGuardsService]
+          },
+              {
         path: 'resources-pictures/:id',
         component: ResourcesPicturesComponent,
         canActivate: [AuthGuardsService]
+        }
+        ]
     },
+
     {
         path: '**',
         component: PageNotFoundComponent

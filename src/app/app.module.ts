@@ -26,6 +26,9 @@ import {ResourcesService} from './services/resources.service';
 import {HeaderAdminComponent} from './headerAdmin/headerAdmin.component';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import { ImageViewerModule } from 'ngx-image-viewer';
+import { AddResourcesComponent } from './add-resources/add-resources.component';
+import { DashboardService } from './services/admin-dashboard-data';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +48,9 @@ import { ImageViewerModule } from 'ngx-image-viewer';
         ResourcesComponent,
         ContactComponent,
         HeaderAdminComponent,
-        ResourcesPicturesComponent
+        ResourcesPicturesComponent,
+        AddResourcesComponent,
+        DashboardAdminComponent
     ],
     imports: [
         BrowserModule,
@@ -55,8 +60,10 @@ import { ImageViewerModule } from 'ngx-image-viewer';
         HttpClientModule,
         ImageViewerModule.forRoot()
     ],
-    providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService],
-    bootstrap: [AppComponent]
+
+  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, DashboardService],
+  bootstrap: [AppComponent]
+
 })
 export class AppModule {
 }
