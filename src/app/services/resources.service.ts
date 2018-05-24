@@ -1,8 +1,8 @@
-// import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
-import {Resource} from '../resources/resources.component';
+import {Picture, Resource} from '../resources/resources.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/czasoby';
 
@@ -35,4 +35,10 @@ export class ResourcesService {
             }
         );
     }
+
+    // Pobierz zdjęcia
+    getPictures(id: string): Observable<Array<Picture>> {
+        return this.http.get<Array<Picture>>(url + '/' + id + '/zdjecia', options);
+    }
 }
+

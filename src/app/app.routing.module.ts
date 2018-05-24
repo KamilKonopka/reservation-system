@@ -13,6 +13,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
+import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 
 const appRoutes: Routes = [
     {
@@ -63,6 +64,11 @@ const appRoutes: Routes = [
     {
         path: 'resources',
         component: ResourcesComponent,
+        canActivate: [AuthGuardsService]
+    },
+    {
+        path: 'resources-pictures/:id',
+        component: ResourcesPicturesComponent,
         canActivate: [AuthGuardsService]
     },
     {
