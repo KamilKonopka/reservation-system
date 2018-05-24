@@ -25,6 +25,8 @@ import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
+import { DashboardService } from './services/admin-dashboard-data';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { AddResourcesComponent } from './add-resources/add-resources.component';
     ResourcesComponent,
     ContactComponent,
     HeaderAdminComponent,
-    AddResourcesComponent
+    AddResourcesComponent,
+    DashboardAdminComponent
 
   ],
   imports: [
@@ -53,9 +56,10 @@ import { AddResourcesComponent } from './add-resources/add-resources.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
-  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService],
+  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

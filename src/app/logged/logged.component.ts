@@ -1,8 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AuthGuardsService } from '../services/auth-guard.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../model/user';
+import { IUser } from '../interfaces/iuser';
 import { AuthUser } from '../interfaces/authUser';
 
 @Component ({
@@ -12,8 +13,8 @@ import { AuthUser } from '../interfaces/authUser';
 })
 export class LoggedComponent implements OnInit {
 
+  profileData: IUser;
   profile: AuthUser;
-  profileData: User;
   info: string;
   loggedMessage = 'Zalogowales sie do systemu!';
   displayLoggedMessage = false;
@@ -21,6 +22,7 @@ export class LoggedComponent implements OnInit {
   constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+  
     this.route.params.subscribe(params => {
       if (params['email']) {
         this.info = 'Zaloguj się do ' + params['email'];
@@ -47,3 +49,4 @@ export class LoggedComponent implements OnInit {
     this.authService.logout();
   }
 }
+

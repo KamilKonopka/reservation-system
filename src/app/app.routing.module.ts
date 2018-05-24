@@ -14,6 +14,7 @@ import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 
 const appRoutes: Routes = [
     {
@@ -65,7 +66,12 @@ const appRoutes: Routes = [
           path: 'register-forms',
           component: RegisterGridComponent,
           canActivate: [AuthGuardsService]
-      }
+        },
+        {
+            path: 'dashboard',
+            component: DashboardAdminComponent,
+            canActivate: [AuthGuardsService]
+          }
         ]
     },
 
