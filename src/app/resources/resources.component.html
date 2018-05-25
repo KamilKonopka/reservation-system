@@ -7,6 +7,7 @@
       <th>Producent</th>
       <th>Właściciel</th>
       <th>Uwagi</th>
+      <th></th>
     </tr>
     <tr *ngFor="let p of allResources$ | async">
       <td>{{p.nazwa}}</td>
@@ -15,7 +16,10 @@
       <td>{{p.producent}}</td>
       <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
       <td>{{p.uwagi}}</td>
+      <td><a [routerLink]="['/logged/rental', p._id]" routerLinkActive="active">
+      Rezerwuję
+    </a></td>
     </tr>
   </table>
-</div>npm start
+</div>
 

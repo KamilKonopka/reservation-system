@@ -18,7 +18,6 @@ czyakcept: boolean ;
   ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.registrationService.getUserById(id).subscribe(UserData => {
       // console.log(JSON.stringify(UserData));
       this.czyakcept = UserData.akceptacja;
@@ -26,7 +25,7 @@ czyakcept: boolean ;
     }, err => {console.log(JSON.stringify(err)); });
   }
 onCancel() {
-  this.router.navigate(['register-forms']);
+  this.router.navigate(['logged/register-forms']);
 
 
 }
