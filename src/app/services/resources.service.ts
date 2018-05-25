@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Resource} from '../resources/resources.component';
+import {Picture, Resource} from '../resources/resources.component';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
@@ -24,20 +24,28 @@ export class ResourcesService {
     this.getResources();
   }
 
-  // Pobierz wszystkie zasoby
-  getResources() {
-    return this.http.get<Array<Resource>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
-      res => {
-        this.resourcesObs.next(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+<<<<<<< src/app/services/resources.service.ts
+    // Pobierz wszystkie zasoby
+    getResources() {
+        return this.http.get<Array<Resource>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
+            res => {
+                this.resourcesObs.next(res);
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    // Pobierz zdjęcia
+    getPictures(id: string): Observable<Array<Picture>> {
+        return this.http.get<Array<Picture>>(url + '/' + id + '/zdjecia', options);
+    }
+
   // Wysyłanie zasobu
       public addTools (tools: Tools): Observable<object> {
       console.log(tools);
       return this.http.post(url, tools, options);
   }
 }
+
