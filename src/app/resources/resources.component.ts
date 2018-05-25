@@ -9,28 +9,40 @@ import {Observable} from 'rxjs/Observable';
 })
 export class ResourcesComponent implements OnInit {
 
-  allResources$: Observable<Array<Resource>>;
+    allResources$: Observable<Array<Resource>>;
+    // allPictures$: Observable<Array<Picture>>;
+    pictures: object;
 
   constructor(private resService: ResourcesService) {
   }
 
-  getResources() {
-    this.allResources$ = this.resService.resources$;
+    getResources() {
+        this.allResources$ = this.resService.resources$;
+    }
 
-  }
-
-  ngOnInit() {
-    this.getResources();
-  }
-
+    getPictures(id) {
+        this.resService.getPictures(id).subscribe(pics => {
+            console.log(pics);
+            this.pictures = pics;
+        });
+    }
+    ngOnInit() {
+        this.getResources();
+    }
 }
 
 export interface Resource {
-  _id: string;
-  nazwa: string;
-  opis: string;
-  data_prod: string;
-  producent: object;
-  wlasciciel: object;
-  uwagi: string;
+    _id: string;
+    nazwa: string;
+    opis: string;
+    data_prod: string;
+    producent: object;
+    wlasciciel: object;
+    uwagi: string;
+    archiwum: boolean;
+}
+
+export interface Picture {
+    zdjecie: string;
+    opis: string;
 }

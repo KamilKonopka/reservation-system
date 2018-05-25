@@ -1,21 +1,28 @@
 <div class="container">
-  <table class="table table-striped">
-    <tr>
-      <th>Nazwa</th>
-      <th>Opis</th>
-      <th>Data produkcji</th>
-      <th>Producent</th>
-      <th>Właściciel</th>
-      <th>Uwagi</th>
-    </tr>
-    <tr *ngFor="let p of allResources$ | async">
-      <td>{{p.nazwa}}</td>
-      <td>{{p.opis}}</td>
-      <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
-      <td>{{p.producent}}</td>
-      <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
-      <td>{{p.uwagi}}</td>
-    </tr>
-  </table>
-</div>npm start
-
+    <table class="table table-striped">
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Data produkcji</th>
+            <th>Producent</th>
+            <th>Właściciel</th>
+            <th>Uwagi</th>
+            <th>Archiwalny</th>
+        </tr>
+        <tr *ngFor="let p of allResources$ | async">
+            <td>{{p.nazwa}}</td>
+            <td>
+                {{p.opis}}
+                <BR>
+                <button [routerLink]="['/resources-pictures', p._id]">Pokaż zdjęcia</button>
+            </td>
+            <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
+            <td>{{p.producent}}</td>
+            <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
+            <td>{{p.uwagi}}</td>
+            <td>
+                <div class="check-cell"><input type="checkbox" [disabled]="true" [(ngModel)]="p.archiwum"></div>
+            </td>
+        </tr>
+    </table>
+</div>
