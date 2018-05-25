@@ -1,0 +1,230 @@
+<div class="rental-form  col-md-10 offset-md-1">
+  <mat-toolbar color="secondary">
+    Nowa rezerwacja
+  </mat-toolbar>
+      <mat-form-field class="rental-form-full-width">
+    <mat-select [(value)]="selected_resource_id">
+      <mat-option *ngFor="let resource of allResources| async" [value]="resource._id">
+        {{ resource.nazwa }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-card>
+    <mat-card-title>Początek rezerwacji</mat-card-title>
+  <mat-form-field>
+   <input matInput [min]="minDate" [max]="maxDate"  [(ngModel)]="startDate"  [matDatepicker]="picker"  placeholder="Wybierz datę od">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select  [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
+      <mat-option value="0000">00:00</mat-option>
+      <mat-option value="0015">00:15</mat-option>
+      <mat-option value="0030">00:30</mat-option>
+      <mat-option value="0045">00:45</mat-option>
+      <mat-option value="0100">01:00</mat-option>
+      <mat-option value="0115">01:15</mat-option>
+      <mat-option value="0130">01:30</mat-option>
+      <mat-option value="0145">01:45</mat-option>
+      <mat-option value="0200">02:00</mat-option>
+      <mat-option value="0215">02:15</mat-option>
+      <mat-option value="0230">02:30</mat-option>
+      <mat-option value="0245">02:45</mat-option>
+      <mat-option value="0300">03:00</mat-option>
+      <mat-option value="0315">03:15</mat-option>
+      <mat-option value="0330">03:30</mat-option>
+      <mat-option value="0345">03:45</mat-option>
+      <mat-option value="0400">04:00</mat-option>
+      <mat-option value="0415">04:15</mat-option>
+      <mat-option value="0430">04:30</mat-option>
+      <mat-option value="0445">04:45</mat-option>
+      <mat-option value="0500">05:00</mat-option>
+      <mat-option value="0515">05:15</mat-option>
+      <mat-option value="0530">05:30</mat-option>
+      <mat-option value="0545">05:45</mat-option>
+      <mat-option value="0600">06:00</mat-option>
+      <mat-option value="0615">06:15</mat-option>
+      <mat-option value="0630">06:30</mat-option>
+      <mat-option value="0645">06:45</mat-option>
+      <mat-option value="0700">07:00</mat-option>
+      <mat-option value="0715">07:15</mat-option>
+      <mat-option value="0730">07:30</mat-option>
+      <mat-option value="0745">07:45</mat-option>
+      <mat-option value="0800">08:00</mat-option>
+      <mat-option value="0815">08:15</mat-option>
+      <mat-option value="0830">08:30</mat-option>
+      <mat-option value="0845">08:45</mat-option>
+      <mat-option value="0900">09:00</mat-option>
+      <mat-option value="0915">09:15</mat-option>
+      <mat-option value="0930">09:30</mat-option>
+      <mat-option value="0945">09:45</mat-option>
+      <mat-option value="1000">10:00</mat-option>
+      <mat-option value="1015">10:15</mat-option>
+      <mat-option value="1030">10:30</mat-option>
+      <mat-option value="1045">10:45</mat-option>
+      <mat-option value="1100">11:00</mat-option>
+      <mat-option value="1215">12:15</mat-option>
+      <mat-option value="1230">12:30</mat-option>
+      <mat-option value="1245">12:45</mat-option>
+      <mat-option value="1300">13:00</mat-option>
+      <mat-option value="1315">13:15</mat-option>
+      <mat-option value="1330">13:30</mat-option>
+      <mat-option value="1345">13:45</mat-option>
+      <mat-option value="1400">14:00</mat-option>
+      <mat-option value="1415">14:15</mat-option>
+      <mat-option value="1430">14:30</mat-option>
+      <mat-option value="1445">14:45</mat-option>
+      <mat-option value="1500">15:00</mat-option>
+      <mat-option value="1515">15:15</mat-option>
+      <mat-option value="1530">15:30</mat-option>
+      <mat-option value="1545">15:45</mat-option>
+      <mat-option value="1600">16:00</mat-option>
+      <mat-option value="1615">16:15</mat-option>
+      <mat-option value="1630">16:30</mat-option>
+      <mat-option value="1645">16:45</mat-option>
+      <mat-option value="1700">17:00</mat-option>
+      <mat-option value="1715">17:15</mat-option>
+      <mat-option value="1730">17:30</mat-option>
+      <mat-option value="1745">17:45</mat-option>
+      <mat-option value="1800">18:00</mat-option>
+      <mat-option value="1815">18:15</mat-option>
+      <mat-option value="1830">18:30</mat-option>
+      <mat-option value="1845">18:45</mat-option>
+      <mat-option value="1900">19:00</mat-option>
+      <mat-option value="1915">19:15</mat-option>
+      <mat-option value="1930">19:30</mat-option>
+      <mat-option value="1945">19:45</mat-option>
+      <mat-option value="2000">20:00</mat-option>
+      <mat-option value="2015">20:15</mat-option>
+      <mat-option value="2030">20:30</mat-option>
+      <mat-option value="2045">20:45</mat-option>
+      <mat-option value="2100">21:00</mat-option>
+      <mat-option value="2115">21:15</mat-option>
+      <mat-option value="2130">21:30</mat-option>
+      <mat-option value="2145">21:45</mat-option>
+      <mat-option value="2200">22:00</mat-option>
+      <mat-option value="2215">22:15</mat-option>
+      <mat-option value="2230">22:30</mat-option>
+      <mat-option value="2245">22:45</mat-option>
+      <mat-option value="2300">23:00</mat-option>
+      <mat-option value="2315">23:15</mat-option>
+      <mat-option value="2330">23:30</mat-option>
+      <mat-option value="2345">23:45</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Zakończenie rezerwacji</mat-card-title>
+  <mat-form-field>
+  <input matInput  [min]="minDate" [max]="maxDate" [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker  #picker1></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(ngModel)]="godz_do" placeholder="Wybierz godzinę do">
+      <mat-option value="0000">00:00</mat-option>
+      <mat-option value="0015">00:15</mat-option>
+      <mat-option value="0030">00:30</mat-option>
+      <mat-option value="0045">00:45</mat-option>
+      <mat-option value="0100">01:00</mat-option>
+      <mat-option value="0115">01:15</mat-option>
+      <mat-option value="0130">01:30</mat-option>
+      <mat-option value="0145">01:45</mat-option>
+      <mat-option value="0200">02:00</mat-option>
+      <mat-option value="0215">02:15</mat-option>
+      <mat-option value="0230">02:30</mat-option>
+      <mat-option value="0245">02:45</mat-option>
+      <mat-option value="0300">03:00</mat-option>
+      <mat-option value="0315">03:15</mat-option>
+      <mat-option value="0330">03:30</mat-option>
+      <mat-option value="0345">03:45</mat-option>
+      <mat-option value="0400">04:00</mat-option>
+      <mat-option value="0415">04:15</mat-option>
+      <mat-option value="0430">04:30</mat-option>
+      <mat-option value="0445">04:45</mat-option>
+      <mat-option value="0500">05:00</mat-option>
+      <mat-option value="0515">05:15</mat-option>
+      <mat-option value="0530">05:30</mat-option>
+      <mat-option value="0545">05:45</mat-option>
+      <mat-option value="0600">06:00</mat-option>
+      <mat-option value="0615">06:15</mat-option>
+      <mat-option value="0630">06:30</mat-option>
+      <mat-option value="0645">06:45</mat-option>
+      <mat-option value="0700">07:00</mat-option>
+      <mat-option value="0715">07:15</mat-option>
+      <mat-option value="0730">07:30</mat-option>
+      <mat-option value="0745">07:45</mat-option>
+      <mat-option value="0800">08:00</mat-option>
+      <mat-option value="0815">08:15</mat-option>
+      <mat-option value="0830">08:30</mat-option>
+      <mat-option value="0845">08:45</mat-option>
+      <mat-option value="0900">09:00</mat-option>
+      <mat-option value="0915">09:15</mat-option>
+      <mat-option value="0930">09:30</mat-option>
+      <mat-option value="0945">09:45</mat-option>
+      <mat-option value="1000">10:00</mat-option>
+      <mat-option value="1015">10:15</mat-option>
+      <mat-option value="1030">10:30</mat-option>
+      <mat-option value="1045">10:45</mat-option>
+      <mat-option value="1100">11:00</mat-option>
+      <mat-option value="1215">12:15</mat-option>
+      <mat-option value="1230">12:30</mat-option>
+      <mat-option value="1245">12:45</mat-option>
+      <mat-option value="1300">13:00</mat-option>
+      <mat-option value="1315">13:15</mat-option>
+      <mat-option value="1330">13:30</mat-option>
+      <mat-option value="1345">13:45</mat-option>
+      <mat-option value="1400">14:00</mat-option>
+      <mat-option value="1415">14:15</mat-option>
+      <mat-option value="1430">14:30</mat-option>
+      <mat-option value="1445">14:45</mat-option>
+      <mat-option value="1500">15:00</mat-option>
+      <mat-option value="1515">15:15</mat-option>
+      <mat-option value="1530">15:30</mat-option>
+      <mat-option value="1545">15:45</mat-option>
+      <mat-option value="1600">16:00</mat-option>
+      <mat-option value="1615">16:15</mat-option>
+      <mat-option value="1630">16:30</mat-option>
+      <mat-option value="1645">16:45</mat-option>
+      <mat-option value="1700">17:00</mat-option>
+      <mat-option value="1715">17:15</mat-option>
+      <mat-option value="1730">17:30</mat-option>
+      <mat-option value="1745">17:45</mat-option>
+      <mat-option value="1800">18:00</mat-option>
+      <mat-option value="1815">18:15</mat-option>
+      <mat-option value="1830">18:30</mat-option>
+      <mat-option value="1845">18:45</mat-option>
+      <mat-option value="1900">19:00</mat-option>
+      <mat-option value="1915">19:15</mat-option>
+      <mat-option value="1930">19:30</mat-option>
+      <mat-option value="1945">19:45</mat-option>
+      <mat-option value="2000">20:00</mat-option>
+      <mat-option value="2015">20:15</mat-option>
+      <mat-option value="2030">20:30</mat-option>
+      <mat-option value="2045">20:45</mat-option>
+      <mat-option value="2100">21:00</mat-option>
+      <mat-option value="2115">21:15</mat-option>
+      <mat-option value="2130">21:30</mat-option>
+      <mat-option value="2145">21:45</mat-option>
+      <mat-option value="2200">22:00</mat-option>
+      <mat-option value="2215">22:15</mat-option>
+      <mat-option value="2230">22:30</mat-option>
+      <mat-option value="2245">22:45</mat-option>
+      <mat-option value="2300">23:00</mat-option>
+      <mat-option value="2315">23:15</mat-option>
+      <mat-option value="2330">23:30</mat-option>
+      <mat-option value="2345">23:45</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </mat-card>
+  <mat-form-field class="rental-form-full-width">
+    <textarea matInput [(ngModel)]="rental.uwagi" placeholder="Uwagi"></textarea>
+  </mat-form-field>
+  <mat-spinner class="col-md-10 offset-md-5" *ngIf="isBusy"></mat-spinner>
+<p></p>
+  <div class="form-row">
+    <button type="submit" [disabled]="isBusy" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Rezerwuję</button>
+    <button type="button" [disabled]="isBusy" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Rezygnuję</button>
+  </div>
+
+</div>

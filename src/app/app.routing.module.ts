@@ -15,6 +15,7 @@ import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
+import {RentalComponent} from './rental/rental.component';
 import { AdminGuardService } from './services/admin-guard.service';
 
 const appRoutes: Routes = [
@@ -58,6 +59,11 @@ const appRoutes: Routes = [
           component: ResourcesComponent,
           canActivate: [AuthGuardsService]
         },
+          {
+            path: 'rental/:id',
+            component: RentalComponent,
+            canActivate: [AuthGuardsService]
+          },
         {
           path: 'user-details/:id',
           component: UserDetailsComponent,
@@ -80,11 +86,13 @@ const appRoutes: Routes = [
            },
         ]
     },
-
-    {
-        path: '**',
+{
+    path: 'rent',
+    component: RentalComponent
+  },
+  {        path: '**',
         component: PageNotFoundComponent
-    }
+  }
 ];
 
 @NgModule({
