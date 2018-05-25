@@ -43,7 +43,7 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatCheckboxModule
+  MatCheckboxModule, MAT_DATE_LOCALE
 } from '@angular/material';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
@@ -97,7 +97,7 @@ import { PreviousRouteService } from './services/previous-route.service';
     MatCheckboxModule
   ],
 
-providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService],
+providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService, {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'} ],
 bootstrap: [AppComponent]
 
 })
