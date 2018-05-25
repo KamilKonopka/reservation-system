@@ -18,14 +18,20 @@ export class LoggedComponent implements OnInit {
   info: string;
   loggedMessage = 'Zalogowales sie do systemu!';
   displayLoggedMessage = false;
-  timer;
 
   constructor(
     public authService: AuthService,
     private authGuardService: AuthGuardsService,
     private route: ActivatedRoute,
     public router: Router
-  ) { }
+  ) {
+    this.displayLoggedMessage = true;
+    setTimeout(() => {
+      this.router.navigate(['/logged/dashboard']);
+      this.displayLoggedMessage = false;
+
+    }, 3000);
+  }
 
   ngOnInit() {
 
@@ -47,11 +53,7 @@ export class LoggedComponent implements OnInit {
          });
        });
      }
-     this.displayLoggedMessage = true;
-     this.timer = setTimeout(() => {
-       this.displayLoggedMessage = false;
-       this.router.navigate(['/logged/dashboard']);
-     }, 3000);
+
   }
 
   logout() {
