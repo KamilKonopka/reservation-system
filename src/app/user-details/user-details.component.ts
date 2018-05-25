@@ -26,7 +26,7 @@ czyakcept: boolean ;
     }, err => {console.log(JSON.stringify(err)); });
   }
 onCancel() {
-  this.router.navigate(['register-forms']);
+  this.router.navigate(['logged/register-forms']);
 
 
 }
