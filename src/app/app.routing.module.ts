@@ -13,6 +13,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
+import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 
@@ -71,7 +72,12 @@ const appRoutes: Routes = [
             path: 'dashboard',
             component: DashboardAdminComponent,
             canActivate: [AuthGuardsService]
-          }
+          },
+              {
+        path: 'resources-pictures/:id',
+        component: ResourcesPicturesComponent,
+        canActivate: [AuthGuardsService]
+        }
         ]
     },
 
