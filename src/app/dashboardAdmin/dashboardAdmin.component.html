@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="jumbotron" *ngFor="let profileUser of profileData">
     <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
     <hr class="my-4">
@@ -5,3 +6,4 @@
     <p class="lead">Liczba aktywnych użytkowników: <span>{{allAcceptedUsers}}</span> </p>
     <div class="btn btn-primary btn-lg" (click)="refreshData()" role="button">Odśwież</div>
   </div>
+</div>
