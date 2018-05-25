@@ -71,7 +71,7 @@ const appRoutes: Routes = [
         {
             path: 'dashboard',
             component: DashboardAdminComponent,
-            canActivate: [AuthGuardsService, AdminGuardService]
+            canActivate: [AuthGuardsService]
           },
           {
             path: 'add-resources',
