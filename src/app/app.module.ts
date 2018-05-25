@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LOCALE_ID} from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
@@ -14,6 +16,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { RegulationsComponent } from './regulations/regulations.component';
 import { HttpClientModule } from '@angular/common/http';
 import {RegistrationService} from './services/registration.service';
+import {RentalService} from './services/rental.service';
 import { RegisterGridComponent } from './register-grid/register-grid.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ContactComponent } from './contact/contact.component';
@@ -26,11 +29,25 @@ import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
 import { DashboardService } from './services/admin-dashboard-data';
+import { RentalComponent } from './rental/rental.component';
+import {
+  MatDatepickerModule,
+  MatIconModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatCheckboxModule
+} from '@angular/material';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { AdminGuardService } from './services/admin-guard.service';
-
-
 
 @NgModule({
   declarations: [
@@ -49,6 +66,8 @@ import { AdminGuardService } from './services/admin-guard.service';
     ProfileComponent,
     ResourcesComponent,
     ContactComponent,
+    AddResourcesComponent,
+    RentalComponent,
     HeaderAdminComponent,
     AddResourcesComponent,
     DashboardAdminComponent,
@@ -61,9 +80,24 @@ import { AdminGuardService } from './services/admin-guard.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatOptionModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule
   ],
-  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, DashboardService, AdminGuardService],
-  bootstrap: [AppComponent]
+
+providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService/*, {provide: LOCALE_ID, useValue: 'pl-PL'} */, AdminGuardService],
+bootstrap: [AppComponent]
+
 })
 export class AppModule { }
