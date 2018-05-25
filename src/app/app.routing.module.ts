@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
+import { AdminGuardService } from './services/admin-guard.service';
 
 const appRoutes: Routes = [
     {
@@ -70,8 +71,8 @@ const appRoutes: Routes = [
         },
         {
           path: 'register-forms',
-            component: RegisterGridComponent,
-           canActivate: [AuthGuardsService]
+          component: RegisterGridComponent,
+          canActivate: [AuthGuardsService, AdminGuardService]
         },
         {
             path: 'dashboard',

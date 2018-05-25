@@ -7,12 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../model/user';
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/cuzytkownicy';
-const getoptions = {
-  headers: {
-    'cache-control': 'no-cache',
-    'x-apikey': '5ad4ec0a25a622ae4d52836f'
-  }
-};
+
 
 const options = {
   headers:
@@ -102,7 +97,7 @@ export class AuthService {
   }
 
   public getUserByEmail( email: string): Observable<User> {
-    return this.http.get<User>(url + '?q={%22email%22:%22' + email + '%22}', getoptions);
+    return this.http.get<User>(url + '?q={%22email%22:%22' + email + '%22}', options);
   }
 
 }

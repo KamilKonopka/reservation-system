@@ -21,12 +21,17 @@ export class DashboardAdminComponent implements OnInit {
   nonAcceptedUsersCount = null;
 
 
-  constructor(public authService: AuthService, private authGuardService: AuthGuardsService, private dashboardService: DashboardService, private route: ActivatedRoute) { }
+  constructor(
+    public authService: AuthService,
+    private authGuardService: AuthGuardsService,
+    private dashboardService: DashboardService,
+    private route: ActivatedRoute
+  ) { }
 
   refreshData() {
     this.dashboardService.getNonAcceptedUsers().then(x => {
       this.nonAcceptedUsersCount = x;
-    })
+    });
     this.dashboardService.getAllAcceptedUsers().then(y => {
       this.allAcceptedUsers = y;
     });

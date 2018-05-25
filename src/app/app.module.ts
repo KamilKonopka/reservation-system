@@ -29,7 +29,7 @@ import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
 import { DashboardService } from './services/admin-dashboard-data';
-import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';import { RentalComponent } from './rental/rental.component';
+import { RentalComponent } from './rental/rental.component';
 import {
   MatDatepickerModule,
   MatIconModule,
@@ -45,6 +45,10 @@ import {
   MatSortModule,
   MatCheckboxModule
 } from '@angular/material';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { AdminGuardService } from './services/admin-guard.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +70,8 @@ import {
     RentalComponent,
     HeaderAdminComponent,
     AddResourcesComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    DashboardUserComponent
 
   ],
   imports: [
@@ -90,7 +95,9 @@ import {
     MatSortModule,
     MatCheckboxModule
   ],
-providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService
-  ,  DashboardService/*, {provide: LOCALE_ID, useValue: 'pl-PL'} */],  bootstrap: [AppComponent]
+
+providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService/*, {provide: LOCALE_ID, useValue: 'pl-PL'} */, AdminGuardService],
+bootstrap: [AppComponent]
+
 })
 export class AppModule { }
