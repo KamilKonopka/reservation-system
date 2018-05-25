@@ -48,6 +48,7 @@ import {
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { AdminGuardService } from './services/admin-guard.service';
+import { PreviousRouteService } from './services/previous-route.service';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,7 @@ import { AdminGuardService } from './services/admin-guard.service';
     MatCheckboxModule
   ],
 
-providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService/*, {provide: LOCALE_ID, useValue: 'pl-PL'} */, AdminGuardService],
+providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService],
 bootstrap: [AppComponent]
 
 })
