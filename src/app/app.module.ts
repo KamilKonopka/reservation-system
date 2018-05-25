@@ -28,6 +28,8 @@ import { AddResourcesComponent } from './add-resources/add-resources.component';
 import { DashboardService } from './services/admin-dashboard-data';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { AdminGuardService } from './services/admin-guard.service';
+
 
 
 @NgModule({
@@ -61,7 +63,7 @@ import { DashboardUserComponent } from './dashboard-user/dashboard-user.componen
     HttpClientModule,
 
   ],
-  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, DashboardService],
+  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, DashboardService, AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
