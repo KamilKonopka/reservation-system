@@ -1,2 +1,4 @@
+<div class="alert alert-success" *ngIf="loggedOut === true; else noLogOut">{{ loggedOutMessage }}</div>
+<ng-template #noLogOut></ng-template>
 <app-carousel></app-carousel>
 
