@@ -37,7 +37,12 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatOptionModule,
-  MatCardModule
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 @NgModule({
@@ -75,7 +80,12 @@ import {
     MatSelectModule,
     MatOptionModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService , {provide: LOCALE_ID, useValue: 'pl-PL'}],
   bootstrap: [AppComponent]

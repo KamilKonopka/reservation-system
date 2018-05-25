@@ -69,8 +69,8 @@ const appRoutes: Routes = [
         },
         {
           path: 'register-forms',
-          component: RegisterGridComponent,
-          canActivate: [AuthGuardsService]
+            component: RegisterGridComponent,
+           canActivate: [AuthGuardsService]
       }
         ]
     },

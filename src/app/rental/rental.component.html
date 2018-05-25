@@ -1,9 +1,8 @@
-
-<div class="rental-form">
+<div class="rental-form  col-md-10 offset-md-1">
   <mat-toolbar color="secondary">
     Nowa rezerwacja
   </mat-toolbar>
-  <mat-form-field class="rental-form-full-width">
+      <mat-form-field class="rental-form-full-width">
     <mat-select [(value)]="selected_resource_id">
       <mat-option *ngFor="let resource of allResources| async" [value]="resource._id">
         {{ resource.nazwa }}
@@ -18,7 +17,7 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
+    <mat-select  [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
       <mat-option value="0000">00:00</mat-option>
       <mat-option value="0015">00:15</mat-option>
       <mat-option value="0030">00:30</mat-option>
@@ -221,9 +220,11 @@
   <mat-form-field class="rental-form-full-width">
     <textarea matInput [(ngModel)]="rental.uwagi" placeholder="Uwagi"></textarea>
   </mat-form-field>
+  <mat-spinner class="col-md-10 offset-md-5" *ngIf="isBusy"></mat-spinner>
 <p></p>
   <div class="form-row">
-    <button type="submit" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Rezerwuję</button>
-    <button type="button" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Rezygnuję</button>
+    <button type="submit" [disabled]="isBusy" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Rezerwuję</button>
+    <button type="button" [disabled]="isBusy" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Rezygnuję</button>
   </div>
+
 </div>

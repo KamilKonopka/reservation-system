@@ -7,6 +7,7 @@ import {User} from '../model/user';
 import {ResourcesService} from '../services/resources.service';
 import {Resource} from '../resources/resources.component';
 import {Observable} from 'rxjs/Observable';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-rental',
@@ -26,7 +27,8 @@ export class RentalComponent implements OnInit {
   godz_do = this.godz_od;
   user: User;
   rental: Rental;
-  constructor(private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService) { }
+  isBusy = false;
+  constructor(private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute,  private router: Router,  ) { }
 
   ngOnInit() {
      this.user = JSON.parse(localStorage.getItem('profile'));
@@ -35,12 +37,12 @@ export class RentalComponent implements OnInit {
   }
 onSubmit() {
   this.rental.rezerwacja = true;
-  this.rental.data_wypozyczenia = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate(),
+   this.rental.data_wypozyczenia = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate(),
                                            Number(this.godz_od.substring(0, 2)), Number(this.godz_od.substring(2, 4)  ));
   this.rental.data_zwrotu = new Date(this.endDate.getFullYear(), this.endDate.getMonth(), this.endDate.getDate(),
     Number(this.godz_do.substring(0, 2)), Number(this.godz_do.substring(2, 4)  ));
   this.rental.zasob.push(this.selected_resource_id);
-  console.log('Wysylam' , JSON.stringify(this.rental));
+  this.isBusy = true;
   this.rentalService.addRental(this.rental).subscribe(
     res => {
       console.log(res);
@@ -48,7 +50,7 @@ onSubmit() {
       //this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
       //setTimeout(() => {
       //  this.showSuccessMessage = false;
-      //  this.router.navigate(['home']);
+       this.router.navigate(['logged/resources']);
       // }, 3000) ;
     },
       err => {
@@ -61,13 +63,12 @@ onSubmit() {
         // }, 3000);
       },
       () => {
-        console.log('Operation completed'); // this router navigate
-        // () => this._router.navigate(['Home'])
+        this.isBusy = false;
       }
 
   );
 }
 onCancel() {
-
+  this.router.navigate(['logged/resources']);
 }
 }

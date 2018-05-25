@@ -26,7 +26,7 @@ czyakcept: boolean ;
     }, err => {console.log(JSON.stringify(err)); });
   }
 onCancel() {
-  this.router.navigate(['register-forms']);
+  this.router.navigate(['logged/register-forms']);
 
 
 }
@@ -36,7 +36,7 @@ onSubmit() {
   this.registrationService.updateUser(this.user).subscribe(
     res => {
       console.log(res);
-        this.router.navigate(['register-forms']);
+        this.router.navigate(['logged/register-forms']);
          },
     err => {
       //this.formSent = false;
