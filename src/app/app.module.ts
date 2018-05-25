@@ -28,7 +28,8 @@ import { ResourcesComponent } from './resources/resources.component';
 import {ResourcesService} from './services/resources.service';
 import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
-import { RentalComponent } from './rental/rental.component';
+import { DashboardService } from './services/admin-dashboard-data';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';import { RentalComponent } from './rental/rental.component';
 import {
   MatDatepickerModule,
   MatIconModule,
@@ -44,7 +45,6 @@ import {
   MatSortModule,
   MatCheckboxModule
 } from '@angular/material';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +65,10 @@ import {
     AddResourcesComponent,
     RentalComponent,
     HeaderAdminComponent,
-    ],
+    AddResourcesComponent,
+    DashboardAdminComponent
+
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -87,7 +90,7 @@ import {
     MatSortModule,
     MatCheckboxModule
   ],
-  providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService , {provide: LOCALE_ID, useValue: 'pl-PL'}],
-  bootstrap: [AppComponent]
+providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService
+  ,  DashboardService/*, {provide: LOCALE_ID, useValue: 'pl-PL'} */],  bootstrap: [AppComponent]
 })
 export class AppModule { }

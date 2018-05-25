@@ -18,7 +18,6 @@ czyakcept: boolean ;
   ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.registrationService.getUserById(id).subscribe(UserData => {
       //console.log(JSON.stringify(UserData));
       this.czyakcept = UserData.akceptacja;

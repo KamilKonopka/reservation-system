@@ -14,6 +14,7 @@ import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
 import { ContactComponent } from './contact/contact.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
+import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
 
 const appRoutes: Routes = [
@@ -58,7 +59,7 @@ const appRoutes: Routes = [
           canActivate: [AuthGuardsService]
         },
           {
-            path: 'rent',
+            path: 'rental/:id',
             component: RentalComponent,
             canActivate: [AuthGuardsService]
           },
@@ -71,7 +72,17 @@ const appRoutes: Routes = [
           path: 'register-forms',
             component: RegisterGridComponent,
            canActivate: [AuthGuardsService]
-      }
+        },
+        {
+            path: 'dashboard',
+            component: DashboardAdminComponent,
+            canActivate: [AuthGuardsService]
+          },
+          {
+            path: 'add-resources',
+            component: AddResourcesComponent,
+            canActivate: [AuthGuardsService]
+           },
         ]
     },
 {

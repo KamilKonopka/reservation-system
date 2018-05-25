@@ -8,6 +8,7 @@ import {ResourcesService} from '../services/resources.service';
 import {Resource} from '../resources/resources.component';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, Router} from '@angular/router';
+import { LOCALE_ID } from '@angular/core';
 
 @Component({
   selector: 'app-rental',
@@ -22,7 +23,6 @@ export class RentalComponent implements OnInit {
     this.minDate.getMonth() === 2 && this.minDate.getDay() === 29 ? 1 : this.minDate.getDay());
   startDate = this.minDate;
   endDate = this.minDate;
-  version = VERSION;
   godz_od = this.rentalService.stringTime(new Date()) ;
   godz_do = this.godz_od;
   user: User;
@@ -31,6 +31,7 @@ export class RentalComponent implements OnInit {
   constructor(private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute,  private router: Router,  ) { }
 
   ngOnInit() {
+    this.selected_resource_id = this.route.snapshot.paramMap.get('id');
      this.user = JSON.parse(localStorage.getItem('profile'));
      this.rental = this.rentalService.setupNewRental(  this.user[0]._id, null);
      this.allResources = this.resourcesService.resources$;
