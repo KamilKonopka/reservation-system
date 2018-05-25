@@ -27,7 +27,9 @@ import { HeaderAdminComponent } from './headerAdmin/headerAdmin.component';
 import { AddResourcesComponent } from './add-resources/add-resources.component';
 import { DashboardService } from './services/admin-dashboard-data';
 import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { AdminGuardService } from './services/admin-guard.service';
+
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { AdminGuardService } from './services/admin-guard.service';
     ContactComponent,
     HeaderAdminComponent,
     AddResourcesComponent,
-    DashboardAdminComponent
+    DashboardAdminComponent,
+    DashboardUserComponent
 
   ],
   imports: [
