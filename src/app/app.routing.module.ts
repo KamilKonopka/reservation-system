@@ -12,11 +12,13 @@ import {LoggedComponent} from './logged/logged.component';
 import {ProfileComponent} from './profile/profile.component';
 import {AuthGuardsService} from './services/auth-guard.service';
 import {ResourcesComponent} from './resources/resources.component';
-import { ContactComponent } from './contact/contact.component';
+import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
+import {ContactComponent} from './contact/contact.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
-import { DashboardAdminComponent } from './dashboardAdmin/dashboardAdmin.component';
+import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
-import { AdminGuardService } from './services/admin-guard.service';
+import {AdminGuardService} from './services/admin-guard.service';
+
 
 const appRoutes: Routes = [
     {
@@ -42,57 +44,63 @@ const appRoutes: Routes = [
     },
     {
         path: 'contact',
-    component: ContactComponent
+        component: ContactComponent
     },
     {
         path: 'logged',
         component: LoggedComponent,
         canActivate: [AuthGuardsService],
         children: [
-          {
-          path: 'profile',
-          component: ProfileComponent,
-          canActivate: [AuthGuardsService]
-        },
-        {
-          path: 'resources',
-          component: ResourcesComponent,
-          canActivate: [AuthGuardsService]
-        },
-          {
-            path: 'rental/:id',
-            component: RentalComponent,
-            canActivate: [AuthGuardsService]
-          },
-        {
-          path: 'user-details/:id',
-          component: UserDetailsComponent,
-          canActivate: [AuthGuardsService]
-        },
-        {
-          path: 'register-forms',
-          component: RegisterGridComponent,
-          canActivate: [AuthGuardsService, AdminGuardService]
-        },
-        {
-            path: 'dashboard',
-            component: DashboardAdminComponent,
-            canActivate: [AuthGuardsService]
-          },
-          {
-            path: 'add-resources',
-            component: AddResourcesComponent,
-            canActivate: [AuthGuardsService]
-           },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'resources',
+                component: ResourcesComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'resources-pictures/:id',
+                component: ResourcesPicturesComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'rental/:id',
+                component: RentalComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'user-details/:id',
+                component: UserDetailsComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'register-forms',
+                component: RegisterGridComponent,
+                canActivate: [AuthGuardsService, AdminGuardService]
+            },
+            {
+                path: 'dashboard',
+                component: DashboardAdminComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'add-resources',
+                component: AddResourcesComponent,
+                canActivate: [AuthGuardsService]
+            },
         ]
     },
-{
-    path: 'rent',
-    component: RentalComponent
-  },
-  {        path: '**',
+    {
+        path: 'rent',
+        component: RentalComponent
+    },
+    {
+        path: '**',
         component: PageNotFoundComponent
-  }
+    }
 ];
 
 @NgModule({
