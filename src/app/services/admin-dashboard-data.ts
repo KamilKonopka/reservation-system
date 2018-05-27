@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Resource } from '../resources/resources.component';
+import {ITools} from '../interfaces/itools';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { IUser } from '../interfaces/iuser';
