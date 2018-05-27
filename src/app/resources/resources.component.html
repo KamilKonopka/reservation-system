@@ -11,7 +11,11 @@
     </tr>
     <tr *ngFor="let p of allResources$ | async">
       <td>{{p.nazwa}}</td>
-      <td>{{p.opis}}</td>
+      <td>
+        {{p.opis}}
+        <BR>
+        <button [routerLink]="['/logged/resources-pictures', p._id]">Pokaż zdjęcia</button>
+      </td>
       <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
       <td>{{p.producent}}</td>
       <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
