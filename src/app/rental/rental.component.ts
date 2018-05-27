@@ -5,7 +5,7 @@ import {Rental} from '../model/rental';
 import {AuthService} from '../services/auth.service';
 import {User} from '../model/user';
 import {ResourcesService} from '../services/resources.service';
-import {Resource} from '../resources/resources.component';
+import {ITools} from '../interfaces/itools';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute, Router} from '@angular/router';
 import { LOCALE_ID } from '@angular/core';
@@ -17,7 +17,7 @@ import { LOCALE_ID } from '@angular/core';
 })
 export class RentalComponent implements OnInit {
   selected_resource_id = '';
-  allResources: Observable<Array<Resource>>;
+  allResources: Observable<Array<ITools>>;
   minDate = new Date();
   maxDate = new Date(this.minDate.getUTCFullYear() + 1, this.minDate.getMonth() === 2 && this.minDate.getDay() === 29 ? 3 : this.minDate.getMonth() ,
     this.minDate.getMonth() === 2 && this.minDate.getDay() === 29 ? 1 : this.minDate.getDay());
