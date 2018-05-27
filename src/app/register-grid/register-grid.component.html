@@ -1,6 +1,6 @@
 <div class="mat-elevation-z8">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
+  <mat-form-field class="search-input">
+    <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
   </mat-form-field>
   <mat-table  matSort [dataSource]="dataSource">
 

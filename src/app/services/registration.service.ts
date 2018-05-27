@@ -3,6 +3,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/iuser';
 import { User } from '../model/user';
 import { Observable } from 'rxjs/Observable';
+import {Resource} from '../resources/resources.component';
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/cuzytkownicy';
 const getoptions = {
@@ -27,7 +28,7 @@ message: string;
 
   constructor(private http: HttpClient) {
   }
-
+retValue: Observable<object>;
   private userNameTelLoginExists( userArr, usrToAdd: IUser): string {
     if (userArr == null) {
       return '';
@@ -44,7 +45,7 @@ message: string;
         return 'Podany telefon został już użyty';
       }
     }
-    return '';
+    return null;
   }
 
  public getUsers(): Observable<Array<IUser>> {
@@ -66,15 +67,20 @@ message: string;
 //    console.log(user);
     return this.http.post(url, user, options);
   }
-  /*
+
   public insertUser(user: User): Observable<object>  {
 //    console.log(user);
-    this.getActiveUsers(user).subscribe(users=>{
-
-    })
-    return this.http.post(url, user, options);
-  }
-  */
+    let errMsg: string;
+     this.getActiveUsers().subscribe(users => {
+      if ((errMsg = this.userNameTelLoginExists(users, user)) == null) {
+        this.retValue =   this.http.post(url, user, options);
+      } else {
+        this.retValue = Observable.throw( errMsg );
+      }
+    }, err => {
+       this.retValue = err ;
+     });
+     return this.retValue;
 }
 
 
