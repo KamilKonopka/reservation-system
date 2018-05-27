@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { MatPaginatorIntl } from '@angular/material';
 import {RegistrationService} from '../services/registration.service';
 import { Observable } from 'rxjs/Observable';
 import {IUser} from '../interfaces/iuser';
