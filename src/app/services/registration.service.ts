@@ -3,7 +3,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/iuser';
 import { User } from '../model/user';
 import { Observable } from 'rxjs/Observable';
-import {Resource} from '../resources/resources.component';
+
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/cuzytkownicy';
 const getoptions = {
@@ -24,12 +24,14 @@ const options = {
 
 @Injectable()
 export class RegistrationService {
-message: string;
+  message: string;
 
   constructor(private http: HttpClient) {
   }
-retValue: Observable<object>;
-  private userNameTelLoginExists( userArr, usrToAdd: IUser): string {
+
+  retValue: Observable<object>;
+
+  private userNameTelLoginExists(userArr, usrToAdd: IUser): string {
     if (userArr == null) {
       return '';
     }
@@ -48,7 +50,7 @@ retValue: Observable<object>;
     return null;
   }
 
- public getUsers(): Observable<Array<IUser>> {
+  public getUsers(): Observable<Array<IUser>> {
     return this.http.get<Array<IUser>>(url + '?q={}&h={"$orderby": {"datawniosku": -1}} ', getoptions);
   }
 
@@ -56,33 +58,34 @@ retValue: Observable<object>;
     return this.http.get<Array<IUser>>(url + '?q={"archiwum":false}', getoptions);
   }
 
-  public getUserById( id: string): Observable<User> {
+  public getUserById(id: string): Observable<User> {
     return this.http.get<User>(url + '/' + id, getoptions);
   }
-  public updateUser(  user: User): Observable<object> {
+
+  public updateUser(user: User): Observable<object> {
     return this.http.put(url + '/' + user._id, user, options);
   }
 
-  public addUser(user: User): Observable<object>  {
+  public addUser(user: User): Observable<object> {
 //    console.log(user);
     return this.http.post(url, user, options);
   }
 
-  public insertUser(user: User): Observable<object>  {
+  public insertUser(user: User): Observable<object> {
 //    console.log(user);
     let errMsg: string;
-     this.getActiveUsers().subscribe(users => {
+    this.getActiveUsers().subscribe(users => {
       if ((errMsg = this.userNameTelLoginExists(users, user)) == null) {
-        this.retValue =   this.http.post(url, user, options);
+        this.retValue = this.http.post(url, user, options);
       } else {
-        this.retValue = Observable.throw( errMsg );
+        this.retValue = Observable.throw(errMsg);
       }
     }, err => {
-       this.retValue = err ;
-     });
-     return this.retValue;
+      this.retValue = err;
+    });
+    return this.retValue;
+  }
 }
-
 
 
 
