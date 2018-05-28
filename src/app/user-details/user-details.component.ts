@@ -18,15 +18,14 @@ czyakcept: boolean ;
   ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
     this.registrationService.getUserById(id).subscribe(UserData => {
-      //console.log(JSON.stringify(UserData));
+      // console.log(JSON.stringify(UserData));
       this.czyakcept = UserData.akceptacja;
       this.user = UserData;
     }, err => {console.log(JSON.stringify(err)); });
   }
 onCancel() {
-  this.router.navigate(['register-forms']);
+  this.router.navigate(['logged/register-forms']);
 
 
 }
@@ -36,13 +35,13 @@ onSubmit() {
   this.registrationService.updateUser(this.user).subscribe(
     res => {
       console.log(res);
-        this.router.navigate(['register-forms']);
+        this.router.navigate(['logged/register-forms']);
          },
     err => {
-      //this.formSent = false;
+      // this.formSent = false;
       console.log(JSON.stringify(err));
-      //this.showErrorMessage = true;
-      //this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  '; //+ JSON.stringify(err);
+      // this.showErrorMessage = true;
+      // this.messageSubmit = 'Nstąpił nieoczekiwany błąd podczas zapisu wniosku.  '; //+ JSON.stringify(err);
       // setTimeout(() => {    //<<<---    using ()=> syntax
       //   this.showMessage = false;
       // }, 3000);

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ResourcesService} from '../services/resources.service';
 import {Observable} from 'rxjs/Observable';
+import {ITools} from '../interfaces/itools';
 
 @Component({
   selector: 'app-resources',
@@ -9,7 +10,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class ResourcesComponent implements OnInit {
 
-  allResources$: Observable<Array<Resource>>;
+  allResources$: Observable<Array<ITools>>;
 
   constructor(private resService: ResourcesService) {
   }
@@ -23,14 +24,4 @@ export class ResourcesComponent implements OnInit {
     this.getResources();
   }
 
-}
-
-export interface Resource {
-  _id: string;
-  nazwa: string;
-  opis: string;
-  data_prod: string;
-  producent: object;
-  wlasciciel: object;
-  uwagi: string;
 }
