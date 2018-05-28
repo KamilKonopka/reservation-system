@@ -51,6 +51,7 @@ import {AdminGuardService} from './services/admin-guard.service';
 import {PreviousRouteService} from './services/previous-route.service';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import {ImageViewerModule} from 'ngx-image-viewer';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
     declarations: [
@@ -75,7 +76,8 @@ import {ImageViewerModule} from 'ngx-image-viewer';
         AddResourcesComponent,
         DashboardAdminComponent,
         DashboardUserComponent,
-        ResourcesPicturesComponent
+        ResourcesPicturesComponent,
+        LoadingComponent
 
     ],
     imports: [

@@ -20,6 +20,8 @@ export class DashboardAdminComponent implements OnInit {
   allAcceptedUsers = null;
   nonAcceptedUsersCount = null;
   loaded = false;
+  gotNonAcceptedUsers = false;
+  gotAllAcceptedUsers = false;
 
   constructor(
     public authService: AuthService,
@@ -31,10 +33,16 @@ export class DashboardAdminComponent implements OnInit {
   refreshData() {
     this.dashboardService.getNonAcceptedUsers().then(x => {
       this.nonAcceptedUsersCount = x;
+      this.gotNonAcceptedUsers = true;
     });
     this.dashboardService.getAllAcceptedUsers().then(y => {
       this.allAcceptedUsers = y;
-      this.loaded = true;
+      this.gotAllAcceptedUsers = true;
+      if (this.gotNonAcceptedUsers && this.gotAllAcceptedUsers) {
+        this.loaded = true;
+      } else {
+        this.loaded = false;
+      }
     });
 
   }
