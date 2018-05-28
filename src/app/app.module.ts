@@ -101,10 +101,19 @@ import {ImageViewerModule} from 'ngx-image-viewer';
         ImageViewerModule.forRoot()
     ],
 
-    providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService, {
+    providers: [
+      AuthService,
+      AuthGuardsService,
+      RegistrationService,
+      ResourcesService,
+      RentalService,
+      DashboardService,
+      AdminGuardService,
+      PreviousRouteService, {
         provide: MAT_DATE_LOCALE,
         useValue: 'pl-PL'
     }],
+
     bootstrap: [AppComponent]
 
 })

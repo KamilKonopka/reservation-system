@@ -19,7 +19,7 @@ export class DashboardAdminComponent implements OnInit {
   profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
   allAcceptedUsers = null;
   nonAcceptedUsersCount = null;
-
+  loaded = false;
 
   constructor(
     public authService: AuthService,
@@ -34,6 +34,7 @@ export class DashboardAdminComponent implements OnInit {
     });
     this.dashboardService.getAllAcceptedUsers().then(y => {
       this.allAcceptedUsers = y;
+      this.loaded = true;
     });
 
   }

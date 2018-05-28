@@ -3,7 +3,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { IUser } from '../interfaces/iuser';
 import { User } from '../model/user';
 import { Observable } from 'rxjs/Observable';
-import {Resource} from '../resources/resources.component';
+
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/cuzytkownicy';
 const getoptions = {
@@ -83,11 +83,4 @@ retValue: Observable<object>;
      return this.retValue;
 }
 
-
-
-
-
-
-
-
-
+}
