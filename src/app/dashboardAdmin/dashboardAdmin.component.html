@@ -1,19 +1,23 @@
 <div class="container-fluid">
-    <div [hidden]="loaded" class="align-items-center">
-        <div class="app-loading">
-            <div class="logo"></div>
-            <svg class="spinner" viewBox="25 25 50 50">
-              <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-            </svg>
-          </div>
+  <div [hidden]="loaded" class="align-items-center">
+    <div class="app-loading">
+      <div class="logo"></div>
+      <svg class="spinner" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="1" stroke-miterlimit="10" />
+      </svg>
     </div>
-    <div [hidden]="!loaded">
-        <div class="jumbotron" *ngFor="let profileUser of profileData">
-            <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
-            <hr class="my-4">
-            <p class="lead">Liczba wniosków do rozpatrzenia: <span>{{nonAcceptedUsersCount}}</span> </p>
-            <p class="lead">Liczba aktywnych użytkowników: <span>{{allAcceptedUsers}}</span> </p>
-            <div class="btn btn-primary btn-lg" (click)="refreshData()" role="button">Odśwież</div>
-          </div>
-        </div>
+  </div>
+  <div [hidden]="!loaded">
+    <div class="jumbotron" *ngFor="let profileUser of profileData">
+      <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
+      <hr class="my-4">
+      <p class="lead">Liczba wniosków do rozpatrzenia:
+        <span>{{nonAcceptedUsersCount}}</span>
+      </p>
+      <p class="lead">Liczba aktywnych użytkowników:
+        <span>{{allAcceptedUsers}}</span>
+      </p>
+      <div class="btn btn-primary btn-lg" (click)="refreshData()" role="button">Odśwież</div>
     </div>
+  </div>
+</div>

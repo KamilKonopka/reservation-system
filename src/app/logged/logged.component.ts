@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { IUser } from '../interfaces/iuser';
 import { AuthUser } from '../interfaces/authUser';
+import { PreviousRouteService } from '../services/previous-route.service';
 
 @Component ({
   selector: 'app-logged',
@@ -23,18 +24,17 @@ export class LoggedComponent implements OnInit {
     public authService: AuthService,
     private authGuardService: AuthGuardsService,
     private route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public previousRouteService: PreviousRouteService
   ) {
-    this.displayLoggedMessage = true;
-    setTimeout(() => {
-      this.router.navigate(['/logged/dashboard']);
-      this.displayLoggedMessage = false;
-
-    }, 3000);
   }
 
   ngOnInit() {
-
+    if (this.previousRouteService.getPreviousUrl() === '/home') {
+      this.showLoggedInConfirmation();
+    } else {
+      return false;
+    }
     this.route.params.subscribe(params => {
       if (params['email']) {
         this.info = 'Zaloguj się do ' + params['email'];
@@ -55,7 +55,13 @@ export class LoggedComponent implements OnInit {
      }
 
   }
-
+  showLoggedInConfirmation() {
+    this.displayLoggedMessage = true;
+    setTimeout(() => {
+      this.router.navigate(['/logged/dashboard']);
+      this.displayLoggedMessage = false;
+    }, 3000);
+  }
   logout() {
     this.authService.logout();
   }
