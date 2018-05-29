@@ -16,6 +16,7 @@ export class RegisterGridComponent implements OnInit {
  users: IUser[];
   displayedColumns = ['nickname', 'imie', 'name', 'email', 'telefon', 'akceptacja', 'archiwum'];
   dataSource = new MatTableDataSource(this.users);
+  loaded;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -35,7 +36,7 @@ export class RegisterGridComponent implements OnInit {
         this.dataSource.sort = this.sort;
       // = this.users;//new MatTableDataSource<IUser>(this.users);
       // console.log(JSON.stringify(this.dataSource.data));
-     }, err => {console.log(JSON.stringify(err)); });
+     }, err => {console.log(JSON.stringify(err)); }, () => {this.loaded = true; });
 
   }
   applyFilter(filterValue: string) {

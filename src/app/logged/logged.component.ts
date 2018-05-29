@@ -30,11 +30,7 @@ export class LoggedComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.previousRouteService.getPreviousUrl() === '/home') {
-      this.showLoggedInConfirmation();
-    } else {
-      return false;
-    }
+
     this.route.params.subscribe(params => {
       if (params['email']) {
         this.info = 'Zaloguj się do ' + params['email'];
@@ -53,7 +49,11 @@ export class LoggedComponent implements OnInit {
          });
        });
      }
-
+     if (this.previousRouteService.getPreviousUrl() === '/logged') {
+      this.showLoggedInConfirmation();
+    } else {
+      console.log('You\'ve already been there');
+    }
   }
   showLoggedInConfirmation() {
     this.displayLoggedMessage = true;
