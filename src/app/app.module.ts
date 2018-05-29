@@ -51,6 +51,7 @@ import {AdminGuardService} from './services/admin-guard.service';
 import {PreviousRouteService} from './services/previous-route.service';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import {ImageViewerModule} from 'ngx-image-viewer';
+import { LoadingComponent } from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
 
 @NgModule({
@@ -76,7 +77,8 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         AddResourcesComponent,
         DashboardAdminComponent,
         DashboardUserComponent,
-        ResourcesPicturesComponent
+        ResourcesPicturesComponent,
+        LoadingComponent
 
     ],
     imports: [
@@ -102,10 +104,24 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         ImageViewerModule.forRoot()
     ],
 
-    providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService, {
+    providers: [
+      AuthService,
+      AuthGuardsService,
+      RegistrationService,
+      ResourcesService,
+      RentalService,
+      DashboardService,
+      AdminGuardService,
+      PreviousRouteService,
+        {
         provide: MAT_DATE_LOCALE,
         useValue: 'pl-PL'
-    }, { provide: MatPaginatorIntl, useValue: getPolishPaginatorIntl() }],
+        }, 
+        {
+        provide: MatPaginatorIntl,
+        useValue: getPolishPaginatorIntl()
+        }
+    ],
     bootstrap: [AppComponent]
 
 })
