@@ -2,7 +2,7 @@
 <ng-container *ngIf="admin === true; else user">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-        <a class="nav-link" routerLink="/logged/dashboard" href="#">AKTUALNOŚCI</a>
+        <a class="nav-link" routerLink="/logged/dashboard-admin" href="#">AKTUALNOŚCI</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/logged/profile" href="#">TWÓJ PROFIL</a>
@@ -30,6 +30,9 @@
 
 <ng-template #user>
   <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/logged/dashboard-user" href="#">AKTUALNOŚCI</a>
+      </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/logged/profile" href="#">TWÓJ PROFIL</a>
     </li>
@@ -47,4 +50,4 @@
     </li>
   </ul>
 </ng-template>
-</ng-container>
+

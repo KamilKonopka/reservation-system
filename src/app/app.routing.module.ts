@@ -18,8 +18,7 @@ import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
 import {AdminGuardService} from './services/admin-guard.service';
-import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
-
+import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';import {DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -87,10 +86,15 @@ const appRoutes: Routes = [
                 canActivate: [AuthGuardsService, AdminGuardService]
             },
             {
-                path: 'dashboard',
+                path: 'dashboard-admin',
                 component: DashboardAdminComponent,
-                canActivate: [AuthGuardsService]
+                canActivate: [AuthGuardsService, AdminGuardService]
             },
+            {
+              path: 'dashboard-user',
+              component: DashboardUserComponent,
+              canActivate: [AuthGuardsService]
+          },
             {
                 path: 'add-resources',
                 component: AddResourcesComponent,
