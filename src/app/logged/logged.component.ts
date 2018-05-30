@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../model/user';
 import { IUser } from '../interfaces/iuser';
 import { AuthUser } from '../interfaces/authUser';
+import { PreviousRouteService } from '../services/previous-route.service';
 
 @Component ({
   selector: 'app-logged',
@@ -23,14 +24,9 @@ export class LoggedComponent implements OnInit {
     public authService: AuthService,
     private authGuardService: AuthGuardsService,
     private route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    public previousRouteService: PreviousRouteService
   ) {
-    this.displayLoggedMessage = true;
-    setTimeout(() => {
-      this.router.navigate(['/logged/dashboard']);
-      this.displayLoggedMessage = false;
-
-    }, 3000);
   }
 
   ngOnInit() {
@@ -53,9 +49,19 @@ export class LoggedComponent implements OnInit {
          });
        });
      }
-
+     if (this.previousRouteService.getPreviousUrl() === '/logged') {
+      this.showLoggedInConfirmation();
+    } else {
+      console.log('You\'ve already been there');
+    }
   }
-
+  showLoggedInConfirmation() {
+    this.displayLoggedMessage = true;
+    setTimeout(() => {
+      this.router.navigate(['/logged/dashboard']);
+      this.displayLoggedMessage = false;
+    }, 3000);
+  }
   logout() {
     this.authService.logout();
   }
