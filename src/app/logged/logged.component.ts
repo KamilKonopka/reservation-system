@@ -58,7 +58,12 @@ export class LoggedComponent implements OnInit {
   showLoggedInConfirmation() {
     this.displayLoggedMessage = true;
     setTimeout(() => {
-      this.router.navigate(['/logged/dashboard']);
+      if (this.profileData[0].moderator) {
+        this.router.navigate(['/logged/dashboard-admin']);
+      } else {
+        this.router.navigate(['/logged/dashboard-user']);
+      }
+
       this.displayLoggedMessage = false;
     }, 3000);
   }
