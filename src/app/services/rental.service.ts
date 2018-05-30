@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Rental} from '../model/rental';
 import { Observable } from 'rxjs/Observable';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import {User} from '../model/user';
+
 
 const url = 'https://ecommunity-80ee.restdb.io/rest/cwypozyczenia';
 
@@ -20,6 +20,13 @@ export class RentalService {
 
   constructor(private http: HttpClient) {
   }
+ public getRentals(userId?: string): Observable<Array<Rental>> {
+    if ( userId == null  )
+      return this.http.get<Array<Rental>>(url  + '?q={}&h={"$orderby": {"data_wypozyczenia": -1}} ' , options);
+    else
+      return this.http.get<Array<Rental>>(url + '?q={"uzytkownik": ["' + userId + '"]}&h={"$orderby": {"data_wypozyczenia": -1}} ', options);
+  }
+
   public addRental(rental: Rental): Observable<object>  {
 //    console.log(user);
     return this.http.post(url, rental, options);
