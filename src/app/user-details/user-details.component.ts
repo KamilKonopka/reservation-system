@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../model/user';
 import {RegistrationService} from '../services/registration.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -13,7 +14,11 @@ export class UserDetailsComponent implements OnInit {
 user = new User();
 czyakcept: boolean ;
 
-  constructor(private route: ActivatedRoute,  private router: Router,  private registrationService: RegistrationService  ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private registrationService: RegistrationService,
+    private location: Location  ) { }
 
   ngOnInit() {
 
@@ -25,7 +30,7 @@ czyakcept: boolean ;
     }, err => {console.log(JSON.stringify(err)); });
   }
 onCancel() {
-  this.router.navigate(['logged/register-forms']);
+  this.location.back();
 
 
 }
