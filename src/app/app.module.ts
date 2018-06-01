@@ -31,19 +31,21 @@ import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
 import {RentalComponent} from './rental/rental.component';
 import {
-  MatDatepickerModule,
-  MatIconModule,
-  MatInputModule,
-  MatToolbarModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatOptionModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl
 } from '@angular/material';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {DashboardUserComponent} from './dashboard-user/dashboard-user.component';
@@ -51,9 +53,9 @@ import {AdminGuardService} from './services/admin-guard.service';
 import {PreviousRouteService} from './services/previous-route.service';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import {ImageViewerModule} from 'ngx-image-viewer';
-import { LoadingComponent } from './loading/loading.component';
+import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
-import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
+import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
 
 @NgModule({
     declarations: [
@@ -103,25 +105,27 @@ import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
         MatPaginatorModule,
         MatSortModule,
         MatCheckboxModule,
+        MatButtonModule,
+        MatButtonToggleModule,
         ImageViewerModule.forRoot()
     ],
 
     providers: [
-      AuthService,
-      AuthGuardsService,
-      RegistrationService,
-      ResourcesService,
-      RentalService,
-      DashboardService,
-      AdminGuardService,
-      PreviousRouteService,
+        AuthService,
+        AuthGuardsService,
+        RegistrationService,
+        ResourcesService,
+        RentalService,
+        DashboardService,
+        AdminGuardService,
+        PreviousRouteService,
         {
-        provide: MAT_DATE_LOCALE,
-        useValue: 'pl-PL'
+            provide: MAT_DATE_LOCALE,
+            useValue: 'pl-PL'
         },
         {
-        provide: MatPaginatorIntl,
-        useValue: getPolishPaginatorIntl()
+            provide: MatPaginatorIntl,
+            useValue: getPolishPaginatorIntl()
         }
     ],
     bootstrap: [AppComponent]
