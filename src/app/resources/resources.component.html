@@ -1,29 +1,87 @@
-<div class="container">
-  <table class="table table-striped">
-    <tr>
-      <th>Nazwa</th>
-      <th>Opis</th>
-      <th>Data produkcji</th>
-      <th>Producent</th>
-      <th>Właściciel</th>
-      <th>Uwagi</th>
-      <th></th>
-    </tr>
-    <tr *ngFor="let p of allResources$ | async">
-      <td>{{p.nazwa}}</td>
-      <td>
-        {{p.opis}}
+<app-loading [hidden]="loaded"></app-loading>
+<div class="mat-elevation-z8" [hidden]="!loaded">
+
+  <mat-form-field class="search-input">
+    <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
+  </mat-form-field>
+
+  <mat-table  matSort [dataSource]="dataSource" matSortActive="nazwa" matSortDirection="asc">
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+
+    <ng-container matColumnDef="nazwa">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Nazwa </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.nazwa}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="opis">
+      <mat-header-cell  *matHeaderCellDef> Opis </mat-header-cell>
+      <mat-cell *matCellDef="let res">{{res.opis}}
         <BR>
-        <button [routerLink]="['/logged/resources-pictures', p._id]">Pokaż zdjęcia</button>
-      </td>
-      <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
-      <td>{{p.producent}}</td>
-      <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
-      <td>{{p.uwagi}}</td>
-      <td><a [routerLink]="['/logged/rental', p._id]" routerLinkActive="active">
-      Rezerwuję
-    </a></td>
-    </tr>
-  </table>
+        <button mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{res._id}}">Pokaż zdjęcia</button>
+        <button mat-raised-button color="accent" routerLink="/logged/rental/{{res._id}}">Rezerwuję</button>
+      </mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="data_prod">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Data produkcji </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.data_prod | date:"dd-MM-yyyy"}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="producent">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Producent </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.producent}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="wlasciciel">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Właściciel </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.wlasciciel== null ? '' : res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="uwagi">
+      <mat-header-cell  *matHeaderCellDef> Uwagi </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.uwagi}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="archiwum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Archiwum  </mat-header-cell>
+      <mat-cell *matCellDef="let res"><mat-checkbox [(ngModel)]="res.archiwum" [disabled]="true"></mat-checkbox></mat-cell>
+    </ng-container>
+
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 100, 999999]" showFirstLastButtons></mat-paginator>
+
 </div>
+
+<!--<div class="container">-->
+  <!--<table class="table table-striped">-->
+    <!--<tr>-->
+      <!--<th>Nazwa</th>-->
+      <!--<th>Opis</th>-->
+      <!--<th>Data produkcji</th>-->
+      <!--<th>Producent</th>-->
+      <!--<th>Właściciel</th>-->
+      <!--<th>Uwagi</th>-->
+      <!--<th></th>-->
+    <!--</tr>-->
+    <!--<tr *ngFor="let p of allResources$ | async">-->
+      <!--<td>{{p.nazwa}}</td>-->
+      <!--<td>-->
+        <!--{{p.opis}}-->
+        <!--<BR>-->
+        <!--<button [routerLink]="['/logged/resources-pictures', p._id]">Pokaż zdjęcia</button>-->
+      <!--</td>-->
+      <!--<td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>-->
+      <!--<td>{{p.producent}}</td>-->
+      <!--<td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>-->
+      <!--<td>{{p.uwagi}}</td>-->
+      <!--<td><a [routerLink]="['/logged/rental', p._id]" routerLinkActive="active">-->
+      <!--Rezerwuję-->
+    <!--</a></td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->
 

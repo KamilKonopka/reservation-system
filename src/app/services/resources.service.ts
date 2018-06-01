@@ -26,15 +26,19 @@ export class ResourcesService {
     }
 
     // Pobierz wszystkie zasoby
-    getResources() {
-        return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
-            res => {
-                this.resourcesObs.next(res);
-            },
-            err => {
-                console.log(err);
-            }
-        );
+    // getResources() {
+    //     return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
+    //         res => {
+    //             this.resourcesObs.next(res);
+    //         },
+    //         err => {
+    //             console.log(err);
+    //         }
+    //     );
+    // }
+
+    getResources(): Observable<Array<ITools>> {
+        return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options);
     }
 
     // Pobierz zdjęcia
