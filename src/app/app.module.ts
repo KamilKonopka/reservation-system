@@ -53,6 +53,7 @@ import {ResourcesPicturesComponent} from './resources-pictures/resources-picture
 import {ImageViewerModule} from 'ngx-image-viewer';
 import { LoadingComponent } from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
+import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
 
 @NgModule({
     declarations: [
@@ -78,7 +79,8 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         DashboardAdminComponent,
         DashboardUserComponent,
         ResourcesPicturesComponent,
-        LoadingComponent
+        LoadingComponent,
+        RentalsGridComponent
 
     ],
     imports: [
@@ -116,7 +118,7 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         {
         provide: MAT_DATE_LOCALE,
         useValue: 'pl-PL'
-        }, 
+        },
         {
         provide: MatPaginatorIntl,
         useValue: getPolishPaginatorIntl()
