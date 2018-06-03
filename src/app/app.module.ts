@@ -29,6 +29,7 @@ import {ResourcesService} from './services/resources.service';
 import {HeaderAdminComponent} from './headerAdmin/headerAdmin.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
+import {UserDashboardDataService} from './services/user-dashboard-data.service';
 import {RentalComponent} from './rental/rental.component';
 import {
   MatDatepickerModule,
@@ -111,12 +112,13 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
       ResourcesService,
       RentalService,
       DashboardService,
+      UserDashboardDataService,
       AdminGuardService,
       PreviousRouteService,
         {
         provide: MAT_DATE_LOCALE,
         useValue: 'pl-PL'
-        }, 
+        },
         {
         provide: MatPaginatorIntl,
         useValue: getPolishPaginatorIntl()
