@@ -18,6 +18,7 @@ import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
 import {AdminGuardService} from './services/admin-guard.service';
+import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';import {DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import {DashboardUserComponent} from './dashboard-user/dashboard-user.component';
 
 
@@ -66,6 +67,11 @@ const appRoutes: Routes = [
                 path: 'resources-pictures/:id',
                 component: ResourcesPicturesComponent,
                 canActivate: [AuthGuardsService]
+            },
+            {
+              path: 'rentals',
+              component: RentalsGridComponent,
+              canActivate: [AuthGuardsService]
             },
             {
                 path: 'rental/:id',
