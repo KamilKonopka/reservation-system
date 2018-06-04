@@ -1,17 +1,18 @@
-<div *ngIf="numberOfPictures<1;then nopictures else picturespresent"></div>
-<ng-template #nopictures>
-    <p>Do zasobu nie dołączono zdjęć</p>
-    <BR>
-    <button class="btn btn-primary" (click)="goBack()">Wróć</button>
-</ng-template>
-<ng-template #picturespresent>
-    <div class="col-md-10 offset-md-1">
-        <ngx-image-viewer [src]="imagesUrl" [config]="{wheelZoom: true}"
-                          (indexChange)="handleEvent($event)"></ngx-image-viewer>
-        <p *ngIf="numberOfPictures>0">{{pictures[imageInd].opis}}</p>
+<app-loading [hidden]="loaded"></app-loading>
+<div class="mat-elevation-z8" [hidden]="!loaded">
+    <div *ngIf="numberOfPictures<1;then nopictures else picturespresent"></div>
+    <ng-template #nopictures>
+        <h5>Do zasobu nie dołączono zdjęć</h5>
         <BR>
-        <button class="btn btn-primary" (click)="goBack()">Wróć</button>
-    </div>
-</ng-template>
-
-
+        <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
+    </ng-template>
+    <ng-template #picturespresent>
+        <div class="col-md-10 offset-md-1">
+            <ngx-image-viewer [src]="imagesUrl" [config]="{wheelZoom: true}"
+                              (indexChange)="handleEvent($event)"></ngx-image-viewer>
+            <p *ngIf="numberOfPictures>0">{{pictures[imageInd].opis}}</p>
+            <BR>
+            <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
+        </div>
+    </ng-template>
+</div>
