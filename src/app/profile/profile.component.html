@@ -2,7 +2,7 @@
   <div class="card mb-3" *ngFor="let profileUser of profileData">
     <div *ngIf="profileUser.akceptacja === true; else unConfirmed"></div>
     <ng-template #unConfirmed>
-      <div class="alert-danger">Twoje czlonkowstwo nie zostalo jeszcze potwierdzone. Zakeczaj aż Moderator zaakceptuje twoj wniosek o czlonkowstwo.</div>
+      <div class="alert-danger">Twoje członkowstwo nie zostało jeszcze potwierdzone. Zaczekaj aż Moderator zaakceptuje twój wniosek o członkowstwo.</div>
     </ng-template>
     <div class="card-body">
       <h3 class="card-title">{{ profileUser.imie }} {{ profileUser.name }}</h3>
