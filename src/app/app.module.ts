@@ -45,8 +45,10 @@ import {
     MatSortModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl
+    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
 } from '@angular/material';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {DashboardUserComponent} from './dashboard-user/dashboard-user.component';
 import {AdminGuardService} from './services/admin-guard.service';

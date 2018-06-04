@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { IUser } from '../interfaces/iuser';
 import { User } from '../model/user';
@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-
   }
 
 }
