@@ -19,7 +19,7 @@ export class ResourcesPicturesComponent implements OnInit {
     public numberOfPictures: number;
     public imagesUrl = new Array();
     public imageInd: string;
-
+    loaded;
     constructor(private location: Location, private route: ActivatedRoute, private resService: ResourcesService) {
     }
 
@@ -33,6 +33,10 @@ export class ResourcesPicturesComponent implements OnInit {
                 }
             }
 
+        }, err => {
+            console.log(JSON.stringify(err));
+        }, () => {
+            this.loaded = true;
         });
 
     }

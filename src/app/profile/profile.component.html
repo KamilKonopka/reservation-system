@@ -1,28 +1,33 @@
+
 <div class="container-fluid">
-  <div class="card mb-3" *ngFor="let profileUser of profileData">
-    <div *ngIf="profileUser.akceptacja === true; else unConfirmed"></div>
-    <ng-template #unConfirmed>
-      <div class="alert-danger">Twoje czlonkowstwo nie zostalo jeszcze potwierdzone. Zakeczaj aż Moderator zaakceptuje twoj wniosek o czlonkowstwo.</div>
-    </ng-template>
-    <div class="card-body">
-      <h3 class="card-title">{{ profileUser.imie }} {{ profileUser.name }}</h3>
-      <div class="card-text">
+  <mat-card *ngFor="let profileUser of profileData">
+      <div *ngIf="profileUser.akceptacja === true; else unConfirmed"></div>
+      <ng-template #unConfirmed>
+        <div class="alert-danger">Twoje czlonkowstwo nie zostalo jeszcze potwierdzone. Zakeczaj aż Moderator zaakceptuje twoj wniosek o czlonkowstwo.</div>
+      </ng-template>
+        <mat-card-title>{{ profileUser.imie }} {{ profileUser.name }}</mat-card-title>
+    <mat-card-content>
         <div class="row">
-            <div class="col-lg-2"><img src="{{ profile.picture }}"></div>
+            <div class="col-lg-2">
+              <img mat-card-md-image src="{{ profile.picture }}">
+              <button routerLink="/logged/user-details/{{profileData[0]._id}}" class="btn btn-primary edit">Edytuj Profil</button>
+            </div>
             <div class="col-lg-10">
+                <div>ID: {{ profileUser._id | uppercase}} </div>
                 <div>email: {{ profileUser.email }}</div>
                 <div>login: {{ profileUser.nickname }}</div>
                 <div>adres: {{ profileUser.ulica }} {{ profileUser.nrdomu }}</div>
                 <div>telefon: {{ profileUser.telefon }}</div>
+                <div>Data twojego wniosku o rejestracje: {{ profileUser.datawniosku | date:'fullDate' }}</div>
                 <div *ngIf="profileUser.uwagi !== ''">uwagi: {{ profileUser.uwagi }}</div>
-                <div *ngIf="profileUser.akceptacja === ''">Czlonek od: {{ profileUser.dataakceptacji }} {{ profileUser.akceptcja }}</div>
+                <div *ngIf="profileUser.akceptacja === ''">Czlonek od: {{ profileUser.dataakceptacji | date:'fullDate' }} {{ profileUser.akceptcja | date:'fullDate' }}</div>
             </div>
         </div>
-      </div>
-      <p class="card-text">
-        <small class="text-muted">Modyfikowany ostatnio {{ profileUser.datawniosku | date:'fullDate' }}</small>
-      </p>
-      <button routerLink="/logged/user-details/{{profileData[0]._id}}" class="btn btn-primary">Edytuj Profil</button>
-    </div>
-  </div>
+        <div class="row edit">
+          <div class="col-lg-12">
+              <small class="text-muted">Modyfikowany ostatnio {{ profileUser.datawniosku | date:'fullDate' }}</small>
+          </div>
+        </div>
+    </mat-card-content>
+  </mat-card>
 </div>
