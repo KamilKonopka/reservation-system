@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ResourcesService} from '../services/resources.service';
 import {ITools} from '../interfaces/itools';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import {RegistrationService} from '../services/registration.service';
+import {IUser} from '../interfaces/iuser';
 
 
 @Component({
@@ -19,8 +21,9 @@ export class ResourcesComponent implements OnInit {
     loaded;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
+    user: IUser[];
 
-    constructor(private resService: ResourcesService) {
+    constructor(private resService: ResourcesService, private registrationService: RegistrationService) {
     }
 
     // getResources() {
@@ -71,6 +74,17 @@ export class ResourcesComponent implements OnInit {
                 this.loaded = true;
             }
         );
+        this.registrationService.getUsers()
+            .subscribe(UserData => {
+                if (!UserData) {
+                    return;
+                }
+                this.user = UserData;
+                // console.log('Id usera: ' + this.user[0]._id);
+            }, err => {
+                console.log(JSON.stringify(err));
+            });
     }
 }
+
 

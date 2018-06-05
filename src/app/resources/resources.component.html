@@ -37,7 +37,15 @@
 
     <ng-container matColumnDef="wlasciciel">
       <mat-header-cell  *matHeaderCellDef mat-sort-header> Właściciel </mat-header-cell>
-      <mat-cell *matCellDef="let res"> {{res.wlasciciel== null ? '' : res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}</mat-cell>
+      <mat-cell *matCellDef="let res">
+        <div *ngFor="let p of user">
+          <a *ngIf="p.name == res.wlasciciel[0].name && p.imie == res.wlasciciel[0].imie && p.nickname == res.wlasciciel[0].nickname" [routerLink]="['/logged/profile', p._id]"
+             routerLinkActive="active">
+            {{ res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}
+        </a>
+        </div>
+      </mat-cell>
+
     </ng-container>
 
     <ng-container matColumnDef="uwagi">
