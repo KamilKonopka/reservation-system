@@ -89,7 +89,7 @@ export class AddResourcesComponent implements OnInit {
           this.messageSubmit = 'Dziękujemy.';
           setTimeout(() => {
             this.showSuccessMessage = false;
-            this.router.navigate(['home']);
+            this.router.navigate(['logged/resources']);
           }, 3000) ;
         },
         err => {

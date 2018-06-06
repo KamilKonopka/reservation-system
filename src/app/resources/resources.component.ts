@@ -16,8 +16,6 @@ export class ResourcesComponent implements OnInit {
 
   profileData: IUser = JSON.parse(localStorage.getItem('profile'));
   profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
-  allResources$: Observable<Array<ITools>>;
-    // allResources$: Observable<Array<ITools>>;
 
     resources: ITools[];
     columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum'];

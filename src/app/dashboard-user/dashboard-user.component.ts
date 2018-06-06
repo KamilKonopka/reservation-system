@@ -22,10 +22,8 @@ export class DashboardUserComponent implements OnInit {
 
 constructor(
     private resService: UserDashboardDataService,
-    public authService: AuthService,
-    private authGuardService: AuthGuardsService,
-    private route: ActivatedRoute
-    ) { }
+    public authService: AuthService
+  ) { }
     getResourcesDate() {
     this.allResources$ = this.resService.resources$;
   }
