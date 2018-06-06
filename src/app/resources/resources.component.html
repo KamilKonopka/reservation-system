@@ -1,4 +1,3 @@
-
 <app-loading [hidden]="loaded"></app-loading>
 <div class="mat-elevation-z8" [hidden]="!loaded">
   <div class="container-fluid row mt-4">
@@ -12,56 +11,62 @@
     </div>
   </div>
 
-    <mat-table  matSort [dataSource]="dataSource" matSortActive="nazwa" matSortDirection="asc">
+  <mat-table  matSort [dataSource]="dataSource" matSortActive="nazwa" matSortDirection="asc">
 
-      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay;"></mat-row>
 
-      <ng-container matColumnDef="nazwa">
-        <mat-header-cell  *matHeaderCellDef mat-sort-header> Nazwa </mat-header-cell>
-        <mat-cell *matCellDef="let res"> {{res.nazwa}}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="nazwa">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Nazwa </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.nazwa}}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="opis">
-        <mat-header-cell  *matHeaderCellDef> Opis </mat-header-cell>
-        <mat-cell *matCellDef="let res">{{res.opis}}
-          <BR>
-          <button mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{res._id}}">Pokaż zdjęcia</button>
-          <button mat-raised-button color="accent" routerLink="/logged/rental/{{res._id}}">Rezerwuję</button>
-        </mat-cell>
+    <ng-container matColumnDef="opis">
+      <mat-header-cell  *matHeaderCellDef> Opis </mat-header-cell>
+      <mat-cell *matCellDef="let res">{{res.opis}}
+        <BR>
+        <button mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{res._id}}">Pokaż zdjęcia</button>
+        <button mat-raised-button color="accent" routerLink="/logged/rental/{{res._id}}">Rezerwuję</button>
+      </mat-cell>
 
-      </ng-container>
+    </ng-container>
 
-      <ng-container matColumnDef="data_prod">
-        <mat-header-cell  *matHeaderCellDef mat-sort-header> Data produkcji </mat-header-cell>
-        <mat-cell *matCellDef="let res"> {{res.data_prod | date:"dd-MM-yyyy"}}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="data_prod">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Data produkcji </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.data_prod | date:"dd-MM-yyyy"}}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="producent">
-        <mat-header-cell  *matHeaderCellDef mat-sort-header> Producent </mat-header-cell>
-        <mat-cell *matCellDef="let res"> {{res.producent}}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="producent">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Producent </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.producent}}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="wlasciciel">
-        <mat-header-cell  *matHeaderCellDef mat-sort-header> Właściciel </mat-header-cell>
-        <mat-cell *matCellDef="let res"> {{res.wlasciciel== null ? '' : res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}</mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="wlasciciel">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Właściciel </mat-header-cell>
+      <mat-cell *matCellDef="let res">
+        <div *ngFor="let p of user">
+          <a *ngIf="p.name == res.wlasciciel[0].name && p.imie == res.wlasciciel[0].imie && p.nickname == res.wlasciciel[0].nickname" [routerLink]="['/logged/profile', p._id]"
+             routerLinkActive="active">
+            {{ res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}
+        </a>
+        </div>
+      </mat-cell>
 
-      <ng-container matColumnDef="uwagi">
-        <mat-header-cell  *matHeaderCellDef> Uwagi </mat-header-cell>
-        <mat-cell *matCellDef="let res"> {{res.uwagi}}</mat-cell>
-      </ng-container>
+    </ng-container>
 
-      <ng-container matColumnDef="archiwum">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Archiwum  </mat-header-cell>
-        <mat-cell *matCellDef="let res"><mat-checkbox [(ngModel)]="res.archiwum" [disabled]="true"></mat-checkbox></mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="uwagi">
+      <mat-header-cell  *matHeaderCellDef> Uwagi </mat-header-cell>
+      <mat-cell *matCellDef="let res"> {{res.uwagi}}</mat-cell>
+    </ng-container>
 
-    </mat-table>
+    <ng-container matColumnDef="archiwum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Archiwum  </mat-header-cell>
+      <mat-cell *matCellDef="let res"><mat-checkbox [(ngModel)]="res.archiwum" [disabled]="true"></mat-checkbox></mat-cell>
+    </ng-container>
 
-    <mat-paginator [pageSizeOptions]="[10, 20, 100, 999999]" showFirstLastButtons></mat-paginator>
+  </mat-table>
 
-  </div>
+  <mat-paginator [pageSizeOptions]="[10, 20, 100, 999999]" showFirstLastButtons></mat-paginator>
 
-
+</div>
 
