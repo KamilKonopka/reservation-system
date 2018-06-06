@@ -43,7 +43,7 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
-  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl
+  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl, MatSnackBarModule
 } from '@angular/material';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {DashboardUserComponent} from './dashboard-user/dashboard-user.component';
@@ -80,7 +80,8 @@ import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
         DashboardUserComponent,
         ResourcesPicturesComponent,
         LoadingComponent,
-        RentalsGridComponent
+        RentalsGridComponent,
+
 
     ],
     imports: [
@@ -103,6 +104,7 @@ import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
         MatPaginatorModule,
         MatSortModule,
         MatCheckboxModule,
+        MatSnackBarModule,
         ImageViewerModule.forRoot()
     ],
 
@@ -124,6 +126,7 @@ import { RentalsGridComponent } from './rentals-grid/rentals-grid.component';
         useValue: getPolishPaginatorIntl()
         }
     ],
+
     bootstrap: [AppComponent]
 
 })
