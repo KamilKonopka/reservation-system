@@ -8,9 +8,7 @@ import { ResourcesService } from '../services/resources.service';
 import { ITools } from '../interfaces/itools';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LOCALE_ID } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { HttpClient } from 'selenium-webdriver/http';
+
 
 @Component({
   selector: 'app-rental',
@@ -42,9 +40,9 @@ export class RentalComponent implements OnInit {
     this.rentalService.getRentalsByResourceId(this.selected_resource_id).subscribe(x => {
       this.currentResourceRentals = x;
     })
-    
+
   }
-  
+
 
   ngOnInit() {
     this.selected_resource_id = this.route.snapshot.paramMap.get('id');
@@ -79,7 +77,7 @@ export class RentalComponent implements OnInit {
     });
 
     if(!isValid){
-      
+
       this.snackBar.open('Wybrany zasób jest zarezerwowany w tym terminie lub podane daty są niewłaściwe.', '', {
         duration: 2000,
       });
