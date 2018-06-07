@@ -1,9 +1,9 @@
-<div class="rental-form  col-md-10 offset-md-1">
+<div class="rental-form  col-md-6">
   <mat-toolbar color="secondary">
     Nowa rezerwacja
   </mat-toolbar>
       <mat-form-field class="rental-form-full-width">
-    <mat-select [(value)]="selected_resource_id">
+    <mat-select [(ngModel)]="selected_resource_id" (change)="selectedResourcesChanged()" >
       <mat-option *ngFor="let resource of allResources| async" [value]="resource._id">
         {{ resource.nazwa }}
       </mat-option>
@@ -12,12 +12,12 @@
   <mat-card>
     <mat-card-title>Początek rezerwacji</mat-card-title>
   <mat-form-field>
-   <input matInput [min]="minDate" [max]="maxDate"  [(ngModel)]="startDate"  [matDatepicker]="picker"  placeholder="Wybierz datę od">
+   <input matInput [min]="minDate" [max]="maxDate" [(ngModel)]="startDate" [matDatepicker]="picker"  placeholder="Wybierz datę od">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select  [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
+    <mat-select [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
       <mat-option value="0000">00:00</mat-option>
       <mat-option value="0015">00:15</mat-option>
       <mat-option value="0030">00:30</mat-option>
@@ -116,7 +116,7 @@
   <mat-card>
     <mat-card-title>Zakończenie rezerwacji</mat-card-title>
   <mat-form-field>
-  <input matInput  [min]="minDate" [max]="maxDate" [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
+  <input matInput [min]="startDate" [max]="maxDate"  [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker  #picker1></mat-datepicker>
   </mat-form-field>
@@ -227,4 +227,16 @@
     <button type="button" [disabled]="isBusy" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Rezygnuję</button>
   </div>
 
+</div>
+<div class="col-md-6">
+    <div class="jumbotron">
+        <h1 class="display-4">Wypożyczenia:</h1>
+        <div class="lead1" *ngFor="let rental of currentResourceRentals">
+            
+                {{rental.data_wypozyczenia | date : 'dd.MM.yyyy HH:mm'}} - {{rental.data_zwrotu | date : 'dd.MM.yyyy HH:mm'}}
+              
+        </div>
+        <hr class="my-4">
+      </div>
+ 
 </div>

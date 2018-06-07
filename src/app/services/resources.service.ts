@@ -22,7 +22,7 @@ export class ResourcesService {
     resources$ = this.resourcesObs.asObservable();
 
     constructor(private http: HttpClient) {
-        this.getResources();
+         this.getResourcesForRental();
     }
 
     // Pobierz wszystkie zasoby
@@ -40,6 +40,18 @@ export class ResourcesService {
     getResources(): Observable<Array<ITools>> {
         return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options);
     }
+
+  getResourcesForRental() {
+    return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
+      res => {
+        this.resourcesObs.next(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 
     // Pobierz zdjęcia
     getPictures(id: string): Observable<Array<IPictures>> {
