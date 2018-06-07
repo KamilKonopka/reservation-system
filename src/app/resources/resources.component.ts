@@ -4,6 +4,8 @@ import {ITools} from '../interfaces/itools';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 import {RegistrationService} from '../services/registration.service';
 import {IUser} from '../interfaces/iuser';
+import {AuthUser} from '../interfaces/authUser';
+import {AuthService} from '../services/auth.service';
 
 
 @Component({
@@ -13,7 +15,8 @@ import {IUser} from '../interfaces/iuser';
 })
 export class ResourcesComponent implements OnInit {
 
-    // allResources$: Observable<Array<ITools>>;
+  profileData: IUser = JSON.parse(localStorage.getItem('profile'));
+  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
 
     resources: ITools[];
     columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum'];
@@ -23,20 +26,22 @@ export class ResourcesComponent implements OnInit {
     @ViewChild(MatSort) sort: MatSort;
     user: IUser[];
 
-    constructor(private resService: ResourcesService, private registrationService: RegistrationService) {
-    }
+  constructor(
+    private resService: ResourcesService,
+    public authService: AuthService,
+    private registrationService: RegistrationService) {}
 
     // getResources() {
     //     this.allResources$ = this.resService.resources$;
     // }
 
-    applyFilter(filterValue: string) {
-        filterValue = filterValue.trim(); // Remove whitespace
-        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-        this.dataSource.filter = filterValue;
+      applyFilter(filterValue: string) {
+      filterValue = filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+      this.dataSource.filter = filterValue;
     }
 
-    ngOnInit() {
+  ngOnInit() {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -86,5 +91,4 @@ export class ResourcesComponent implements OnInit {
             });
     }
 }
-
 

@@ -29,6 +29,7 @@ import {ResourcesService} from './services/resources.service';
 import {HeaderAdminComponent} from './headerAdmin/headerAdmin.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
+import {UserDashboardDataService} from './services/user-dashboard-data.service';
 import {RentalComponent} from './rental/rental.component';
 import {
   MatDatepickerModule,
@@ -114,15 +115,16 @@ import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
     ],
 
     providers: [
-        AuthService,
-        AuthGuardsService,
-        RegistrationService,
-        ResourcesService,
-        RentalService,
-        DashboardService,
-        AdminGuardService,
-        PreviousRouteService,
-        {
+      AuthService,
+      AuthGuardsService,
+      RegistrationService,
+      ResourcesService,
+      RentalService,
+      DashboardService,
+      UserDashboardDataService,
+      AdminGuardService,
+      PreviousRouteService,
+{
             provide: MAT_DATE_LOCALE,
             useValue: 'pl-PL'
         },

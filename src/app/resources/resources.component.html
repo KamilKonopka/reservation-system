@@ -1,9 +1,15 @@
 <app-loading [hidden]="loaded"></app-loading>
 <div class="mat-elevation-z8" [hidden]="!loaded">
-
-  <mat-form-field class="search-input">
-    <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
-  </mat-form-field>
+  <div class="container-fluid row mt-4">
+    <div class="col-6">
+        <mat-form-field class="search-input">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
+        </mat-form-field>
+    </div>
+    <div align="right" class="col-4">
+        <button routerLink="/logged/add-resources/{{profileData[0]._id}}" class="btn btn-primary">Dodaj zasób</button>
+    </div>
+  </div>
 
   <mat-table  matSort [dataSource]="dataSource" matSortActive="nazwa" matSortDirection="asc">
 
@@ -63,33 +69,4 @@
   <mat-paginator [pageSizeOptions]="[10, 20, 100, 999999]" showFirstLastButtons></mat-paginator>
 
 </div>
-
-<!--<div class="container">-->
-  <!--<table class="table table-striped">-->
-    <!--<tr>-->
-      <!--<th>Nazwa</th>-->
-      <!--<th>Opis</th>-->
-      <!--<th>Data produkcji</th>-->
-      <!--<th>Producent</th>-->
-      <!--<th>Właściciel</th>-->
-      <!--<th>Uwagi</th>-->
-      <!--<th></th>-->
-    <!--</tr>-->
-    <!--<tr *ngFor="let p of allResources$ | async">-->
-      <!--<td>{{p.nazwa}}</td>-->
-      <!--<td>-->
-        <!--{{p.opis}}-->
-        <!--<BR>-->
-        <!--<button [routerLink]="['/logged/resources-pictures', p._id]">Pokaż zdjęcia</button>-->
-      <!--</td>-->
-      <!--<td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>-->
-      <!--<td>{{p.producent}}</td>-->
-      <!--<td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>-->
-      <!--<td>{{p.uwagi}}</td>-->
-      <!--<td><a [routerLink]="['/logged/rental', p._id]" routerLinkActive="active">-->
-      <!--Rezerwuję-->
-    <!--</a></td>-->
-    <!--</tr>-->
-  <!--</table>-->
-<!--</div>-->
 

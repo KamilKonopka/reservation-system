@@ -102,7 +102,7 @@ const appRoutes: Routes = [
               canActivate: [AuthGuardsService]
           },
             {
-                path: 'add-resources',
+                path: 'add-resources/:id',
                 component: AddResourcesComponent,
                 canActivate: [AuthGuardsService]
             },

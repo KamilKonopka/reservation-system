@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ResourcesService} from '../services/resources.service';
 import {Tools} from '../model/tools';
-import {ITools} from '../interfaces/itools';
-import { FormsModule, FormGroup, FormControl, Validators, ValidationErrors, FormBuilder} from '@angular/forms';
+import {FormGroup, FormControl, Validators, } from '@angular/forms';
+import {User} from '../model/user';
+import {RegistrationService} from '../services/registration.service';
+import { Location } from '@angular/common';
+import { AuthService } from '../services/auth.service';
+import { IUser } from '../interfaces/iuser';
+import { AuthUser } from '../interfaces/authUser';
 
 @Component({
   selector: 'app-add-resources',
@@ -18,17 +23,33 @@ export class AddResourcesComponent implements OnInit {
   addform: FormGroup;
   addformSent = false;
   modalElement: any;
-  constructor(private resourcesService: ResourcesService, private router: Router) { }
+  user = new User();
+  profileData: IUser = JSON.parse(localStorage.getItem('profile'));
+  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
+
+
+  constructor(
+    private resourcesService: ResourcesService,
+    private router: Router,
+    public authService: AuthService,
+    private route: ActivatedRoute,
+    private registrationService: RegistrationService,
+    private location: Location ) { }
+
   private  setupTools() {
     console.log(this.addform.value.nazwa);
     this.tools.nazwa = this.addform.value.nazwa;
     this.tools.opis = this.addform.value.opis;
     this.tools.data_prod = this.addform.value.data_prod;
     this.tools.producent = this.addform.value.producent;
-    this.tools.wlasciciel = this.addform.value.wlasciciel;
+    this.tools.wlasciciel = this.user;
     this.tools.uwagi = this.addform.value.uwagi;
   }
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.registrationService.getUserById(id).subscribe(UserData => {
+        this.user = UserData;
+      });
     this.addform = new FormGroup({
       nazwa: new FormControl('', [
         Validators.required,
@@ -45,10 +66,6 @@ export class AddResourcesComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)
       ]),
-      wlasciciel: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
       uwagi: new FormControl('', [
         Validators.required,
         Validators.minLength(10)
@@ -57,7 +74,7 @@ export class AddResourcesComponent implements OnInit {
     this.modalElement = document.getElementById('myModal');
   }
   onCancel() {
-    this.router.navigate(['home']);
+    this.router.navigate(['logged/resources']);
   }
   onSubmit() {
     this.addformSent = true;
@@ -72,7 +89,7 @@ export class AddResourcesComponent implements OnInit {
           this.messageSubmit = 'Dziękujemy.';
           setTimeout(() => {
             this.showSuccessMessage = false;
-            this.router.navigate(['home']);
+            this.router.navigate(['logged/resources']);
           }, 3000) ;
         },
         err => {
@@ -90,5 +107,6 @@ export class AddResourcesComponent implements OnInit {
       console.log('Form is invalid :( !!!');
     }
   }
+
 }
 
