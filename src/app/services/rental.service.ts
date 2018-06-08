@@ -27,6 +27,10 @@ export class RentalService {
       return this.http.get<Array<Rental>>(url + '?q={"uzytkownik": ["' + userId + '"]}&h={"$orderby": {"data_wypozyczenia": -1}} ', options);
   }
 
+  public getRentalsByResourceId(resourceId :string) :Observable<Array<Rental>>{
+    return this.http.get<Array<Rental>>(url + '?q={"zasob._id": "' + resourceId + '"}&h={"$orderby": {"data_wypozyczenia": -1}} ', options);
+  }
+
   public addRental(rental: Rental): Observable<object>  {
 //    console.log(user);
     return this.http.post(url, rental, options);

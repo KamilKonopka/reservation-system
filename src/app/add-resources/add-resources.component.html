@@ -1,73 +1,86 @@
-<div id="recform" class ="col-md-10 offset-md-1" >
-  <form  class="container was-validated"  novalidate="" [formGroup] = "addform" (ngSubmit)="onSubmit()">
+<div class="container">
+<div id="recform" class ="col-sm-8  mt-4" >
+  <span class="anchor" id="formComplex"></span>
+  <h2>Dodawanie zasobu do wypożyczeń</h2>
 
-      <div class="form-group col-sm-12 ">
-        <label>Nazwa zasobu</label>
-        <input type="text"
-               class="form-control"
-               formControlName="nazwa"
-               required
-               minlength="3" >
-        <div class="invalid-feedback" *ngIf="addform.controls.nazwa.errors && (addform.controls.nazwa.dirty ||
-addform.controls.nazwa.touched)">
-          <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.required">Nazwa zasobu jest wymagana</p>
-          <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.minlength">Nazwa zasobu musi mieć min 3 znaki</p>
+
+
+    <div class="form-row ">
+        <div class="col-sm-12 "><label> Właściel</label> </div>
+
+        <div class="form-group col-sm-5 ">
+          <label for="firstName"><p>Imię</p></label>
+          <input disabled="disabled" [(ngModel)]="user.imie" type="text" class="form-control" id="firstName">
         </div>
+
+
+        <div class="form-group col-sm-5 ">
+          <label for="lastName"><p>Nazwisko</p></label>
+          <input disabled="disabled" [(ngModel)]="user.name" type="text" class="form-control" id="lastName">
+        </div>
+        </div>
+
+
+      <form class="container was-validated"  novalidate="" [formGroup] = "addform" (ngSubmit)="onSubmit()">
+        <div class="form-row mt-4">
+        <div class="form-group col-sm-12 pb-3">
+      <label>Nazwa zasobu</label>
+      <input type="text"
+             class="form-control"
+             formControlName="nazwa"
+             required
+             minlength="3" >
+      <div class="invalid-feedback" *ngIf="addform.controls.nazwa.errors && (addform.controls.nazwa.dirty ||
+      addform.controls.nazwa.touched)">
+        <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.required">Nazwa zasobu jest wymagana</p>
+        <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.minlength">Nazwa zasobu musi mieć min 3 znaki</p>
+      </div>
       </div>
 
-
-
-    <div class="form-group col-sm-12">
-    <label>Opis zasobu:</label>
-
-
-          <textarea id="opis"
-                  name="opis" placeholder="opis"
-                  class="form-control"
-                  style="height:50px"
-          formControlName="opis"
-                    required></textarea>
-
-        <div class="invalid-feedback" *ngIf="addform.controls.opis.errors  && (addform.controls.opis.dirty ||
-      addform.controls.opis.touched)">
-          <p *ngIf="addform.controls.opis.errors.required">Proszę podać opis przedmiotu</p>
-        </div>
+      <div class="form-group col-sm-8 pb-3">
+      <label>Nazwa producenta:</label>
+      <input type="text"
+             class="form-control"
+             formControlName="producent"
+             required>
+      <div class="invalid-feedback" *ngIf="addform.controls.producent.errors && (addform.controls.producent.dirty ||
+     addform.controls.producent.touched)">
+        <p *ngIf="addform.controls.producent.invalid">Podaj nazwę producenta</p>
+      </div>
       </div>
 
-    <div class="form-group col-sm-4">
-        <label>Data produkcji</label>
-        <input type="date"
-               class="form-control"
-               formControlName="data_prod"
-               required>
-        <div class="invalid-feedback" *ngIf="addform.controls.data_prod.errors  && (addform.controls.data_prod.dirty ||
+      <div class="form-group col-sm-4 pb-3">
+      <label>Data produkcji</label>
+      <input type="date"
+             class="form-control"
+             formControlName="data_prod"
+             required>
+      <div class="invalid-feedback" *ngIf="addform.controls.data_prod.errors  && (addform.controls.data_prod.dirty ||
       addform.controls.data_prod.touched)">
-          <p *ngIf="addform.controls.data_prod.errors.required">Data produkcji jest wymagana</p>
-        </div>
+        <p *ngIf="addform.controls.data_prod.errors.required">Data produkcji jest wymagana</p>
       </div>
-      <div class="form-group col-sm-8">
-        <label>Nazwa producenta:</label>
-        <input type="text"
-               class="form-control"
-               formControlName="producent"
-               required>
-        <div class="invalid-feedback" *ngIf="addform.controls.producent.errors && (addform.controls.producent.dirty ||
-addform.controls.producent.touched)">
-          <p *ngIf="addform.controls.producent.invalid">Podaj nazwę producenta</p>
-        </div>
       </div>
-        <div class="form-group col-sm-8">
-          <label>Właściciel:</label>
-          <input type="text"
-                 class="form-control"
-                 formControlName="wlasciciel"
-                 required>
-          <div class="invalid-feedback" *ngIf="addform.controls.wlasciciel.errors && (addform.controls.wlasciciel.dirty ||
-addform.controls.wlasciciel.touched)">
-            <p *ngIf="addform.controls.wlasciciel.invalid">Wprowadź imię i nazwisko właściciela zasobu</p>
-          </div>
-        </div>
-       <div class="form-group col-sm-12">
+
+
+
+      <div class="form-group col-sm-12">
+      <label>Opis zasobu:</label>
+
+      <textarea id="opis"
+                name="opis" placeholder="opis"
+                class="form-control"
+                style="height:50px"
+                formControlName="opis"
+                required></textarea>
+
+      <div class="invalid-feedback" *ngIf="addform.controls.opis.errors  && (addform.controls.opis.dirty ||
+      addform.controls.opis.touched)">
+        <p *ngIf="addform.controls.opis.errors.required">Proszę podać opis przedmiotu</p>
+      </div>
+      </div>
+
+
+      <div class="form-group col-sm-12">
       <label>Uwagi:</label>
       <input type="text"
              class="form-control"
@@ -77,15 +90,50 @@ addform.controls.wlasciciel.touched)">
       addform.controls.uwagi.touched)">
         <p *ngIf="addform.controls.uwagi.errors.required">Wpisz ewentualne uwagi</p>
       </div>
-    </div>
-    <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
-          <a href="#" class="close" data-dismiss="alert">&times;</a>
-          <strong>Błąd! </strong>{{messageSubmit}}
-    </div>
-    <div class="alert alert-success"  *ngIf="showSuccessMessage">
-          <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!addform.valid || addformSent  ">Wyślij</button>
-    <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
-  </form>
+      </div>
+
+
+          <!--wersja2 - dodaje tylko do media i brak opisu-->
+          <div class="form-group">
+            wersja2
+            <input type="file" name="file1" id="file1">
+          </div>
+
+
+          <!--wersja1 - z generatora dodaje do media i tabeli zdjecia oraz opis-->
+          <div class="form-group col-sm-12">
+            wersja1
+            <label>Dodaj zdjecie: </label>
+            <input class="form-control" name="zdjecie" data-type="image" accept="image/*" type="file" multiple>
+            <!--<div class="progress hidden">-->
+            <!--<div id="zdjecie_progress" class="progress-bar" role="progressbar" aria-valuenow="0"-->
+            <!--aria-valuemin="0" aria-valuemax="100" style="width:0">-->
+            <!--<span class="sr-only">0%</span>-->
+            <!--</div>-->
+            <!--</div>-->
+          </div>
+          <div class="form-group col-sm-12">
+            <label>Opis: </label><input class="form-control" name="opis" data-type="text" type="text">
+          </div>
+
+
+
+
+
+          <button type="submit" class="btn btn-primary" [disabled]="!addform.valid || addformSent  ">Wyślij</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Rezygnuję</button>
+          <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Błąd! </strong>{{messageSubmit}}
+          </div>
+          <div class="alert alert-success"  *ngIf="showSuccessMessage">
+            <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
+          </div>
+
+
+        </div>
+      </form>
 </div>
+
+
