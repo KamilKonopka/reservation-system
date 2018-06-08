@@ -23,7 +23,9 @@ export class DashboardUserComponent implements OnInit {
   allResources$: Observable<Array<ITools>>;
   loaded = false;
   ResourcesCount = null;
-  myRentalArray: Rent[];
+  myRentals: Rent[];
+  id = this.profileData[0]._id;
+  myReservations: number;
 
 constructor(
     private resService: UserDashboardDataService,
@@ -37,21 +39,21 @@ constructor(
       this.ResourcesCount = amount;
     });
   }
-  getMyReservations() {
-  this.resService.getMyReservations(this.profileData._id).subscribe(
-    rentalData => {
-      console.log(rentalData);
-    }
-  );
+  getMyReservations(id) {
+    this.resService.getMyReservations(id).subscribe(data => {
+      this.myRentals = data;
+      this.myReservations = this.myRentals.length;
+    }, () => {
+      this.loaded = true;
+    });
   }
 
   ngOnInit() {
-
-    console.log(this.profileData._id);
+    this.getMyReservations(this.id);
+    console.log(this.profileData[0]._id);
     this.getResourcesDate();
     this.getResourcesCount();
-    this.getMyReservations();
-    if (this.ResourcesCount && this.allResources$ && this.myRentalArray) {
+    if (this.ResourcesCount && this.allResources$ && this.myRentals) {
       this.loaded = true;
     } else {
       this.loaded = false;
