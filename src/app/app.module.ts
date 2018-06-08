@@ -59,6 +59,7 @@ import {ImageViewerModule} from 'ngx-image-viewer';
 import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 
 @NgModule({
     declarations: [
@@ -85,7 +86,8 @@ import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
         DashboardUserComponent,
         ResourcesPicturesComponent,
         LoadingComponent,
-        RentalsGridComponent
+        RentalsGridComponent,
+        MyReservationsComponent
 
     ],
     imports: [

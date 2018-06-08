@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div>
+    <h1>Twoje rezerwacje:</h1>
+    <mat-card *ngFor="let rent of myRentals">
+      <mat-card-title>
+          {{ rent.zasob[0].nazwa }}
+      </mat-card-title>
+      <mat-card-content>
+          <div>numer rezerwacji: {{ rent._id }}</div>
+          <div>numer rezerwacji: {{ rent.zasob[0].opis }}</div>
+          <div>data wypozyczenia: {{ rent.data_wypozyczenia }}</div>
+          <div>data zwrotu: {{ rent.data_zwrotu }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
