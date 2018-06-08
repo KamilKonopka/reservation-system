@@ -47,7 +47,7 @@ import {
     MatButtonModule,
     MatButtonToggleModule,
     MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
-    MatListModule,
+    MatListModule, MatSnackBarModule,
 } from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';

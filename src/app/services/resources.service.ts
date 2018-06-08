@@ -73,4 +73,6 @@ export class ResourcesService {
         // console.log(tools);
         return this.http.put(url + '/' + tools._id, tools, options);
     }
+    // Usuń zasób
+    // TBD
 }
