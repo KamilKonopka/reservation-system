@@ -3,6 +3,7 @@ import { ResourcesService } from '../services/resources.service';
 import { UserDashboardDataService } from '../services/user-dashboard-data.service';
 import { Rent } from '../interfaces/myRentals';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-my-reservations',
@@ -21,7 +22,7 @@ export class MyReservationsComponent implements OnInit {
   myRentals: Rent[];
   loaded = false;
 
-  constructor(public resService: UserDashboardDataService) { }
+  constructor(public resService: UserDashboardDataService, private location: Location) { }
 
   ngOnInit() {
     console.log(this.id);
@@ -34,5 +35,8 @@ export class MyReservationsComponent implements OnInit {
     }, () => {
       this.loaded = true;
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }
