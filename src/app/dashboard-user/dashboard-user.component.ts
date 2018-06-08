@@ -26,6 +26,7 @@ export class DashboardUserComponent implements OnInit {
   myRentals: Rent[];
   id = this.profileData[0]._id;
   myReservations: number;
+  nearestReservation: Date;
 
 constructor(
     private resService: UserDashboardDataService,
@@ -42,7 +43,9 @@ constructor(
   getMyReservations(id) {
     this.resService.getMyReservations(id).subscribe(data => {
       this.myRentals = data;
+      console.log(this.myRentals);
       this.myReservations = this.myRentals.length;
+      this.nearestReservation = this.myRentals[0].data_wypozyczenia;
     }, () => {
       this.loaded = true;
     });
