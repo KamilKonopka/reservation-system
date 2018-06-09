@@ -61,7 +61,8 @@ import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
 import { ResourcesEditComponent } from './resources-edit/resources-edit.component';
-import { MyReservationsComponent } from './my-reservations/my-reservations.component';import {FileUploaderService} from './services/file-uploader.service';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
+import {FileUploaderService} from './services/file-uploader.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -88,7 +89,7 @@ import { MyReservationsComponent } from './my-reservations/my-reservations.compo
         ResourcesPicturesComponent,
         LoadingComponent,
         RentalsGridComponent,
-        ResourcesEditComponent
+        ResourcesEditComponent,
         MyReservationsComponent
 
     ],
