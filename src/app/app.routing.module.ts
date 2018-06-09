@@ -20,6 +20,7 @@ import {RentalComponent} from './rental/rental.component';
 import {AdminGuardService} from './services/admin-guard.service';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
 import {DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import {ResourcesEditComponent} from './resources-edit/resources-edit.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 const appRoutes: Routes = [
     {
@@ -65,6 +66,11 @@ const appRoutes: Routes = [
             {
                 path: 'resources',
                 component: ResourcesComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'resources-edit/:id',
+                component: ResourcesEditComponent,
                 canActivate: [AuthGuardsService]
             },
             {
@@ -129,5 +135,4 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule {
-
 }

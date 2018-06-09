@@ -1,0 +1,35 @@
+<app-loading *ngIf="loaded != true"></app-loading>
+<div *ngIf="loaded == true" class="rental-form col-md-10 offset-md-1">
+    <mat-card>
+        <mat-toolbar color="secondary">Edycja danych zasobu</mat-toolbar>
+        <mat-form-field class="rental-form-full-width">
+            <input matInput [(ngModel)]="resource.nazwa" placeholder="Nazwa">
+        </mat-form-field>
+        <mat-form-field class="rental-form-full-width">
+            <textarea matInput [(ngModel)]="resource.opis" placeholder="Opis"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="resource.data_prod" [matDatepicker]="picker1" placeholder="Data produkcji">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="rental-form-half-width">
+            <input matInput [(ngModel)]="resource.producent" placeholder="Producent">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Właściciel" [(ngModel)]="resource.wlasciciel[0]._id">
+                <mat-option *ngFor="let usr of users" [value]="usr._id">
+                    {{ usr.imie + ' ' + usr.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="rental-form-full-width">
+            <textarea matInput [(ngModel)]="resource.uwagi" placeholder="Uwagi"></textarea>
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]="resource.archiwum">Archiwum</mat-checkbox>
+    </mat-card>
+    <p></p>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Zapisz</button>
+    <button mat-raised-button color="primary" (click)="goBack()">Anuluj</button>
+    <button mat-raised-button color="warn" (click)="onDelete()">Usuń zasób</button>
+</div>
