@@ -92,33 +92,16 @@
       </div>
       </div>
 
-
-          <!--wersja2 - dodaje tylko do media i brak opisu-->
-          <div class="form-group">
-            wersja2
-            <input type="file" name="file1" id="file1">
-          </div>
-
-
-          <!--wersja1 - z generatora dodaje do media i tabeli zdjecia oraz opis-->
           <div class="form-group col-sm-12">
-            wersja1
-            <label>Dodaj zdjecie: </label>
-            <input class="form-control" name="zdjecie" data-type="image" accept="image/*" type="file" multiple>
-            <!--<div class="progress hidden">-->
-            <!--<div id="zdjecie_progress" class="progress-bar" role="progressbar" aria-valuenow="0"-->
-            <!--aria-valuemin="0" aria-valuemax="100" style="width:0">-->
-            <!--<span class="sr-only">0%</span>-->
-            <!--</div>-->
-            <!--</div>-->
+          <label for="file">Dodaj zdjęcie... </label>
+          <input type="file"
+                 id="file"
+                 (change)="handleFileInput($event.target.files)">
           </div>
-          <div class="form-group col-sm-12">
-            <label>Opis: </label><input class="form-control" name="opis" data-type="text" type="text">
+            <!--wersja1 - z generatora dodaje do media i tabeli zdjecia oraz opis-->
+           <div class="form-group col-sm-12">
+            <label>Komentarz do zdjęcia</label><input class="form-control" formControlName="opis_zdj" name="opis_zdj"  type="text" required>
           </div>
-
-
-
-
 
           <button type="submit" class="btn btn-primary" [disabled]="!addform.valid || addformSent  ">Wyślij</button>
           <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Rezygnuję</button>

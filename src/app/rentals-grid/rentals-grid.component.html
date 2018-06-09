@@ -8,7 +8,7 @@
 
     <ng-container matColumnDef="nazwa">
       <mat-header-cell  *matHeaderCellDef mat-sort-header > Przedmiot </mat-header-cell>
-      <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/user-details', rental._id]" routerLinkActive="active">
+      <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/resources-edit', rental.zasob != null? rental.zasob[0]._id : 0]" routerLinkActive="active">
         {{rental.zasob.length > 0  ? rental.zasob[0].nazwa :""}}
       </a> </mat-cell>
     </ng-container>

@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { IUser } from '../interfaces/iuser';
 import { AuthUser } from '../interfaces/authUser';
+import {FileUploaderService} from '../services/file-uploader.service';
 
 @Component({
   selector: 'app-add-resources',
@@ -26,15 +27,16 @@ export class AddResourcesComponent implements OnInit {
   user = new User();
   profileData: IUser = JSON.parse(localStorage.getItem('profile'));
   profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
-
-
+  fileToUpload: File = null;
+  opis_zdj: string;
   constructor(
     private resourcesService: ResourcesService,
     private router: Router,
     public authService: AuthService,
     private route: ActivatedRoute,
     private registrationService: RegistrationService,
-    private location: Location ) { }
+    private location: Location,
+    private fileUploaderService: FileUploaderService) {}
 
   private  setupTools() {
     console.log(this.addform.value.nazwa);
@@ -44,6 +46,7 @@ export class AddResourcesComponent implements OnInit {
     this.tools.producent = this.addform.value.producent;
     this.tools.wlasciciel = this.user;
     this.tools.uwagi = this.addform.value.uwagi;
+    this.opis_zdj = this.addform.value.opis_zdj;
   }
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -59,6 +62,9 @@ export class AddResourcesComponent implements OnInit {
         Validators.required,
         Validators.minLength(10)
       ]),
+      opis_zdj: new FormControl('', [
+        Validators.required
+      ]),
       data_prod: new FormControl('', [
         Validators.required,
       ]),
@@ -73,6 +79,9 @@ export class AddResourcesComponent implements OnInit {
     });
     this.modalElement = document.getElementById('myModal');
   }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
   onCancel() {
     this.router.navigate(['logged/resources']);
   }
@@ -80,17 +89,28 @@ export class AddResourcesComponent implements OnInit {
     this.addformSent = true;
     this.showErrorMessage = false;
     this.showSuccessMessage = false;
-    if (this.addform.valid) {
+    if (this.addform.valid || !this.addform.valid) {
       this.setupTools();
       this.resourcesService.addTools(this.tools).subscribe(
         res => {
-          console.log(res);
-          this.showSuccessMessage = true;
-          this.messageSubmit = 'Dziękujemy.';
-          setTimeout(() => {
-            this.showSuccessMessage = false;
-            this.router.navigate(['logged/resources']);
-          }, 3000) ;
+          let addedTool: Tools;
+          addedTool = JSON.parse(JSON.stringify(res));
+          this.fileUploaderService.addPicture(this.fileToUpload, this.opis_zdj, addedTool._id).subscribe(data => {
+
+            console.log(res);
+            this.showSuccessMessage = true;
+            this.messageSubmit = 'Dziękujemy.';
+            setTimeout(() => {
+              this.showSuccessMessage = false;
+              this.router.navigate(['logged/resources']);
+            }, 3000);
+          }, err => {
+            this.addformSent = false;
+            console.log(JSON.stringify(err));
+            this.showErrorMessage = true;
+            this.messageSubmit = 'Nastąpił nieoczekiwany błąd podczas zapisu zdjęcia.';
+            }
+          );
         },
         err => {
           this.addformSent = false;
