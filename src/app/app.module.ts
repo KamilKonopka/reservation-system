@@ -59,6 +59,7 @@ import {ImageViewerModule} from 'ngx-image-viewer';
 import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
+import {FileUploaderService} from './services/file-uploader.service';
 
 @NgModule({
     declarations: [
@@ -124,6 +125,8 @@ import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
       UserDashboardDataService,
       AdminGuardService,
       PreviousRouteService,
+      PreviousRouteService,
+      FileUploaderService,
 {
             provide: MAT_DATE_LOCALE,
             useValue: 'pl-PL'

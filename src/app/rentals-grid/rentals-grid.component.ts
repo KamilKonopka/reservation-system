@@ -32,9 +32,44 @@ export class RentalsGridComponent implements OnInit {
           return;
         }
         this.dataSource = new MatTableDataSource(res);
+        this.dataSource.filterPredicate = (data: any, filter: string) => {
+          const accumulator = (currentTerm, key) => {
+            //console.log(currentTerm);
+            if (key === 'zasob' && data.zasob.length > 0) {
+             return currentTerm + data.zasob[0].nazwa;
+            }
+            if (key === 'uzytkownik' && data.uzytkownik.length > 0) {
+              return currentTerm + data.uzytkownik[0].imie + data.uzytkownik[0].name + data.uzytkownik[0].nickname;
+            }
+            return  currentTerm + data[key];
+          };
+          const dataStr = Object.keys(data).reduce(accumulator, '').toLowerCase();
+          // Transform the filter by converting it to lowercase and removing whitespace.
+          const transformedFilter = filter.trim().toLowerCase();
+          return dataStr.indexOf(transformedFilter) !== -1;
+        };
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        JSON.stringify(this.dataSource.filteredData);
+        this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
+          if (sortHeaderId === 'name') {
+            // console.log(sortHeaderId);
+            return data['uzytkownik'].length > 0 ? data['uzytkownik'][0].name : '';
+          }
+          if (sortHeaderId === 'imie') {
+            // console.log(sortHeaderId);
+            return data['uzytkownik'].length > 0 ? data['uzytkownik'][0].imie : '';
+          }
+          if (sortHeaderId === 'nickname') {
+            // console.log(sortHeaderId);
+            return data['uzytkownik'].length > 0 ? data['uzytkownik'][0].nickname : '';
+          }
+          if (sortHeaderId === 'nazwa') {
+            // console.log(sortHeaderId);
+            console.log(JSON.stringify(data['zasob']));
+            return data['zasob'].length > 0 ? data['zasob'][0].nazwa : '';
+          }
+          return data[sortHeaderId];
+        };
         }
     ,
         err => {console.log(JSON.stringify(err)); }, () => {this.loaded = true; });
