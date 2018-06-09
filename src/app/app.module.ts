@@ -32,21 +32,22 @@ import {DashboardService} from './services/admin-dashboard-data';
 import {UserDashboardDataService} from './services/user-dashboard-data.service';
 import {RentalComponent} from './rental/rental.component';
 import {
-  MatDatepickerModule,
-  MatIconModule,
-  MatInputModule,
-  MatToolbarModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatOptionModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl, MatSnackBarModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
+    MatListModule, MatSnackBarModule,
 } from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -59,8 +60,8 @@ import {ImageViewerModule} from 'ngx-image-viewer';
 import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
-import {FileUploaderService} from './services/file-uploader.service';
-
+import { ResourcesEditComponent } from './resources-edit/resources-edit.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';import {FileUploaderService} from './services/file-uploader.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -86,7 +87,9 @@ import {FileUploaderService} from './services/file-uploader.service';
         DashboardUserComponent,
         ResourcesPicturesComponent,
         LoadingComponent,
-        RentalsGridComponent
+        RentalsGridComponent,
+        ResourcesEditComponent
+        MyReservationsComponent
 
     ],
     imports: [

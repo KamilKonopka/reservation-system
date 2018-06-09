@@ -7,18 +7,26 @@ import {AuthUser} from '../interfaces/authUser';
 import {AuthGuardsService} from '../services/auth-guard.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import { IRental } from '../interfaces/irental';
+import { Rent } from '../interfaces/myRentals';
 
 @Component({
   selector: 'app-dashboard-user',
   templateUrl: './dashboard-user.component.html',
   styleUrls: ['./dashboard-user.component.less']
 })
+
+
 export class DashboardUserComponent implements OnInit {
   profileData: IUser = JSON.parse(localStorage.getItem('profile'));
-  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
+  profile: AuthUser;
   allResources$: Observable<Array<ITools>>;
   loaded = false;
   ResourcesCount = null;
+  myRentals: Rent[];
+  id = this.profileData[0]._id;
+  myReservations: number;
+  nearestReservation: Date;
 
 constructor(
     private resService: UserDashboardDataService,
@@ -32,8 +40,26 @@ constructor(
       this.ResourcesCount = amount;
     });
   }
+  getMyReservations(id) {
+    this.resService.getMyReservations(id).subscribe(data => {
+      this.myRentals = data;
+      console.log(this.myRentals);
+      this.myReservations = this.myRentals.length;
+      this.nearestReservation = this.myRentals[0].data_wypozyczenia;
+    }, () => {
+      this.loaded = true;
+    });
+  }
+
   ngOnInit() {
+    this.getMyReservations(this.id);
+    console.log(this.profileData[0]._id);
     this.getResourcesDate();
     this.getResourcesCount();
+    if (this.ResourcesCount && this.allResources$ && this.myRentals) {
+      this.loaded = true;
+    } else {
+      this.loaded = false;
+    }
 }
 }

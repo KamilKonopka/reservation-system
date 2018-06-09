@@ -41,6 +41,10 @@ export class ResourcesService {
         return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options);
     }
 
+    getResourceById(id: string): Observable<Tools> {
+        return this.http.get<Tools>(url + '/' + id, options);
+    }
+
   getResourcesForRental() {
     return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
       res => {
@@ -63,4 +67,12 @@ export class ResourcesService {
         console.log(tools);
         return this.http.post(url, tools, options);
     }
+
+    // Aktualizuj zasób
+    updateTools(tools: Tools): Observable<object> {
+        // console.log(tools);
+        return this.http.put(url + '/' + tools._id, tools, options);
+    }
+    // Usuń zasób
+    // TBD
 }
