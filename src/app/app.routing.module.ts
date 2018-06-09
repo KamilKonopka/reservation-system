@@ -20,6 +20,7 @@ import {RentalComponent} from './rental/rental.component';
 import {AdminGuardService} from './services/admin-guard.service';
 import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
 import {DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -99,8 +100,13 @@ const appRoutes: Routes = [
             {
               path: 'dashboard-user',
               component: DashboardUserComponent,
-              canActivate: [AuthGuardsService]
+              canActivate: [AuthGuardsService],
           },
+            {
+              path: 'my-reservations',
+              component: MyReservationsComponent,
+              canActivate: [AuthGuardsService]
+            },
             {
                 path: 'add-resources/:id',
                 component: AddResourcesComponent,

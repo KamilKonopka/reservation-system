@@ -7,8 +7,12 @@
       <p class="lead">Liczba zasobów do wypożyczenia:
         <span>{{ResourcesCount}}</span>
       </p>
-      <p class="lead"> Lista zasobów dodanych w ciągu ostatnich 30 dni: </p>
-    <table class="table table-striped">
+      <p class="lead"> Ilosc moich aktualnych rezerwacji: {{ myReservations }}</p>
+
+      <p class="lead" > Moja ostatnia rezerwacja: {{ nearestReservation | date:"dd-MM-yyyy" }}</p>
+      <button routerLink="/logged/my-reservations">Sprawdz swoje rezerwacje</button>
+
+      <table class="table table-striped">
     <tr>
       <th>Nazwa</th>
       <th>Opis</th>
