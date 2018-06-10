@@ -18,8 +18,10 @@ import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {RentalComponent} from './rental/rental.component';
 import {AdminGuardService} from './services/admin-guard.service';
-
-
+import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
+import {DashboardUserComponent } from './dashboard-user/dashboard-user.component';
+import {ResourcesEditComponent} from './resources-edit/resources-edit.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 const appRoutes: Routes = [
     {
         path: '',
@@ -57,14 +59,29 @@ const appRoutes: Routes = [
                 canActivate: [AuthGuardsService]
             },
             {
+                path: 'profile/:id',
+                component: ProfileComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
                 path: 'resources',
                 component: ResourcesComponent,
+                canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'resources-edit/:id',
+                component: ResourcesEditComponent,
                 canActivate: [AuthGuardsService]
             },
             {
                 path: 'resources-pictures/:id',
                 component: ResourcesPicturesComponent,
                 canActivate: [AuthGuardsService]
+            },
+            {
+              path: 'rentals',
+              component: RentalsGridComponent,
+              canActivate: [AuthGuardsService]
             },
             {
                 path: 'rental/:id',
@@ -82,12 +99,22 @@ const appRoutes: Routes = [
                 canActivate: [AuthGuardsService, AdminGuardService]
             },
             {
-                path: 'dashboard',
+                path: 'dashboard-admin',
                 component: DashboardAdminComponent,
-                canActivate: [AuthGuardsService]
+                canActivate: [AuthGuardsService, AdminGuardService]
             },
             {
-                path: 'add-resources',
+              path: 'dashboard-user',
+              component: DashboardUserComponent,
+              canActivate: [AuthGuardsService],
+          },
+            {
+              path: 'my-reservations',
+              component: MyReservationsComponent,
+              canActivate: [AuthGuardsService]
+            },
+            {
+                path: 'add-resources/:id',
                 component: AddResourcesComponent,
                 canActivate: [AuthGuardsService]
             },
@@ -108,5 +135,4 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule {
-
 }

@@ -22,20 +22,40 @@ export class ResourcesService {
     resources$ = this.resourcesObs.asObservable();
 
     constructor(private http: HttpClient) {
-        this.getResources();
+         this.getResourcesForRental();
     }
 
     // Pobierz wszystkie zasoby
-    getResources() {
-        return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
-            res => {
-                this.resourcesObs.next(res);
-            },
-            err => {
-                console.log(err);
-            }
-        );
+    // getResources() {
+    //     return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
+    //         res => {
+    //             this.resourcesObs.next(res);
+    //         },
+    //         err => {
+    //             console.log(err);
+    //         }
+    //     );
+    // }
+
+    getResources(): Observable<Array<ITools>> {
+        return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options);
     }
+
+    getResourceById(id: string): Observable<Tools> {
+        return this.http.get<Tools>(url + '/' + id, options);
+    }
+
+  getResourcesForRental() {
+    return this.http.get<Array<ITools>>(url + '?q={}&h={"$orderby": {"nazwa": 1}}', options).subscribe(
+      res => {
+        this.resourcesObs.next(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 
     // Pobierz zdjęcia
     getPictures(id: string): Observable<Array<IPictures>> {
@@ -47,4 +67,12 @@ export class ResourcesService {
         console.log(tools);
         return this.http.post(url, tools, options);
     }
+
+    // Aktualizuj zasób
+    updateTools(tools: Tools): Observable<object> {
+        // console.log(tools);
+        return this.http.put(url + '/' + tools._id, tools, options);
+    }
+    // Usuń zasób
+    // TBD
 }
