@@ -1,4 +1,5 @@
-<div class="mat-elevation-z8">
+<app-loading [hidden]="loaded"></app-loading>
+<div class="mat-elevation-z8" [hidden]="!loaded">
   <mat-form-field class="search-input">
     <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
   </mat-form-field>

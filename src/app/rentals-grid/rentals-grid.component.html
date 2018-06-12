@@ -1,0 +1,54 @@
+<app-loading [hidden]="loaded"></app-loading>
+<div class="mat-elevation-z8" [hidden]="!loaded">
+  <mat-form-field class="search-input">
+    <input matInput   (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
+  </mat-form-field>
+  <mat-table  matSort [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="nazwa">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header > Przedmiot </mat-header-cell>
+      <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/resources-edit', rental.zasob != null? rental.zasob[0]._id : 0]" routerLinkActive="active">
+        {{rental.zasob.length > 0  ? rental.zasob[0].nazwa :""}}
+      </a> </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_wypozyczenia">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Wypozyczenie od </mat-header-cell>
+      <mat-cell *matCellDef="let rental"> {{rental.data_wypozyczenia |date :"dd-MM-yyyy HH:mm"}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_zwrotu">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Wypozyczenie do </mat-header-cell>
+      <mat-cell *matCellDef="let rental"> {{rental.data_zwrotu| date :"dd-MM-yyyy HH:mm"}}</mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="imie">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Imię </mat-header-cell>
+      <mat-cell *matCellDef="let rental"> {{rental.uzytkownik[0].imie}}</mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
+      <mat-cell *matCellDef="let rental"> {{rental.uzytkownik[0].name}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="nickname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa uzytkownika </mat-header-cell>
+     <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/user-details', rental.uzytkownik != null? rental.uzytkownik[0]._id : 0]" routerLinkActive="active">
+        {{rental.uzytkownik.length > 0  ? rental.uzytkownik[0].nickname:""}}
+      </a> </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 100, 999999]" showFirstLastButtons></mat-paginator>
+
+</div>
+

@@ -1,9 +1,17 @@
 <div class="container-fluid">
-<div class="jumbotron" *ngFor="let profileUser of profileData">
-    <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
-    <hr class="my-4">
-    <p class="lead">Liczba wniosków do rozpatrzenia: <span>{{nonAcceptedUsersCount}}</span> </p>
-    <p class="lead">Liczba aktywnych użytkowników: <span>{{allAcceptedUsers}}</span> </p>
-    <div class="btn btn-primary btn-lg" (click)="refreshData()" role="button">Odśwież</div>
+  <app-loading [hidden]="loaded"></app-loading>
+  <div [hidden]="!loaded">
+    <div class="jumbotron" *ngFor="let profileUser of profileData">
+      <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
+      <hr class="my-4">
+      <p class="lead">Liczba wniosków do rozpatrzenia:
+        <span>{{nonAcceptedUsersCount}}</span>
+      </p>
+      <p class="lead">Liczba aktywnych użytkowników:
+        <span>{{allAcceptedUsers}}</span>
+      </p>
+      <div class="btn btn-primary btn-lg" (click)="refreshData()" role="button">Odśwież</div>
+      <button class="btn btn-primary btn-lg" routerLink="/logged/my-reservations">Sprawdz swoje rezerwacje</button>
+    </div>
   </div>
 </div>

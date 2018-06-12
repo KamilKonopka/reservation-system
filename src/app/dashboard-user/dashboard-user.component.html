@@ -1,3 +1,42 @@
-<p>
-  dashboard-user works!
-</p>
+<div class="container-fluid">
+  <!--<app-loading [hidden]="loaded"></app-loading>
+  <div [hidden]="!loaded">!-->
+    <div class="jumbotron " *ngFor="let profileUser of profileData">
+      <h1 class="display-4">Witaj, {{ profileUser.imie }} {{ profileUser.name }}!</h1>
+      <hr class="my-4">
+      <p class="lead">Liczba zasobów do wypożyczenia:
+        <span>{{ResourcesCount}}</span>
+      </p>
+      <p class="lead"> Ilosc moich aktualnych rezerwacji: {{ myReservations }}</p>
+
+      <p class="lead" > Moja ostatnia rezerwacja: {{ nearestReservation | date:"dd-MM-yyyy" }}</p>
+      <button routerLink="/logged/my-reservations">Sprawdz swoje rezerwacje</button>
+
+      <table class="table table-striped">
+    <tr>
+      <th>Nazwa</th>
+      <th>Opis</th>
+      <th>Data produkcji</th>
+      <th>Producent</th>
+      <th>Właściciel</th>
+      <th>Uwagi</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let p of allResources$ | async">
+      <td>{{p.nazwa}}</td>
+      <td>
+        {{p.opis}}
+        <BR>
+        <button [routerLink]="['/logged/resources-pictures', p._id]">Pokaż zdjęcia</button>
+      </td>
+      <td>{{p.data_prod | date:"dd-MM-yyyy"}}</td>
+      <td>{{p.producent}}</td>
+      <td>{{p.wlasciciel== null ? '' : p.wlasciciel[0].imie + ' ' + p.wlasciciel[0].name}}</td>
+      <td>{{p.uwagi}}</td>
+      <td><a [routerLink]="['/logged/rental', p._id]" routerLinkActive="active">
+        Rezerwuję
+      </a></td>
+     </tr>
+     </table>
+     </div>
+</div>

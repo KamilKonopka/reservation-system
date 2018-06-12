@@ -29,30 +29,40 @@ import {ResourcesService} from './services/resources.service';
 import {HeaderAdminComponent} from './headerAdmin/headerAdmin.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
+import {UserDashboardDataService} from './services/user-dashboard-data.service';
 import {RentalComponent} from './rental/rental.component';
 import {
-  MatDatepickerModule,
-  MatIconModule,
-  MatInputModule,
-  MatToolbarModule,
-  MatNativeDateModule,
-  MatSelectModule,
-  MatOptionModule,
-  MatCardModule,
-  MatProgressSpinnerModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
+    MatListModule, MatSnackBarModule,
 } from '@angular/material';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {DashboardAdminComponent} from './dashboardAdmin/dashboardAdmin.component';
 import {DashboardUserComponent} from './dashboard-user/dashboard-user.component';
 import {AdminGuardService} from './services/admin-guard.service';
 import {PreviousRouteService} from './services/previous-route.service';
 import {ResourcesPicturesComponent} from './resources-pictures/resources-pictures.component';
 import {ImageViewerModule} from 'ngx-image-viewer';
+import {LoadingComponent} from './loading/loading.component';
 import {getPolishPaginatorIntl} from './utils/paginator-localize';
-
+import {RentalsGridComponent} from './rentals-grid/rentals-grid.component';
+import { ResourcesEditComponent } from './resources-edit/resources-edit.component';
+import { MyReservationsComponent } from './my-reservations/my-reservations.component';
+import {FileUploaderService} from './services/file-uploader.service';
 @NgModule({
     declarations: [
         AppComponent,
@@ -76,7 +86,11 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         AddResourcesComponent,
         DashboardAdminComponent,
         DashboardUserComponent,
-        ResourcesPicturesComponent
+        ResourcesPicturesComponent,
+        LoadingComponent,
+        RentalsGridComponent,
+        ResourcesEditComponent,
+        MyReservationsComponent
 
     ],
     imports: [
@@ -99,13 +113,33 @@ import {getPolishPaginatorIntl} from './utils/paginator-localize';
         MatPaginatorModule,
         MatSortModule,
         MatCheckboxModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatSnackBarModule,
         ImageViewerModule.forRoot()
     ],
 
-    providers: [AuthService, AuthGuardsService, RegistrationService, ResourcesService, RentalService, DashboardService, AdminGuardService, PreviousRouteService, {
-        provide: MAT_DATE_LOCALE,
-        useValue: 'pl-PL'
-    }, { provide: MatPaginatorIntl, useValue: getPolishPaginatorIntl() }],
+    providers: [
+      AuthService,
+      AuthGuardsService,
+      RegistrationService,
+      ResourcesService,
+      RentalService,
+      DashboardService,
+      UserDashboardDataService,
+      AdminGuardService,
+      PreviousRouteService,
+      PreviousRouteService,
+      FileUploaderService,
+{
+            provide: MAT_DATE_LOCALE,
+            useValue: 'pl-PL'
+        },
+        {
+            provide: MatPaginatorIntl,
+            useValue: getPolishPaginatorIntl()
+        }
+    ],
     bootstrap: [AppComponent]
 
 })
