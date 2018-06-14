@@ -80,12 +80,12 @@ export class AddResourcesComponent implements OnInit {
       ]),
       opis: new FormControl('', [
         Validators.required,
-        Validators.minLength(15)
+        Validators.minLength(5)
       ]),
-      // opis_zdj: new FormControl('', [
-      //   Validators.required,
-      //   Validators.minLength(10)
-      // ]),
+      opis_zdj: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
       data_prod: new FormControl('', [
         Validators.required,
       ]),
@@ -95,7 +95,7 @@ export class AddResourcesComponent implements OnInit {
       ]),
       uwagi: new FormControl('', [
         Validators.required,
-        Validators.minLength(10)
+        // Validators.minLength(3)
       ]),
     });
     this.modalElement = document.getElementById('myModal');
