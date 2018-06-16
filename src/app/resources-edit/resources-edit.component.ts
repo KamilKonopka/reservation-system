@@ -79,9 +79,5 @@ export class ResourcesEditComponent implements OnInit {
                 console.log(JSON.stringify(err));
             });
     }
-
-    onDelete() {
-
-    }
 }
 

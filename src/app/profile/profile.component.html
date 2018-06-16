@@ -2,8 +2,8 @@
     <mat-card *ngFor="let profileUser of profileData">
         <div *ngIf="profileUser.akceptacja === true; else unConfirmed"></div>
         <ng-template #unConfirmed>
-            <div class="alert-danger">Twoje członkowstwo nie zostało jeszcze potwierdzone. Zaczekaj aż Moderator
-                zaakceptuje twój wniosek o członkowstwo.
+            <div class="alert-danger">Twoje członkostwo nie zostało jeszcze potwierdzone. Zaczekaj aż Moderator
+                zaakceptuje twój wniosek o członkostwo.
             </div>
         </ng-template>
         <mat-card-title>{{ profileUser.imie }} {{ profileUser.name }}</mat-card-title>
@@ -30,9 +30,10 @@
                 </div>
             </div>
 
-            <button *ngIf="profileUser.moderator == true" routerLink="/logged/user-details/{{profileData[0]._id}}"
+            <button *ngIf="allowEdit == true" routerLink="/logged/user-details/{{profileData[0]._id}}"
                     mat-raised-button color="primary">Edytuj Profil
             </button>
+            <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
         </mat-card-content>
     </mat-card>
 </div>
