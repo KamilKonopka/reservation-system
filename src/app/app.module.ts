@@ -46,8 +46,12 @@ import {
     MatSortModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
-    MatListModule, MatSnackBarModule,
+    MatCheckboxModule,
+    MAT_DATE_LOCALE,
+    MatPaginatorIntl,
+    MatListModule,
+    MatSnackBarModule,
+    MatTooltipModule,
 } from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -91,7 +95,6 @@ import {FileUploaderService} from './services/file-uploader.service';
         RentalsGridComponent,
         ResourcesEditComponent,
         MyReservationsComponent
-
     ],
     imports: [
         BrowserModule,
@@ -115,6 +118,7 @@ import {FileUploaderService} from './services/file-uploader.service';
         MatCheckboxModule,
         MatButtonModule,
         MatButtonToggleModule,
+        MatTooltipModule,
         MatSnackBarModule,
         ImageViewerModule.forRoot()
     ],

@@ -90,5 +90,7 @@ export class ResourcesComponent implements OnInit {
                 console.log(JSON.stringify(err));
             });
     }
+
 }
+
 

@@ -1,14 +1,20 @@
 <app-loading [hidden]="loaded"></app-loading>
 <div class="mat-elevation-z8" [hidden]="!loaded">
 
+
     <div class="container-fluid row mt-4">
         <div class="col-6">
             <mat-form-field class="search-input">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
             </mat-form-field>
         </div>
-        <div align="right" class="col-4">
-            <button mat-raised-button color="primary" routerLink="/logged/add-resources/{{profileData[0]._id}}">Dodaj zasób</button>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-6">
+            <button mat-raised-button color="primary" routerLink="/logged/add-resources/{{profileData[0]._id}}">Dodaj
+                zasób
+            </button>
         </div>
     </div>
 
@@ -20,9 +26,11 @@
         <ng-container matColumnDef="nazwa">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa</mat-header-cell>
             <mat-cell *matCellDef="let res">
-                <a [routerLink]="['/logged/resources-edit', res._id]" routerLinkActive="active">
+                <a [routerLink]="['/logged/resources-edit', res._id]" routerLinkActive="active"
+                   matTooltip="Kliknij aby edytować zasób">
                     {{res.nazwa}}
                 </a>
+
             </mat-cell>
         </ng-container>
 
@@ -54,7 +62,7 @@
                 <div *ngFor="let p of user">
                     <a *ngIf="p.name == res.wlasciciel[0].name && p.imie == res.wlasciciel[0].imie && p.nickname == res.wlasciciel[0].nickname"
                        [routerLink]="['/logged/profile', p._id]"
-                       routerLinkActive="active">
+                       routerLinkActive="active" matTooltip="Kliknij aby sprawdzic dane właściciela zasobu">
                         {{ res.wlasciciel[0].imie + ' ' + res.wlasciciel[0].name}}
                     </a>
                 </div>

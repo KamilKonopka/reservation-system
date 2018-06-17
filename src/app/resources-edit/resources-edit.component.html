@@ -3,15 +3,46 @@
     <mat-card>
         <mat-toolbar color="secondary">Edycja danych zasobu</mat-toolbar>
         <mat-form-field class="rental-form-full-width">
-            <input matInput [(ngModel)]="resource.nazwa" placeholder="Nazwa">
+            <input matInput [(ngModel)]="resource.nazwa" placeholder="Nazwa"
+                   required
+                   minlength="3"
+                   name="inpName"
+                   #inpName="ngModel">
+            <mat-error *ngIf="inpName.invalid && (inpName.dirty || inpName.touched)">
+                <div *ngIf="inpName.errors.required">
+                    Nazwa zasobu jest wymagana.
+                </div>
+                <div *ngIf="inpName.errors.minlength">
+                    Minimalna długość nazwy zasobu to 3 znaki.
+                </div>
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="rental-form-full-width">
-            <textarea matInput [(ngModel)]="resource.opis" placeholder="Opis"></textarea>
+            <textarea matInput [(ngModel)]="resource.opis" placeholder="Opis"
+                      required
+                      name="inpDescription"
+                      #inpDescription="ngModel">
+
+            </textarea>
+            <mat-error *ngIf="inpDescription.invalid && (inpDescription.dirty || inpDescription.touched)">
+                <div *ngIf="inpDescription.errors.required">
+                    Opis zasobu jest wymagany.
+                </div>
+            </mat-error>
         </mat-form-field>
         <mat-form-field>
-            <input matInput [(ngModel)]="resource.data_prod" [matDatepicker]="picker1" placeholder="Data produkcji">
+            <input matInput [(ngModel)]="resource.data_prod" [matDatepicker]="picker1" placeholder="Data produkcji"
+                   disabled
+                   required
+                   name="inpDate"
+                   #inpDate="ngModel">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+            <mat-error *ngIf="inpDate.invalid && (inpDate.dirty || inpDate.touched)">
+                <div *ngIf="inpDate.errors.required">
+                    Data produkcji jest wymagana.
+                </div>
+            </mat-error>
         </mat-form-field>
         <mat-form-field class="rental-form-half-width">
             <input matInput [(ngModel)]="resource.producent" placeholder="Producent">
@@ -29,6 +60,7 @@
         <mat-checkbox [(ngModel)]="resource.archiwum">Archiwum</mat-checkbox>
     </mat-card>
     <p></p>
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Zapisz</button>
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="(inpName.invalid || inpDescription.invalid || inpDate.invalid)">Zapisz
+    </button>
     <button mat-raised-button color="primary" (click)="goBack()">Anuluj</button>
 </div>
