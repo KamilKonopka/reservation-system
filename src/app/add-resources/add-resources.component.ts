@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { IUser } from '../interfaces/iuser';
 import { AuthUser } from '../interfaces/authUser';
 import {FileUploaderService} from '../services/file-uploader.service';
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-add-resources',
@@ -25,10 +26,14 @@ export class AddResourcesComponent implements OnInit {
   addformSent = false;
   modalElement: any;
   user = new User();
-  profileData: IUser = JSON.parse(localStorage.getItem('profile'));
+  profileData: IUser[];
   profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
   fileToUpload: File = null;
   opis_zdj: string;
+  loaded;
+  selected_user_id = '';
+  users: Observable<Array<IUser>>;
+
   constructor(
     private resourcesService: ResourcesService,
     private router: Router,
@@ -48,23 +53,39 @@ export class AddResourcesComponent implements OnInit {
     this.tools.uwagi = this.addform.value.uwagi;
     this.opis_zdj = this.addform.value.opis_zdj;
   }
+
+  selectedUserChanged = () => {
+    this.registrationService.getUserById(this.selected_user_id).subscribe(userData => {
+      this.user = userData;
+    });
+  }
+
   ngOnInit() {
+    this.profileData = JSON.parse(localStorage.getItem('profile'));
     const id = this.route.snapshot.paramMap.get('id');
     this.registrationService.getUserById(id).subscribe(UserData => {
         this.user = UserData;
       });
+
+    this.selected_user_id = this.route.snapshot.paramMap.get('id');
+    this.users = this.registrationService.getUsers();
+    if (this.selected_user_id) {
+      this.selectedUserChanged();
+    }
+    this.loaded = true;
     this.addform = new FormGroup({
       nazwa: new FormControl('', [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(5)
       ]),
       opis: new FormControl('', [
         Validators.required,
-        Validators.minLength(10)
+        Validators.minLength(15)
       ]),
-      opis_zdj: new FormControl('', [
-        Validators.required
-      ]),
+      // opis_zdj: new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(10)
+      // ]),
       data_prod: new FormControl('', [
         Validators.required,
       ]),
@@ -95,10 +116,10 @@ export class AddResourcesComponent implements OnInit {
         res => {
           let addedTool: Tools;
           addedTool = JSON.parse(JSON.stringify(res));
+          this.showSuccessMessage = true;
           this.fileUploaderService.addPicture(this.fileToUpload, this.opis_zdj, addedTool._id).subscribe(data => {
 
             console.log(res);
-            this.showSuccessMessage = true;
             this.messageSubmit = 'Dziękujemy.';
             setTimeout(() => {
               this.showSuccessMessage = false;
