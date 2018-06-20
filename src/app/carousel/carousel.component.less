@@ -1,5 +1,6 @@
 @import '../../less/variables.less';
 @import '../../less/mixins.less';
+@import '../../less/animations.less';
 
 .carousel .slide {
   width: 100%;
@@ -8,7 +9,7 @@
 
 div.carousel {
   min-width: 300px;
-    
+
 }
 
 .carousel-caption {
@@ -17,6 +18,14 @@ div.carousel {
   bottom: 55px;
   //width: 100%;
   color: rgb(54, 46, 46);
+  h2 {
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+  }
+  p {
+    animation-name: moveInRight;
+    animation-duration: 2s;
+  }
 
 }
 
