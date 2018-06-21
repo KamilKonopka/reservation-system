@@ -1,18 +1,87 @@
 <app-loading [hidden]="loaded"></app-loading>
-<div class="mat-elevation-z8" [hidden]="!loaded">
-    <div *ngIf="numberOfPictures<1;then nopictures else picturespresent"></div>
+<div *ngIf="loaded == true" class="mat-elevation-z8">
+    <div *ngIf="numberOfPictures == 0;then nopictures else picturespresent"
+         class="rental-form col-md-10 offset-md-1"></div>
     <ng-template #nopictures>
         <h5>Do zasobu nie dołączono zdjęć</h5>
-        <BR>
-        <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
+        <mat-card>
+            <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
+        </mat-card>
     </ng-template>
     <ng-template #picturespresent>
-        <div class="col-md-10 offset-md-1">
+        <mat-card *ngIf="addPictureShow == false">
             <ngx-image-viewer [src]="imagesUrl" [config]="{wheelZoom: true}"
                               (indexChange)="handleEvent($event)"></ngx-image-viewer>
-            <p *ngIf="numberOfPictures>0">{{pictures[imageInd].opis}}</p>
-            <BR>
-            <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
-        </div>
+        </mat-card>
+        <div *ngIf="showEditButtons == true;then editmode else viewmode"></div>
+        <ng-template #viewmode>
+            <p *ngIf="numberOfPictures>0">{{pictures[imgIndex].opis}}</p>
+            <mat-card>
+                <button mat-raised-button color="primary" (click)="goBack()">Wróć</button>
+            </mat-card>
+        </ng-template>
+        <ng-template #editmode>
+            <mat-card>
+                <mat-form-field *ngIf="addPictureShow == false" class="rental-form-full-width">
+                    <textarea matInput [(ngModel)]="pictures[imgIndex].opis" placeholder="Opis zdjęcia"
+                              name="editPicDescription"
+                              #editPicDescription="ngModel">
+                    </textarea>
+                    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+                        Aktualizuj opis zdjęcia
+                    </button>
+                    <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Błąd! </strong>{{messageSubmit}}
+                    </div>
+                    <div class="alert alert-success"  *ngIf="showSuccessMessage">
+                        Opis został zaktualizowany.
+                    </div>
+                    <button mat-raised-button color="warn" (click)="onDelete()">Usuń zdjęcie</button>
+                    <div class="alert alert-danger fade show"  *ngIf="showErrorMessageDel">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>Błąd! </strong>{{messageSubmit}}
+                    </div>
+                    <div class="alert alert-success"  *ngIf="showSuccessMessageDel">
+                        Zdjęcie zostało usunięte.
+                    </div>
+                </mat-form-field>
+                <button *ngIf="addPictureShow == false" mat-raised-button color="primary"
+                        (click)="addPictureShow = true">
+                    Dodaj zdjęcie
+                </button>
+                <div *ngIf="addPictureShow == true">
+                    <input style="display: none" type="file" (change)="onFileSelected($event)" #fileSelection>
+                    <button mat-raised-button color="primary"
+                            (click)="fileSelection.click()">
+                        Wybierz plik
+                    </button>
+                    <span *ngIf="selectedFile != null">Wybrany plik: {{selectedFile.name}}</span>
+                    <mat-form-field class="rental-form-full-width">
+                    <textarea matInput [(ngModel)]="resource.opis" placeholder="Wprowadź opis zdjęcia"
+                              required
+                              name="inpDescription"
+                              #inpDescription="ngModel">
+                    </textarea>
+                        <mat-error *ngIf="inpDescription.invalid && (inpDescription.dirty || inpDescription.touched)">
+                            <div *ngIf="inpDescription.errors.required">
+                                Opis zasobu jest wymagany.
+                            </div>
+                        </mat-error>
+                        <button mat-raised-button color="primary" (click)="onUpload()" [disabled]="(inpDescription.invalid)">Zapisz</button>
+                        <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Błąd! </strong>{{messageSubmit}}
+                        </div>
+                        <div class="alert alert-success"  *ngIf="showSuccessMessage">
+                            Zdjęcie zostało dodane poprawnie.
+                        </div>
+                    </mat-form-field>
+                </div>
+            </mat-card>
+            <mat-card>
+                <button mat-raised-button color="primary" (click)="goBack()">Anuluj</button>
+            </mat-card>
+        </ng-template>
     </ng-template>
 </div>
