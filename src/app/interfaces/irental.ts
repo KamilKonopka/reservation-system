@@ -6,4 +6,5 @@ export interface IRental {
   'data_wypozyczenia': Date;
   'data_zwrotu': Date;
   'uwagi': string;
+  'anulowana': boolean;
   }

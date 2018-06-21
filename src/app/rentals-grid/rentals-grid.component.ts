@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {ResourcesService} from '../services/resources.service';
@@ -13,19 +13,25 @@ import {Rental} from '../model/rental';
 })
 export class RentalsGridComponent implements OnInit {
   users: Rental[];
-  displayedColumns = ['data_wypozyczenia', 'data_zwrotu', 'nazwa', 'imie', 'name', 'nickname'];
+  displayedColumns = ['data_wypozyczenia', 'data_zwrotu', 'nazwa', 'imie', 'name', 'nickname', 'anulowana'];
   dataSource = new MatTableDataSource(this.users);
   loaded;
+  @Input() userId;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute,  private router: Router  ) { }
+  constructor(private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute,  private router: Router  ) {
+    console.log('userId =' + this.userId);
+
+  }
 
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
-    this.rentalService.getRentals().subscribe(
+    if (this.userId != null) {
+      this.displayedColumns = ['data_wypozyczenia', 'data_zwrotu', 'nazwa', 'anulowana'];
+    }
+   this.rentalService.getRentals( this.userId ).subscribe(
       res => {
        //   this.router.navigate(['logged/resources']);
         if (!res) {

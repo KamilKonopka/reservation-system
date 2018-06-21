@@ -30,24 +30,24 @@ import {HeaderAdminComponent} from './headerAdmin/headerAdmin.component';
 import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
 import {UserDashboardDataService} from './services/user-dashboard-data.service';
-import {RentalComponent} from './rental/rental.component';
+import {ConfirmDialogContentComponent, RentalComponent} from './rental/rental.component';
 import {
-    MatDatepickerModule,
-    MatIconModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
-    MatListModule, MatSnackBarModule,
+  MatDatepickerModule,
+  MatIconModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatNativeDateModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCheckboxModule, MAT_DATE_LOCALE, MatPaginatorIntl,
+  MatListModule, MatSnackBarModule, MatDialogModule,
 } from '@angular/material';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -90,9 +90,10 @@ import {FileUploaderService} from './services/file-uploader.service';
         LoadingComponent,
         RentalsGridComponent,
         ResourcesEditComponent,
-        MyReservationsComponent
-
+        MyReservationsComponent,
+        ConfirmDialogContentComponent
     ],
+    entryComponents: [ConfirmDialogContentComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -106,6 +107,7 @@ import {FileUploaderService} from './services/file-uploader.service';
         MatNativeDateModule,
         MatSelectModule,
         MatOptionModule,
+        MatDialogModule,
         BrowserAnimationsModule,
         MatCardModule,
         MatProgressSpinnerModule,

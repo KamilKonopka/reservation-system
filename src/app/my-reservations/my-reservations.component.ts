@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ResourcesService } from '../services/resources.service';
 import { UserDashboardDataService } from '../services/user-dashboard-data.service';
 import { Rent } from '../interfaces/myRentals';
@@ -12,23 +12,18 @@ import { Location } from '@angular/common';
 })
 export class MyReservationsComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
   profileData = JSON.parse(localStorage.getItem('profile'));
   id = this.profileData[0]._id;
-  columnsToDisplay = ['zasob', 'uzytkownik'];
-  dataSource = new MatTableDataSource();
-  myRentals: Rent[];
   loaded = false;
-
-  constructor(public resService: UserDashboardDataService, private location: Location) { }
+  constructor() { }
 
   ngOnInit() {
+  /*
     console.log(this.id);
     this.getAllMyReservations(this.id);
+    */
   }
-
+ /*
   getAllMyReservations(id) {
     this.resService.getMyReservations(id).subscribe(data => {
       this.myRentals = data;
@@ -36,7 +31,9 @@ export class MyReservationsComponent implements OnInit {
       this.loaded = true;
     });
   }
+
   goBack() {
     this.location.back();
   }
+*/
 }

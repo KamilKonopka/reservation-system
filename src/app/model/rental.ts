@@ -9,5 +9,6 @@ export class Rental implements IRental {
     public data_wypozyczenia: Date;
     public data_zwrotu: Date;
     public  uwagi: string ;
+    public  anulowana: boolean;
 }
 
