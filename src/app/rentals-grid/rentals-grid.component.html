@@ -21,7 +21,8 @@
 
     <ng-container matColumnDef="data_zwrotu">
       <mat-header-cell  *matHeaderCellDef mat-sort-header> Wypozyczenie do </mat-header-cell>
-      <mat-cell *matCellDef="let rental"> {{rental.data_zwrotu| date :"dd-MM-yyyy HH:mm"}}</mat-cell>
+      <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/rental', rental.zasob != null? rental.zasob[0]._id : 0 ,rental._id]" routerLinkActive="active">
+        {{rental.data_zwrotu |date :"dd-MM-yyyy HH:mm"}}</a></mat-cell>
     </ng-container>
 
     <!-- Weight Column -->

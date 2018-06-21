@@ -31,6 +31,7 @@ import {AddResourcesComponent} from './add-resources/add-resources.component';
 import {DashboardService} from './services/admin-dashboard-data';
 import {UserDashboardDataService} from './services/user-dashboard-data.service';
 import {RentalComponent} from './rental/rental.component';
+import {ConfirmDialogContentComponent} from './rental/rental.component';
 import {
     MatDatepickerModule,
     MatIconModule,
@@ -105,6 +106,7 @@ import {FileUploaderService} from './services/file-uploader.service';
         ReactiveFormsModule,
         HttpClientModule,
         MatDatepickerModule,
+        MatDialogModule,
         MatIconModule,
         MatInputModule,
         MatToolbarModule,
@@ -123,7 +125,7 @@ import {FileUploaderService} from './services/file-uploader.service';
         MatSnackBarModule,
         ImageViewerModule.forRoot()
     ],
-
+  entryComponents:[ConfirmDialogContentComponent],
     providers: [
       AuthService,
       AuthGuardsService,
