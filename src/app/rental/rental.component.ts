@@ -39,11 +39,11 @@ export class RentalComponent implements OnInit {
   start_godz = this.godz_od;
   user: User;
   rental: Rental;
-  loaded;
   isBusy = false;
   isInsertMode = true;
+  loaded = false;
   prompt = 'Nowa rezerwacja';
-  currentResourceRentals: Array<Rental>;
+  currentResourceRentals: Array<Rental> = [];
   constructor(private location: Location, private snackBar: MatSnackBar, public dialog: MatDialog, private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute, private router: Router, ) { }
 
 

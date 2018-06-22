@@ -235,10 +235,10 @@
   </div>
 
 </div>
-<div class="col-md-6">
+<div id="half1" class="col-md-6">
     <div class="jumbotron">
         <h1 class="display-4">Wypożyczenia:</h1>
-        <div *ngIf="currentResourceRentals.length === 0">Nie ma nic, nie ma mnie, niby bezpiecznie, ale wcale nie jest dobrze w moim śnie</div>
+        <div class="lead1" *ngIf="currentResourceRentals.length === 0">Nie ma żadnych wypożyczeń dla tego zasobu.</div>
         <div class="lead1" *ngFor="let rental of currentResourceRentals">
 
                 {{rental.data_wypozyczenia | date : 'dd.MM.yyyy HH:mm'}} - {{rental.data_zwrotu | date : 'dd.MM.yyyy HH:mm'}}
