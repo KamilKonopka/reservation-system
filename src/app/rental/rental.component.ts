@@ -41,8 +41,9 @@ export class RentalComponent implements OnInit {
   rental: Rental;
   isBusy = false;
   isInsertMode = true;
+  loaded = false;
   prompt = 'Nowa rezerwacja';
-  currentResourceRentals: Array<Rental>;
+  currentResourceRentals: Array<Rental> = [];
   constructor(private location: Location, private snackBar: MatSnackBar, public dialog: MatDialog, private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute, private router: Router, ) { }
 
 
@@ -59,6 +60,11 @@ export class RentalComponent implements OnInit {
     this.selected_resource_id = this.route.snapshot.paramMap.get('resourceId');
     this.rental_id =  this.route.snapshot.paramMap.get('rentalId');
     this.user = JSON.parse(localStorage.getItem('profile'));
+
+    this.rentalService.getRentalsByResourceId(this.selected_resource_id).subscribe(tableRentals => {
+      this.currentResourceRentals = tableRentals;
+      this.loaded = true;
+    });
 
     if (this.rental_id != null && this.rental_id.length > 1){
       this.rental = new Rental();
@@ -81,6 +87,7 @@ export class RentalComponent implements OnInit {
     if (this.selected_resource_id) {
       this.selectedResourcesChanged();
     }
+   
   }
   confirmDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogContentComponent, {
