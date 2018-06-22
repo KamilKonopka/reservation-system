@@ -1,11 +1,8 @@
    <app-loading *ngIf="loaded != true"></app-loading>
       <div *ngIf="loaded == true" class="recform col-md-10 offset-md-1">
-
-
         <mat-card *ngFor="let profileUser of profileData">
         <mat-toolbar color="secondary">Dodawanie zasobu do wypożyczeń</mat-toolbar>
           <p></p>
-
        <mat-card-subtitle>Właściciel</mat-card-subtitle>
           <p></p>
       <mat-form-field *ngIf="profileUser.moderator != true" class="recform col-sm-4">
@@ -99,10 +96,7 @@
         <div class="alert alert-success"  *ngIf="showSuccessMessage">
           <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
         </div>
-
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-
-

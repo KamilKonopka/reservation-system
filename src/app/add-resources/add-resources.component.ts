@@ -53,13 +53,11 @@ export class AddResourcesComponent implements OnInit {
     this.tools.uwagi = this.addform.value.uwagi;
     this.opis_zdj = this.addform.value.opis_zdj;
   }
-
   selectedUserChanged = () => {
     this.registrationService.getUserById(this.selected_user_id).subscribe(userData => {
       this.user = userData;
     });
   }
-
   ngOnInit() {
     this.profileData = JSON.parse(localStorage.getItem('profile'));
     const id = this.route.snapshot.paramMap.get('id');
@@ -148,6 +146,4 @@ export class AddResourcesComponent implements OnInit {
       console.log('Form is invalid :( !!!');
     }
   }
-
 }
-
