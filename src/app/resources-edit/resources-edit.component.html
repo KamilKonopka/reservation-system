@@ -58,13 +58,13 @@
             <textarea matInput [(ngModel)]="resource.uwagi" placeholder="Uwagi"></textarea>
         </mat-form-field>
         <mat-checkbox [(ngModel)]="resource.archiwum">Archiwum</mat-checkbox>
-        <!--<div class="container-fluid">-->
-            <button id="edit-picture" mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{resource._id}}">Edytuj zdjęcia</button>
-        <!--</div>-->
-
+        <button id="edit-picture" mat-raised-button color="primary"
+                routerLink="/logged/resources-pictures/{{resource._id}}">Edytuj zdjęcia
+        </button>
     </mat-card>
     <p></p>
-    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="(inpName.invalid || inpDescription.invalid || inpDate.invalid)">Zapisz
+    <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+            [disabled]="(inpName.invalid || inpDescription.invalid || inpDate.invalid || allowEdit == false)">Zapisz
     </button>
     <button mat-raised-button color="primary" (click)="goBack()">Anuluj</button>
 </div>
