@@ -87,7 +87,7 @@ export class RentalComponent implements OnInit {
     if (this.selected_resource_id) {
       this.selectedResourcesChanged();
     }
-   
+
   }
   confirmDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogContentComponent, {
@@ -122,7 +122,6 @@ export class RentalComponent implements OnInit {
     if(this.rental.data_wypozyczenia >= this.rental.data_zwrotu){
       isValid = false;
     }
-console.log("Zapis");
     this.currentResourceRentals.forEach(reservation => {
       reservation.data_wypozyczenia = new Date(reservation.data_wypozyczenia);
       //console.log(reservation.data_wypozyczenia);
@@ -173,6 +172,7 @@ console.log("Zapis");
     );
   }
   onCancel() {
+
     this.location.back();
   }
 }
