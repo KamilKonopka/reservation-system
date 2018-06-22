@@ -35,7 +35,7 @@ export class RentalService {
       return this.http.get<Rental>(url + '/' + rentalId, options);
   }
   public getRentalsByResourceId(resourceId: string): Observable<Array<Rental>> {
-    return this.http.get<Array<Rental>>(url + '?q={"zasob._id": "' + resourceId + '"}&h={"$orderby": {"data_wypozyczenia": -1}} ', options);
+    return this.http.get<Array<Rental>>(url + '?q={"zasob._id": "' + resourceId + '", "anulowana":0}&h={"$orderby": {"data_wypozyczenia": -1}} ', options);
   }
 
   public addRental(rental: Rental): Observable<object>  {

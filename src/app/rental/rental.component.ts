@@ -39,6 +39,7 @@ export class RentalComponent implements OnInit {
   start_godz = this.godz_od;
   user: User;
   rental: Rental;
+  loaded = false;
   isBusy = false;
   isInsertMode = true;
   prompt = 'Nowa rezerwacja';
