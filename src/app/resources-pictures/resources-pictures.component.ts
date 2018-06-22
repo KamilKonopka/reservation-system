@@ -19,7 +19,9 @@ const mediaUrl = 'https://ecommunity-80ee.restdb.io/media/';
 export class ResourcesPicturesComponent implements OnInit {
 
     profileData: IUser[];
+
     resource = new Tools();
+    resourceCheck = new Tools();
     messageSubmit = '';
     messageSubmitDel = '';
     showErrorMessage = false;
@@ -45,7 +47,7 @@ export class ResourcesPicturesComponent implements OnInit {
     ) {
     }
 
-     getPictures(id) {
+    getPictures(id) {
         this.resService.getPictures(id).subscribe(pics => {
             this.pictures = pics;
             this.numberOfPictures = Object.keys(this.pictures).length;
@@ -130,10 +132,10 @@ export class ResourcesPicturesComponent implements OnInit {
                         this.imgIndex = '0';
                     }, 3000);
                 }, err => {
-                console.log(JSON.stringify(err));
-                this.showErrorMessageDel = true;
-                this.messageSubmitDel = 'Nastąpił nieoczekiwany błąd podczas usuwania.';
-            });
+                    console.log(JSON.stringify(err));
+                    this.showErrorMessageDel = true;
+                    this.messageSubmitDel = 'Nastąpił nieoczekiwany błąd podczas usuwania.';
+                });
         }
     }
 
@@ -142,17 +144,27 @@ export class ResourcesPicturesComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.id = params['id'];
         });
-        this.getPictures(this.id);
-        this.imgIndex = '0';
 
         if (this.previousRouteService.getPreviousUrl() === '/logged/resources') {
             this.showEditButtons = false;
         } else {
             this.profileData = JSON.parse(localStorage.getItem('profile'));
-            this.showEditButtons = this.profileData[0].moderator;
+            this.resService.getResourceById(this.id)
+                .subscribe(ResData => {
+                    if (!ResData) {
+                        return;
+                    }
+                    this.resourceCheck = ResData;
+                    if (this.resourceCheck.wlasciciel[0]._id === this.profileData[0]._id || this.profileData[0].moderator === true) {
+                        this.showEditButtons = true;
+                    }
+                }, err => {
+                    console.log(JSON.stringify(err));
+                });
         }
+        this.getPictures(this.id);
+        this.imgIndex = '0';
     }
-
 
 
 }

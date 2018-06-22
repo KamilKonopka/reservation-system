@@ -20,8 +20,11 @@ export class ResourcesEditComponent implements OnInit {
 
     resource = new Tools();
     resources: ITools[];
+    resourceCheck = new Tools();
     loaded;
     users: IUser[];
+    profileData: IUser[];
+    allowEdit: boolean;
 
     constructor(private route: ActivatedRoute, private resService: ResourcesService, private location: Location,
                 private registrationService: RegistrationService, private router: Router) {
@@ -34,6 +37,8 @@ export class ResourcesEditComponent implements OnInit {
 
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
+        this.allowEdit = false;
+        this.profileData = JSON.parse(localStorage.getItem('profile'));
 
         this.Resource$ = this.resService.getResourceById(id);
 
@@ -41,6 +46,10 @@ export class ResourcesEditComponent implements OnInit {
             // console.log(id);
             // console.log(JSON.stringify(ResData));
             this.resource = ResData;
+            this.resourceCheck = ResData;
+            if (this.resourceCheck.wlasciciel[0]._id === this.profileData[0]._id || this.profileData[0].moderator === true) {
+                this.allowEdit = true;
+            }
         }, err => {
             console.log(JSON.stringify(err));
         }, () => {
