@@ -39,7 +39,7 @@ export class RentalComponent implements OnInit {
   start_godz = this.godz_od;
   user: User;
   rental: Rental;
-  loaded = false;
+  loaded;
   isBusy = false;
   isInsertMode = true;
   prompt = 'Nowa rezerwacja';
@@ -60,6 +60,11 @@ export class RentalComponent implements OnInit {
     this.selected_resource_id = this.route.snapshot.paramMap.get('resourceId');
     this.rental_id =  this.route.snapshot.paramMap.get('rentalId');
     this.user = JSON.parse(localStorage.getItem('profile'));
+
+    this.rentalService.getRentalsByResourceId(this.selected_resource_id).subscribe(tableRentals => {
+      this.currentResourceRentals = tableRentals;
+      this.loaded = true;
+    });
 
     if (this.rental_id != null && this.rental_id.length > 1){
       this.rental = new Rental();
@@ -82,6 +87,7 @@ export class RentalComponent implements OnInit {
     if (this.selected_resource_id) {
       this.selectedResourcesChanged();
     }
+   
   }
   confirmDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogContentComponent, {
