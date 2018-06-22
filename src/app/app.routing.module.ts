@@ -84,7 +84,7 @@ const appRoutes: Routes = [
               canActivate: [AuthGuardsService]
             },
             {
-                path: 'rental/:id',
+                path: 'rental/:resourceId/:rentalId',
                 component: RentalComponent,
                 canActivate: [AuthGuardsService]
             },

@@ -1,18 +1,4 @@
-<div class="container-fluid">
-  <div>
-    <h1>Moje rezerwacje:</h1>
-    <button (click)="goBack()">Wroc</button>
-    <mat-card *ngFor="let rent of myRentals">
-        <div class="alert-danger" *ngIf="myRentals.length === 0">Przykro name, ale w tym momencie nie masz zadnej aktywnej rezerwacji.</div>
-      <mat-card-title>
-          {{ rent.zasob[0].nazwa }}
-      </mat-card-title>
-      <mat-card-content>
-          <div>numer rezerwacji: {{ rent._id }}</div>
-          <div>numer rezerwacji: {{ rent.zasob[0].opis }}</div>
-          <div>data wypozyczenia: {{ rent.data_wypozyczenia }}</div>
-          <div>data zwrotu: {{ rent.data_zwrotu }}</div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div>
+  <h1>Moje rezerwacje:</h1>
+  <app-rentals-grid [userId]="id" ></app-rentals-grid>
 </div>
