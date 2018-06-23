@@ -3,19 +3,15 @@
 
 
     <div class="container-fluid row mt-4">
-        <div class="col-6">
             <mat-form-field class="search-input">
                 <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Wyszukaj...">
             </mat-form-field>
-        </div>
     </div>
 
     <div class="container-fluid">
-        <div class="col-6">
-            <button mat-raised-button color="primary" routerLink="/logged/add-resources/{{profileData[0]._id}}">Dodaj
+            <button class="add-button" mat-raised-button color="primary" routerLink="/logged/add-resources/{{profileData[0]._id}}">Dodaj
                 zasób
             </button>
-        </div>
     </div>
 
     <mat-table matSort [dataSource]="dataSource" matSortActive="nazwa" matSortDirection="asc">
@@ -36,15 +32,7 @@
 
         <ng-container matColumnDef="opis">
             <mat-header-cell *matHeaderCellDef> Opis</mat-header-cell>
-            <mat-cell *matCellDef="let res">{{res.opis}}
-                <BR>
-                <button mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{res._id}}">Pokaż
-                    zdjęcia
-                </button>
-
-                <button mat-raised-button color="accent" routerLink="/logged/rental/{{res._id}}/0">Rezerwuję</button>
-            </mat-cell>
-
+            <mat-cell *matCellDef="let res">{{res.opis}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="data_prod">
@@ -81,6 +69,22 @@
             <mat-cell *matCellDef="let res">
                 <mat-checkbox [(ngModel)]="res.archiwum" [disabled]="true"></mat-checkbox>
             </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="przyciski">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let res">
+                <!--<p>-->
+                    <button mat-raised-button color="primary" routerLink="/logged/resources-pictures/{{res._id}}">
+                        Zdjęcia
+                    </button>
+                <!--</p>-->
+                <!--<p>-->
+                    <button mat-raised-button color="accent" routerLink="/logged/rental/{{res._id}}/0">Rezerwuję</button>
+                <!--</p>-->
+
+            </mat-cell>
+
         </ng-container>
 
     </mat-table>

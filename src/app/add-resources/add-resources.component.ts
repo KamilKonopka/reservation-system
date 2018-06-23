@@ -53,13 +53,11 @@ export class AddResourcesComponent implements OnInit {
     this.tools.uwagi = this.addform.value.uwagi;
     this.opis_zdj = this.addform.value.opis_zdj;
   }
-
   selectedUserChanged = () => {
     this.registrationService.getUserById(this.selected_user_id).subscribe(userData => {
       this.user = userData;
     });
   }
-
   ngOnInit() {
     this.profileData = JSON.parse(localStorage.getItem('profile'));
     const id = this.route.snapshot.paramMap.get('id');
@@ -80,12 +78,12 @@ export class AddResourcesComponent implements OnInit {
       ]),
       opis: new FormControl('', [
         Validators.required,
-        Validators.minLength(15)
+        Validators.minLength(5)
       ]),
-      // opis_zdj: new FormControl('', [
-      //   Validators.required,
-      //   Validators.minLength(10)
-      // ]),
+      opis_zdj: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
       data_prod: new FormControl('', [
         Validators.required,
       ]),
@@ -95,7 +93,7 @@ export class AddResourcesComponent implements OnInit {
       ]),
       uwagi: new FormControl('', [
         Validators.required,
-        Validators.minLength(10)
+        // Validators.minLength(3)
       ]),
     });
     this.modalElement = document.getElementById('myModal');
@@ -148,6 +146,4 @@ export class AddResourcesComponent implements OnInit {
       console.log('Form is invalid :( !!!');
     }
   }
-
 }
-
