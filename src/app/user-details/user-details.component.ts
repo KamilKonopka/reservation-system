@@ -24,7 +24,7 @@ czyakcept: boolean ;
 
     const id = this.route.snapshot.paramMap.get('id');
     this.registrationService.getUserById(id).subscribe(UserData => {
-      // console.log(JSON.stringify(UserData));
+      console.log(JSON.stringify(UserData));
       this.czyakcept = UserData.akceptacja;
       this.user = UserData;
     }, err => {console.log(JSON.stringify(err)); });
@@ -40,7 +40,8 @@ onSubmit() {
   this.registrationService.updateUser(this.user).subscribe(
     res => {
       console.log(res);
-        this.router.navigate(['logged/register-forms']);
+        // this.router.navigate(['logged/register-forms']);
+      this.location.back();
          },
     err => {
       // this.formSent = false;
