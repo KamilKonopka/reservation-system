@@ -30,7 +30,7 @@ export class RegistrationService {
 
     retValue: Observable<object>;
 
-    private userNameTelLoginExists(userArr, usrToAdd: IUser): string {
+    public userNameTelLoginExists(userArr, usrToAdd: IUser): string {
         if (userArr == null) {
             return '';
         }
