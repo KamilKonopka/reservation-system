@@ -17,4 +17,9 @@ describe('reservation-system App', () => {
     expect(page.getParagraphText()).toEqual('Sprawdź dostępne obiekty i preferowane terminy.');
   });
 
+  it('should navigate to register page and display the first label text', () => {
+    page.navigateToRegisterPage();
+    expect(page.getFirstLabelText()).toEqual('Nazwa użytkownika');
+  });
+
 });
