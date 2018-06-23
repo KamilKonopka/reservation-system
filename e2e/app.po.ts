@@ -18,5 +18,7 @@ export class AppPage {
   getFirstLabelText() {
     return element(by.css('app-register label')).getText();
   }
-
+  getCancelButtonAction() {
+    return element(by.cssContainingText('button', 'Anuluj'));
+  }
 }

@@ -21,5 +21,4 @@ describe('reservation-system App', () => {
     page.navigateToRegisterPage();
     expect(page.getFirstLabelText()).toEqual('Nazwa użytkownika');
   });
-
 });
