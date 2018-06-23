@@ -5,7 +5,12 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getH2Text() {
+    return element(by.css('app-carousel h2')).getText();
   }
+
+  getParagraphText() {
+    return element(by.css('app-carousel p')).getText();
+  }
+
 }
