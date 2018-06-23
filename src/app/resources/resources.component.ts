@@ -19,7 +19,7 @@ export class ResourcesComponent implements OnInit {
     profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
 
     resources: ITools[];
-    columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum'];
+    columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum', 'przyciski'];
     dataSource = new MatTableDataSource();
     loaded;
     @ViewChild(MatPaginator) paginator: MatPaginator;
