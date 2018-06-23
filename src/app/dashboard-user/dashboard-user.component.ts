@@ -45,7 +45,6 @@ constructor(
       this.myRentals = data;
       console.log(this.myRentals);
       this.myReservations = this.myRentals.length;
-      this.nearestReservation = this.myRentals[0].data_wypozyczenia;
     }, () => {
       this.loaded = true;
     });
