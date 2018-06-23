@@ -63,6 +63,8 @@ export class RentalService {
       } else {
         h += 1;
         m = 0 ;
+        if ( h >= 24 )
+          h = 0 ;
       }
     }
     return this.checkTime(h) + this.checkTime(m);
