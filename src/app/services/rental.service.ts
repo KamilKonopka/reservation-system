@@ -60,6 +60,9 @@ export class RentalService {
         m = 30;
       } else if (m <= 45) {
         m = 45;
+      } else {
+        h += 1;
+        m = 0 ;
       }
     }
     return this.checkTime(h) + this.checkTime(m);

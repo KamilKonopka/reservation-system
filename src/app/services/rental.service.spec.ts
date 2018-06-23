@@ -32,10 +32,20 @@ describe('RentalService', () => {
   fit('rounded time to quarter for 2018-03-02 12:33 sholuld be 1245 ', async(inject(
     [RentalService], (service: RentalService) => {
 
-      let result: string = service.stringTime(new Date('2018-03-02 12:33')) ;
+      let result: string = service.stringTime(new Date('2018-03-02 12:45')) ;
 
 
       expect(result).toEqual('1245');
+
+    })));
+
+  fit('rounded time to quarter for 2018-03-02 12:346 sholuld be 1300 ', async(inject(
+    [RentalService], (service: RentalService) => {
+
+      let result: string = service.stringTime(new Date('2018-03-02 12:46')) ;
+
+
+      expect(result).toEqual('1300');
 
     })));
 });
