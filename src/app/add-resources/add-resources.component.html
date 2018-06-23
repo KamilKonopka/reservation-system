@@ -1,11 +1,8 @@
    <app-loading *ngIf="loaded != true"></app-loading>
       <div *ngIf="loaded == true" class="recform col-md-10 offset-md-1">
-
-
         <mat-card *ngFor="let profileUser of profileData">
         <mat-toolbar color="secondary">Dodawanie zasobu do wypożyczeń</mat-toolbar>
           <p></p>
-
        <mat-card-subtitle>Właściciel</mat-card-subtitle>
           <p></p>
       <mat-form-field *ngIf="profileUser.moderator != true" class="recform col-sm-4">
@@ -38,12 +35,12 @@
         </mat-form-field>
 
         <mat-form-field class="form-group col-sm-12 pb-3">
-        <textarea matInput id="opis"   name="opis" placeholder="Podaj opis zasobu"  class="form-control"    formControlName="opis" required></textarea>
+        <textarea matInput id="opis"   name="opis" placeholder="Podaj opis zasobu"  class="form-control"    formControlName="opis"  required minlength="5"></textarea>
 
         <div class="invalid-feedback" *ngIf="addform.controls.opis.errors  && (addform.controls.opis.dirty ||
       addform.controls.opis.touched)">
-            <p *ngIf="addform.controls.opis.errors.required">Opis zasobu jest wymagany</p>
-            <p *ngIf="addform.controls.opis.errors != null && addform.controls.opis.errors.minlength">Opis zasobu musi mieć min 15 znaków</p>
+            <p *ngIf="addform.controls.opis.errors != null && addform.controls.opis.errors.required">Opis zasobu jest wymagany</p>
+            <p *ngIf="addform.controls.opis.errors != null && addform.controls.opis.errors.minlength">Opis zasobu musi mieć min 5 znaków</p>
           </div>
         </mat-form-field>
 
@@ -67,10 +64,10 @@
         </mat-form-field>
 
         <mat-form-field class="form-group col-sm-12 pb-3">
-          <input matInput placeholder="Uwagi:"  type="text" class="form-control" formControlName="uwagi">
+          <input matInput placeholder="Uwagi:"  type="text" class="form-control" formControlName="uwagi" required >
           <div class="invalid-feedback" *ngIf="addform.controls.uwagi.errors && (addform.controls.uwagi.dirty ||
-      addform.controls.nazwa.touched)">
-            <p *ngIf="addform.controls.uwagi.errors.required">Wpisz ewentualne uwagi</p>
+      addform.controls.uwagi.touched)">
+            <p *ngIf="addform.controls.uwagi.errors != null && addform.controls.uwagi.errors.required">Wpisz ewentualne uwagi lub "brak uwag"</p>
           </div>
         </mat-form-field>
 
@@ -82,10 +79,10 @@
         </div>
 
         <mat-form-field class="form-group col-sm-12 pb-3">
-          <input matInput placeholder="Komentarz do zdjęcia:"  type="text" class="form-control" formControlName="opis_zdj" name="opis_zdj"   required>
-          <div class="invalid-feedback" *ngIf="addform.controls.uwagi.errors && (addform.controls.uwagi.dirty ||
-      addform.controls.nazwa.touched)">
-            <p *ngIf="addform.controls.uwagi.errors.required">Wpisz Komentarz</p>
+          <input matInput placeholder="Komentarz do zdjęcia:"  type="text" class="form-control" formControlName="opis_zdj" name="opis_zdj" required>
+          <div class="invalid-feedback" *ngIf="addform.controls.opis_zdj.errors && (addform.controls.opis_zdj.dirty ||
+      addform.controls.opis_zdj.touched)">
+            <p *ngIf="addform.controls.opis_zdj.errors.required">Wpisz komentarz do zdjęcia.</p>
           </div>
         </mat-form-field>
 
@@ -99,10 +96,7 @@
         <div class="alert alert-success"  *ngIf="showSuccessMessage">
           <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
         </div>
-
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-
-
