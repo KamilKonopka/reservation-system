@@ -14,9 +14,9 @@
   <mat-card>
     <mat-card-title>Początek rezerwacji</mat-card-title>
   <mat-form-field>
-   <input matInput [min]="minDate"  [disabled]="!isInsertMode" [max]="maxDate" [(ngModel)]="startDate" [matDatepicker]="picker"  placeholder="Wybierz datę od">
+   <input matInput [min]="minDate" disabled [max]="maxDate" [(ngModel)]="startDate" [matDatepicker]="picker"  placeholder="Wybierz datę od">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker  disabled="false" [disabled]="!isInsertMode"  #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
     <mat-select [(ngModel)]="godz_od"  [disabled]="!isInsertMode" placeholder="Wybierz godzinę od">
@@ -118,9 +118,9 @@
   <mat-card>
     <mat-card-title>Zakończenie rezerwacji</mat-card-title>
   <mat-form-field>
-  <input matInput [min]="startDate"  [disabled]="!isInsertMode" [max]="maxDate"  [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
+  <input matInput [min]="startDate" disabled  [max]="maxDate"  [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker  #picker1></mat-datepicker>
+  <mat-datepicker disabled="false" [disabled]="!isInsertMode" #picker1></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
     <mat-select [(ngModel)]="godz_do"  [disabled]="!isInsertMode" placeholder="Wybierz godzinę do">

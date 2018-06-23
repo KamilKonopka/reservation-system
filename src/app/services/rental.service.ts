@@ -52,7 +52,6 @@ export class RentalService {
   stringTime(dateNow: Date): string {
     console.log("dateId" + dateNow);
     let h = dateNow.getHours();
-    console.log(h);
     let m = dateNow.getMinutes();
     if (m <= 15) {
       m = 15;
