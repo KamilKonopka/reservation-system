@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { AdminGuardService } from './admin-guard.service';
 
-describe('AdminGuardService', () => {
+describe('AdminGuardsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AdminGuardService]
