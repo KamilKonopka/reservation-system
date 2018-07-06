@@ -1,7 +1,7 @@
 <div id="regform" class ="col-md-10 offset-md-1" >
-  <form  class="container was-validated"  novalidate="" [formGroup] = "myform" (ngSubmit)="onSubmit()">
-    <div class="form-row mt-4">
-      <div class="form-group col-sm-12 ">
+  <form  class="container"  novalidate="" [formGroup] = "myform" (ngSubmit)="onSubmit()">
+    <div class="form-row mt-4 ">
+      <div class="form-group col-sm-12" [class.was-validated]="myform.controls.login.touched">
         <label>Nazwa użytkownika</label>
         <input type="text"
                class="form-control"
@@ -21,7 +21,7 @@ myform.controls.login.touched)">
     'is-valid': myform.controls.password.valid && (myform.controls.password.dirty || myform.controls.password.touched)
     }">
     -->
-      <div class="form-group col-sm-6">
+      <div class="form-group col-sm-6" [class.was-validated]="myform.controls.password.touched">
         <label>Hasło</label>
         <input type="password"
                class="form-control"
@@ -39,7 +39,7 @@ myform.controls.password.touched )">
         </div>
         <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
       </div>
-      <div class="form-group col-sm-6">
+      <div class="form-group col-sm-6 " [class.was-validated]="myform.controls.repassword.touched">
         <label>Powtórz hasło</label>
         <input type="password"
                class="form-control"
@@ -56,21 +56,7 @@ myform.controls.repassword.touched )">
         </div>
         <p class="my-invalid-feedback" *ngIf="myform.controls.repassword.value != myform.controls.password.value">Podane hasła różnią się</p>
       </div>
-      <!--
-         <div class="form-control-feedback"
-              *ngIf="myform.controls.password.errors && (myform.controls.password.dirty || myform.controls.password.touched)">
-           <p *ngIf="myform.controls.password.errors.required">Hasło nie może być puste</p>
-           <p *ngIf="myform.controls.password.errors.minlength">Hasło musi mieć min 6 znaków, dopisz
-             {{myform.controls.password.errors.minlength.requiredLength -
-             myform.controls.password.errors.minlength.actualLength}} znaków </p>
-         </div>
-         -->
-      <!--
-      </div>
-      -->
-
-
-      <div class="form-group col-sm-12">
+      <div class="form-group col-sm-12" [class.was-validated]="myform.controls.firstName.touched">
         <label>Imię</label>
         <input type="text"
                class="form-control"
@@ -83,7 +69,7 @@ myform.controls.repassword.touched )">
           <p *ngIf="myform.controls.firstName.errors.required">Musisz podać imię</p>
         </div>
       </div>
-      <div class="form-group col-sm-12">
+      <div class="form-group col-sm-12" [class.was-validated]="myform.controls.lastName.touched" >
         <label>Nazwisko</label>
         <input type="text"
                class="form-control"
@@ -96,7 +82,7 @@ myform.controls.repassword.touched )">
         </div>
       </div>
 
-      <div class="form-group col-sm-8">
+      <div class="form-group col-sm-8" [class.was-validated]="myform.controls.email.touched">
         <label>Email</label>
         <input type="email"
                class="form-control"
@@ -110,7 +96,7 @@ myform.controls.email.touched)">
 
         </div>
       </div>
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-4" [class.was-validated]="myform.controls.phoneNo.touched">
         <label>Telefon kontaktowy</label>
         <input type="tel"
                class="form-control"
@@ -123,7 +109,7 @@ myform.controls.phoneNo.touched)">
           <p *ngIf="myform.controls.phoneNo.invalid">Podaj poprawny numer telefonu</p>
         </div>
       </div>
-      <div class="form-group col-sm-8" >
+      <div class="form-group col-sm-8" [class.was-validated]="myform.controls.ulica.touched">
         <label>Ulica</label>
         <select required class="form-control"
                 formControlName="ulica">
@@ -138,7 +124,7 @@ myform.controls.ulica.touched)">
           <p *ngIf="myform.controls.ulica.invalid">Wybierz ulicę z listy</p>
         </div>
       </div>
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-4" [class.was-validated]="myform.controls.nrdomu.touched">
         <label>Nr domu i lokalu</label>
         <input type="text"
                class="form-control"
@@ -166,16 +152,8 @@ myform.controls.nrdomu.touched)">
       <div class="alert alert-success"  *ngIf="showSuccessMessage">>
         <strong>Brawo ! </strong>Dziękujemy za wysłanie formularza. Oczekuj wiadomości na podany adres email w ciągu 24 godzin.
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!myform.valid || formSent || myform.controls.repassword.value != myform.controls.password.value" >Wyślij</button>
-      <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
-
-      <!--
-      <pre>{{myform.value | json}}</pre>
-      <pre> login {{myform.controls.login.valid}}</pre>
-      <pre> password {{myform.controls.password.valid}}</pre>
-      <pre> name {{myform.controls.name.valid}}</pre>
-      <pre>email {{myform.controls.email.valid}}</pre>
-      -->
+      <button type="submit" class="btn btn-primary btn-spacing" [disabled]="!myform.valid || formSent || myform.controls.repassword.value != myform.controls.password.value" >Wyślij</button>
+      <button type="button" class="btn btn-danger btn-spacing" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Anuluj</button>
     </div>
   </form>
 </div>

@@ -1,122 +1,102 @@
-<div class="container">
-<div id="recform" class ="col-sm-8  mt-4" >
-  <span class="anchor" id="formComplex"></span>
-  <h2>Dodawanie zasobu do wypożyczeń</h2>
+   <app-loading *ngIf="loaded != true"></app-loading>
+      <div *ngIf="loaded == true" class="recform col-md-10 offset-md-1">
+        <mat-card *ngFor="let profileUser of profileData">
+        <mat-toolbar color="secondary">Dodawanie zasobu do wypożyczeń</mat-toolbar>
+          <p></p>
+       <mat-card-subtitle>Właściciel</mat-card-subtitle>
+          <p></p>
+      <mat-form-field *ngIf="profileUser.moderator != true" class="recform col-sm-4">
+      <input matInput placeholder="Imię: " [(ngModel)]="user.imie" disabled class="form-control" id="firstName">
+      </mat-form-field>
 
+      <mat-form-field *ngIf="profileUser.moderator != true" class="recform col-sm-4">
+        <input matInput placeholder="Nazwisko: " [(ngModel)]="user.name" disabled class="form-control" id="lastName">
+      </mat-form-field>
 
+      <mat-form-field *ngIf="profileUser.moderator == true" class="recform col-sm-4 pb-2">
+        <mat-select [(ngModel)]="selected_user_id" (change)="selectedUserChanged()" >
+          <mat-option *ngFor="let selectedUser of users| async" [value]="selectedUser._id">
+            {{ selectedUser.imie + ' ' + selectedUser.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <div class="form-row ">
-        <div class="col-sm-12 "><label> Właściel</label> </div>
+      <mat-card-content>
+      <form class="container was-validated col-sm-12 "  novalidate="" [formGroup] = "addform" (ngSubmit)="onSubmit()">
 
-        <div class="form-group col-sm-5 ">
-          <label for="firstName"><p>Imię</p></label>
-          <input disabled="disabled" [(ngModel)]="user.imie" type="text" class="form-control" id="firstName">
-        </div>
-
-
-        <div class="form-group col-sm-5 ">
-          <label for="lastName"><p>Nazwisko</p></label>
-          <input disabled="disabled" [(ngModel)]="user.name" type="text" class="form-control" id="lastName">
-        </div>
-        </div>
-
-
-      <form class="container was-validated"  novalidate="" [formGroup] = "addform" (ngSubmit)="onSubmit()">
-        <div class="form-row mt-4">
-        <div class="form-group col-sm-12 pb-3">
-      <label>Nazwa zasobu</label>
-      <input type="text"
-             class="form-control"
-             formControlName="nazwa"
-             required
-             minlength="3" >
-      <div class="invalid-feedback" *ngIf="addform.controls.nazwa.errors && (addform.controls.nazwa.dirty ||
+        <mat-form-field class="form-group col-sm-12">
+          <input matInput placeholder="Nazwa zasobu:"  type="text" class="form-control" formControlName="nazwa"
+                 required minlength="5">
+          <div class="invalid-feedback" *ngIf="addform.controls.nazwa.errors && (addform.controls.nazwa.dirty ||
       addform.controls.nazwa.touched)">
-        <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.required">Nazwa zasobu jest wymagana</p>
-        <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.minlength">Nazwa zasobu musi mieć min 3 znaki</p>
-      </div>
-      </div>
+            <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.required">Nazwa zasobu jest wymagana</p>
+            <p *ngIf="addform.controls.nazwa.errors != null && addform.controls.nazwa.errors.minlength">Nazwa zasobu musi mieć min 5 znaków</p>
+          </div>
+        </mat-form-field>
 
-      <div class="form-group col-sm-8 pb-3">
-      <label>Nazwa producenta:</label>
-      <input type="text"
-             class="form-control"
-             formControlName="producent"
-             required>
-      <div class="invalid-feedback" *ngIf="addform.controls.producent.errors && (addform.controls.producent.dirty ||
-     addform.controls.producent.touched)">
-        <p *ngIf="addform.controls.producent.invalid">Podaj nazwę producenta</p>
-      </div>
-      </div>
+        <mat-form-field class="form-group col-sm-12 pb-3">
+        <textarea matInput id="opis"   name="opis" placeholder="Podaj opis zasobu"  class="form-control"    formControlName="opis"  required minlength="5"></textarea>
 
-      <div class="form-group col-sm-4 pb-3">
-      <label>Data produkcji</label>
-      <input type="date"
-             class="form-control"
-             formControlName="data_prod"
-             required>
-      <div class="invalid-feedback" *ngIf="addform.controls.data_prod.errors  && (addform.controls.data_prod.dirty ||
-      addform.controls.data_prod.touched)">
-        <p *ngIf="addform.controls.data_prod.errors.required">Data produkcji jest wymagana</p>
-      </div>
-      </div>
-
-
-
-      <div class="form-group col-sm-12">
-      <label>Opis zasobu:</label>
-
-      <textarea id="opis"
-                name="opis" placeholder="opis"
-                class="form-control"
-                style="height:50px"
-                formControlName="opis"
-                required></textarea>
-
-      <div class="invalid-feedback" *ngIf="addform.controls.opis.errors  && (addform.controls.opis.dirty ||
+        <div class="invalid-feedback" *ngIf="addform.controls.opis.errors  && (addform.controls.opis.dirty ||
       addform.controls.opis.touched)">
-        <p *ngIf="addform.controls.opis.errors.required">Proszę podać opis przedmiotu</p>
-      </div>
-      </div>
+            <p *ngIf="addform.controls.opis.errors != null && addform.controls.opis.errors.required">Opis zasobu jest wymagany</p>
+            <p *ngIf="addform.controls.opis.errors != null && addform.controls.opis.errors.minlength">Opis zasobu musi mieć min 5 znaków</p>
+          </div>
+        </mat-form-field>
 
+        <mat-form-field class="form-group col-sm-4 pb-2">
+        <input matInput class="form-control" formControlName="data_prod" [matDatepicker]="picker1" placeholder="Data produkcji" required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <div class="invalid-feedback" *ngIf="addform.controls.data_prod.errors  && (addform.controls.data_prod.dirty ||
+          addform.controls.data_prod.touched)">
+          <p *ngIf="addform.controls.data_prod.errors.required">Data produkcji jest wymagana</p>
+          </div>
+        </mat-form-field>
 
-      <div class="form-group col-sm-12">
-      <label>Uwagi:</label>
-      <input type="text"
-             class="form-control"
-             formControlName="uwagi"
-             required>
-      <div class="invalid-feedback" *ngIf="addform.controls.uwagi.errors  && (addform.controls.uwagi.dirty ||
+        <mat-form-field class="form-group col-sm-7 offset-xl-0 pb-2">
+          <input matInput placeholder="Nazwa producenta:"  class="form-control" formControlName="producent" required [minlength]="3">
+          <div class="invalid-feedback" *ngIf="addform.controls.producent.errors && (addform.controls.producent.dirty ||
+     addform.controls.producent.touched)">
+            <p *ngIf="addform.controls.producent.errors != null && addform.controls.producent.errors.required">Nazwa producenta jest wymagana</p>
+            <p *ngIf="addform.controls.producent.errors != null && addform.controls.producent.errors.minlength">Nazwa producenta musi mieć min 3 znaki</p>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="form-group col-sm-12 pb-3">
+          <input matInput placeholder="Uwagi:"  type="text" class="form-control" formControlName="uwagi" required >
+          <div class="invalid-feedback" *ngIf="addform.controls.uwagi.errors && (addform.controls.uwagi.dirty ||
       addform.controls.uwagi.touched)">
-        <p *ngIf="addform.controls.uwagi.errors.required">Wpisz ewentualne uwagi</p>
-      </div>
-      </div>
-
-          <div class="form-group col-sm-12">
-          <label for="file">Dodaj zdjęcie... </label>
-          <input type="file"
-                 id="file"
-                 (change)="handleFileInput($event.target.files)">
+            <p *ngIf="addform.controls.uwagi.errors != null && addform.controls.uwagi.errors.required">Wpisz ewentualne uwagi lub "brak uwag"</p>
           </div>
-            <!--wersja1 - z generatora dodaje do media i tabeli zdjecia oraz opis-->
-           <div class="form-group col-sm-12">
-            <label>Komentarz do zdjęcia</label><input class="form-control" formControlName="opis_zdj" name="opis_zdj"  type="text" required>
+        </mat-form-field>
+
+        <div class="form-group col-sm-12 pb-2">
+        <label for="file">Dodaj zdjęcie... </label>
+        <input type="file"
+               id="file"
+               (change)="handleFileInput($event.target.files)">
+        </div>
+
+        <mat-form-field class="form-group col-sm-12 pb-3">
+          <input matInput placeholder="Komentarz do zdjęcia:"  type="text" class="form-control" formControlName="opis_zdj" name="opis_zdj" required>
+          <div class="invalid-feedback" *ngIf="addform.controls.opis_zdj.errors && (addform.controls.opis_zdj.dirty ||
+      addform.controls.opis_zdj.touched)">
+            <p *ngIf="addform.controls.opis_zdj.errors.required">Wpisz komentarz do zdjęcia.</p>
           </div>
+        </mat-form-field>
 
-          <button type="submit" class="btn btn-primary" [disabled]="!addform.valid || addformSent  ">Wyślij</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Rezygnuję</button>
-          <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
+        <button type="submit" class="btn btn-primary" [disabled]="!addform.valid || addformSent  ">Wyślij</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Rezygnuję</button>
+        <div class="alert alert-danger fade show"  *ngIf="showErrorMessage">
 
-            <a href="#" class="close" data-dismiss="alert">&times;</a>
-            <strong>Błąd! </strong>{{messageSubmit}}
-          </div>
-          <div class="alert alert-success"  *ngIf="showSuccessMessage">
-            <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
-          </div>
-
-
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          <strong>Błąd! </strong>{{messageSubmit}}
+        </div>
+        <div class="alert alert-success"  *ngIf="showSuccessMessage">
+          <strong>Brawo! </strong>Dziękujemy za wysłanie formularza.
         </div>
       </form>
+    </mat-card-content>
+  </mat-card>
 </div>
-
-

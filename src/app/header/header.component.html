@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="!authService.isAuthenticated(); else startMenu">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <img src="https://image.ibb.co/e18HhS/logo.png" height="80px" class="rounded float-left" routerLink="/home" href="#">
@@ -6,7 +6,7 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="!authService.isAuthenticated(); else startMenu">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" routerLink="/about-us" href="#">O NAS</a>
@@ -26,9 +26,9 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/register" href="#">ZAREJESTRUJ SIĘ</button>
         </form>
       </div>
-      <ng-template #startMenu>
-        <app-header-admin></app-header-admin>
-      </ng-template>
     </nav>
   </div>
 </header>
+<ng-template #startMenu>
+    <app-header-admin></app-header-admin>
+  </ng-template>

@@ -1,5 +1,12 @@
-<ng-container *ngFor="let profile of profileData">
-<ng-container *ngIf="admin === true; else user">
+<header *ngIf="admin === true; else user">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <img src="https://image.ibb.co/e18HhS/logo.png" height="80px" class="rounded float-left" routerLink="/home" href="#">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
         <a class="nav-link" routerLink="/logged/dashboard-admin" href="#">AKTUALNOŚCI</a>
@@ -14,11 +21,8 @@
       <a class="nav-link" routerLink="/logged/rentals" href="#">REZERWACJE</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/logged/resources" href="#">LISTA ZASOBÓW</a>
+      <a class="nav-link" routerLink="/logged/resources" href="#">ZASOBY</a>
     </li>
-    <!--<li class="nav-item">-->
-      <!--<a class="nav-link" routerLink="/logged/add-resources" href="#">DODAJ ZASÓB</a>-->
-     <!--</li>-->
     <li class="nav-item">
       <a class="nav-link" routerLink="/contact" href="#">KONTAKT</a>
     </li>
@@ -26,22 +30,33 @@
       <a class="nav-link" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
     </li>
   </ul>
-</ng-container>
-
+      </div>
+    </nav>
+  </div>
+</header>
 <ng-template #user>
+<header >
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <img src="https://image.ibb.co/e18HhS/logo.png" height="80px" class="rounded float-left" routerLink="/home" href="#">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
   <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-          <a class="nav-link" routerLink="/logged/dashboard-user" href="#">AKTUALNOŚCI</a>
-      </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/logged/dashboard-user" href="#">AKTUALNOŚCI</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/logged/profile" href="#">TWÓJ PROFIL</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/logged/resources" href="#">LISTA ZASOBÓW</a>
+      <a class="nav-link" routerLink="/logged/rentals" href="#">REZERWACJE</a>
     </li>
-    <!--<li class="nav-item">-->
-      <!--<a class="nav-link" routerLink="/logged/add-resources/:id" href="#">DODAJ ZASÓB</a>-->
-     <!--</li>-->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/logged/resources" href="#">ZASOBY</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/contact" href="#">KONTAKT</a>
     </li>
@@ -49,5 +64,8 @@
       <a class="nav-link" href="#" (click)="logout()" routerLink="/home">WYLOGUJ SIĘ</a>
     </li>
   </ul>
+      </div>
+    </nav>
+  </div>
+</header>
 </ng-template>
-

@@ -15,33 +15,34 @@ import {AuthService} from '../services/auth.service';
 })
 export class ResourcesComponent implements OnInit {
 
-  profileData: IUser = JSON.parse(localStorage.getItem('profile'));
-  profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
+    profileData: IUser = JSON.parse(localStorage.getItem('profile'));
+    profile: AuthUser = JSON.parse(localStorage.getItem('authProfile'));
 
     resources: ITools[];
-    columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum'];
+    columnsToDisplay = ['nazwa', 'opis', 'data_prod', 'producent', 'wlasciciel', 'uwagi', 'archiwum', 'przyciski'];
     dataSource = new MatTableDataSource();
     loaded;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     user: IUser[];
 
-  constructor(
-    private resService: ResourcesService,
-    public authService: AuthService,
-    private registrationService: RegistrationService) {}
+    constructor(
+        private resService: ResourcesService,
+        public authService: AuthService,
+        private registrationService: RegistrationService) {
+    }
 
     // getResources() {
     //     this.allResources$ = this.resService.resources$;
     // }
 
-      applyFilter(filterValue: string) {
-      filterValue = filterValue.trim(); // Remove whitespace
-      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-      this.dataSource.filter = filterValue;
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
     }
 
-  ngOnInit() {
+    ngOnInit() {
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -90,5 +91,7 @@ export class ResourcesComponent implements OnInit {
                 console.log(JSON.stringify(err));
             });
     }
+
 }
+
 

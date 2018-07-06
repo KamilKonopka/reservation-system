@@ -8,16 +8,26 @@ import { ResourcesService } from '../services/resources.service';
 import { ITools } from '../interfaces/itools';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
+import {MatDialog} from '@angular/material';
+import { Location } from '@angular/common';
+
+@Component({
+  selector: 'app-dialog-content',
+  templateUrl: 'dialog-content.html',
+})
+export class ConfirmDialogContentComponent {}
 
 
 @Component({
   selector: 'app-rental',
   templateUrl: './rental.component.html',
-  styleUrls: ['./rental.component.less']
+  styleUrls: ['./rental.component.less'],
+  entryComponents: [ ConfirmDialogContentComponent ]
 })
 
 export class RentalComponent implements OnInit {
   selected_resource_id = '';
+  rental_id: string;
   allResources: Observable<Array<ITools>>;
   minDate = new Date();
   maxDate = new Date(this.minDate.getUTCFullYear() + 1, this.minDate.getMonth() === 2 && this.minDate.getDay() === 29 ? 3 : this.minDate.getMonth(),
@@ -30,28 +40,74 @@ export class RentalComponent implements OnInit {
   user: User;
   rental: Rental;
   isBusy = false;
-
-  currentResourceRentals: Array<Rental>;
-
-  constructor(private snackBar : MatSnackBar, private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute, private router: Router, ) { }
+  isInsertMode = true;
+  loaded = false;
+  prompt = 'Nowa rezerwacja';
+  currentResourceRentals: Array<Rental> = [];
+  constructor(private location: Location, private snackBar: MatSnackBar, public dialog: MatDialog, private rentalService: RentalService, private authService: AuthService, private resourcesService: ResourcesService, private route: ActivatedRoute, private router: Router, ) { }
 
 
   selectedResourcesChanged = () => {
     this.rentalService.getRentalsByResourceId(this.selected_resource_id).subscribe(x => {
       this.currentResourceRentals = x;
-    })
+    });
 
   }
 
 
   ngOnInit() {
-    this.selected_resource_id = this.route.snapshot.paramMap.get('id');
+
+    this.selected_resource_id = this.route.snapshot.paramMap.get('resourceId');
+    this.rental_id =  this.route.snapshot.paramMap.get('rentalId');
     this.user = JSON.parse(localStorage.getItem('profile'));
-    this.rental = this.rentalService.setupNewRental(this.user[0]._id, null);
+
+    this.rentalService.getRentalsByResourceId(this.selected_resource_id).subscribe(tableRentals => {
+      this.currentResourceRentals = tableRentals;
+      this.loaded = true;
+    });
+
+    if (this.rental_id != null && this.rental_id.length > 1){
+      this.rental = new Rental();
+      this.isInsertMode  = false;
+      this.prompt = 'Rezerwacja';
+      this.rentalService.getRentalById(this.rental_id).subscribe(res => {
+        this.rental = res;
+        this.selected_resource_id = res.zasob[0]['_id'];
+        this.startDate = this.rental.data_wypozyczenia;
+        this.endDate = this.rental.data_zwrotu;
+        this.godz_od = this.rentalService.stringTime(new Date(this.rental.data_wypozyczenia));
+        this.godz_do = this.rentalService.stringTime(new Date(this.rental.data_zwrotu));
+        this.selectedResourcesChanged();
+        }
+      );
+    } else {
+      this.rental = this.rentalService.setupNewRental(this.user[0]._id, null);
+    }
     this.allResources = this.resourcesService.resources$;
     if (this.selected_resource_id) {
       this.selectedResourcesChanged();
     }
+
+  }
+  confirmDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogContentComponent, {
+      height: '180px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.rental.anulowana = true;
+        this.rentalService.updateRental(this.rental).subscribe(res => {
+          const snackBarRef = this.snackBar.open('Rezerwacja została anulowana', '', {
+            duration: 2000,
+          });
+          snackBarRef.afterDismissed().subscribe(() => {
+            this.location.back();
+          });
+        }, error2 => { console.log('Błąd podczas zapisu ' + error2.toString()); }
+        );
+      }
+    });
   }
 
   onSubmit() {
@@ -66,7 +122,6 @@ export class RentalComponent implements OnInit {
     if(this.rental.data_wypozyczenia >= this.rental.data_zwrotu){
       isValid = false;
     }
-
     this.currentResourceRentals.forEach(reservation => {
       reservation.data_wypozyczenia = new Date(reservation.data_wypozyczenia);
       //console.log(reservation.data_wypozyczenia);
@@ -83,22 +138,22 @@ export class RentalComponent implements OnInit {
       });
       return;
     }
-    this.router.navigate(['logged/resources']);
-    if(this.router.navigate(['logged/resources'])){
-      this.snackBar.open('Zarezerwowano zasób!', '', {
-        duration: 2000,
-      });
-      return;
-    }
     this.isBusy = true;
     this.rentalService.addRental(this.rental).subscribe(
       res => {
-        console.log(res);
+          const snackBarRef = this.snackBar.open('Zarezerwowano zasób!', '', {
+            duration: 2000,
+          });
+          snackBarRef.afterDismissed().subscribe(() => {
+            this.location.back();
+          });
+          return;
+
         //this.showSuccessMessage = true;
         //this.messageSubmit = 'Dziękujemy za złożenie wniosku o rejestrację. Skontaktujemy się po jego akceptacji.';
         //setTimeout(() => {
         //  this.showSuccessMessage = false;
-        //this.router.navigate(['logged/resources']);
+        //th.is.router.navigate(['logged/resources']);
         // }, 3000) ;
       },
       err => {
@@ -117,6 +172,8 @@ export class RentalComponent implements OnInit {
     );
   }
   onCancel() {
-    this.router.navigate(['logged/resources']);
+
+    this.location.back();
   }
 }
+

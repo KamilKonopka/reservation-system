@@ -15,16 +15,18 @@
 
     <ng-container matColumnDef="data_wypozyczenia">
       <mat-header-cell  *matHeaderCellDef mat-sort-header> Wypozyczenie od </mat-header-cell>
-      <mat-cell *matCellDef="let rental"> {{rental.data_wypozyczenia |date :"dd-MM-yyyy HH:mm"}}</mat-cell>
+      <mat-cell *matCellDef="let rental"> <a [routerLink]="['/logged/rental', rental.zasob != null? rental.zasob[0]._id : 0 ,rental._id]" routerLinkActive="active">
+        {{rental.data_wypozyczenia |date :"dd-MM-yyyy HH:mm"}}</a></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="data_zwrotu">
       <mat-header-cell  *matHeaderCellDef mat-sort-header> Wypozyczenie do </mat-header-cell>
-      <mat-cell *matCellDef="let rental"> {{rental.data_zwrotu| date :"dd-MM-yyyy HH:mm"}}</mat-cell>
+      <mat-cell *matCellDef="let rental"><a [routerLink]="['/logged/rental', rental.zasob != null? rental.zasob[0]._id : 0 ,rental._id]" routerLinkActive="active">
+        {{rental.data_zwrotu |date :"dd-MM-yyyy HH:mm"}}</a></mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="imie">
+    <ng-container matColumnDef="imie" >
       <mat-header-cell  *matHeaderCellDef mat-sort-header> Imię </mat-header-cell>
       <mat-cell *matCellDef="let rental"> {{rental.uzytkownik[0].imie}}</mat-cell>
     </ng-container>
@@ -43,6 +45,10 @@
       </a> </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="anulowana">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Anulowana  </mat-header-cell>
+      <mat-cell *matCellDef="let rental"><mat-checkbox [(ngModel)]="rental.anulowana" [disabled]="true"></mat-checkbox></mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

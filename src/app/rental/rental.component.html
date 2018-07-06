@@ -1,9 +1,11 @@
+<app-loading [hidden]="loaded"></app-loading>
+<div [hidden]="!loaded">
 <div class="rental-form  col-md-6">
   <mat-toolbar color="secondary">
-    Nowa rezerwacja
+    {{prompt}}
   </mat-toolbar>
-      <mat-form-field class="rental-form-full-width">
-    <mat-select [(ngModel)]="selected_resource_id" (change)="selectedResourcesChanged()" >
+      <mat-form-field   class="rental-form-full-width">
+    <mat-select [(ngModel)]="selected_resource_id" [disabled]="!isInsertMode" (change)="selectedResourcesChanged()" >
       <mat-option *ngFor="let resource of allResources| async" [value]="resource._id">
         {{ resource.nazwa }}
       </mat-option>
@@ -12,12 +14,12 @@
   <mat-card>
     <mat-card-title>Początek rezerwacji</mat-card-title>
   <mat-form-field>
-   <input matInput [min]="minDate" [max]="maxDate" [(ngModel)]="startDate" [matDatepicker]="picker"  placeholder="Wybierz datę od">
+   <input matInput [min]="minDate" disabled [max]="maxDate" [(ngModel)]="startDate" [matDatepicker]="picker"  placeholder="Wybierz datę od">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker  disabled="false" [disabled]="!isInsertMode"  #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select [(ngModel)]="godz_od" placeholder="Wybierz godzinę od">
+    <mat-select [(ngModel)]="godz_od"  [disabled]="!isInsertMode" placeholder="Wybierz godzinę od">
       <mat-option value="0000">00:00</mat-option>
       <mat-option value="0015">00:15</mat-option>
       <mat-option value="0030">00:30</mat-option>
@@ -116,12 +118,12 @@
   <mat-card>
     <mat-card-title>Zakończenie rezerwacji</mat-card-title>
   <mat-form-field>
-  <input matInput [min]="startDate" [max]="maxDate"  [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
+  <input matInput [min]="startDate" disabled  [max]="maxDate"  [(ngModel)]="endDate" [matDatepicker]="picker1" placeholder="Wybierz datę do">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker  #picker1></mat-datepicker>
+  <mat-datepicker disabled="false" [disabled]="!isInsertMode" #picker1></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
-    <mat-select [(ngModel)]="godz_do" placeholder="Wybierz godzinę do">
+    <mat-select [(ngModel)]="godz_do"  [disabled]="!isInsertMode" placeholder="Wybierz godzinę do">
       <mat-option value="0000">00:00</mat-option>
       <mat-option value="0015">00:15</mat-option>
       <mat-option value="0030">00:30</mat-option>
@@ -223,20 +225,27 @@
   <mat-spinner class="col-md-10 offset-md-5" *ngIf="isBusy"></mat-spinner>
 <p></p>
   <div class="form-row">
-    <button type="submit" [disabled]="isBusy" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Rezerwuję</button>
-    <button type="button" [disabled]="isBusy" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i>Rezygnuję</button>
+    <button mat-raised-button color="primary" type="submit" *ngIf="isInsertMode" class="btn-spacing" [disabled]="isBusy" (click)="onSubmit()">Rezerwuję</button>
+   <!-- <button type="submit" *ngIf="isInsertMode" [disabled]="isBusy" (click)="onSubmit()" class="btn btn-primary btn-spacing"  >Rezerwuję</button>-->
+    <button mat-raised-button color="primary" type="button" *ngIf="!isInsertMode" [disabled]="isBusy" class="btn-spacing" (click)="confirmDialog()">Anuluję</button>
+    <button mat-raised-button color="accent" type="button"  [disabled]="isBusy" class="btn-spacing" (click)="onCancel()">{{isInsertMode ? "Rezygnuję":"Powrót"}}</button>
+
+
+   <!-- <button type="button" [disabled]="isBusy" (click)="onCancel()" class="btn btn-danger btn-spacing" data-dismiss="modal"><i class="glyphicon glyphicon-remove" ></i>{{isInsertMode ? "Rezygnuję":"Powrót"}}</button>-->
   </div>
 
 </div>
-<div class="col-md-6">
+<div id="half1" class="col-md-6">
     <div class="jumbotron">
         <h1 class="display-4">Wypożyczenia:</h1>
+        <div class="lead1" *ngIf="currentResourceRentals.length === 0">Nie ma żadnych wypożyczeń dla tego zasobu.</div>
         <div class="lead1" *ngFor="let rental of currentResourceRentals">
-            
+
                 {{rental.data_wypozyczenia | date : 'dd.MM.yyyy HH:mm'}} - {{rental.data_zwrotu | date : 'dd.MM.yyyy HH:mm'}}
-              
+
         </div>
         <hr class="my-4">
       </div>
- 
+
+</div>
 </div>
